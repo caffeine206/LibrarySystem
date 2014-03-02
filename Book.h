@@ -3,6 +3,8 @@
 
 class Book : public Model {
   public:
+    Book(string author, string title, int categoryID, 
+          int day, int month, int year);
     getAuthor();
     getTitle();
     getCategoryID();

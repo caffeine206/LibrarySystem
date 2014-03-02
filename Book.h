@@ -1,22 +1,13 @@
 #ifndef __Book_H
 #define __Book_H
 
+#include "./Model.h"
+
 class Book : public Model {
-  public:
-    getAuthor();
-    getTitle();
-    getCategoryID();
-    getDay();
-    getMonth();
-    getYear();
-  
-  protected:
-    string author;
-    string title;
-    int categoryID;
-    int day;
-    int month;
-    int year;
+ public:
+    Book(string author, string title,
+         string categoryID, int month, int year, int available, int copies) {}
+ protected:
 };
 
 #endif

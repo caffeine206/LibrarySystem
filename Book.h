@@ -6,7 +6,7 @@
 class Book : public Model {
  public:
     Book(string author, string title,
-         string categoryID, int month, int year, int available, int copies) {}
+         string categoryID, int month, int year, int available, int copies);
  protected:
 };
 

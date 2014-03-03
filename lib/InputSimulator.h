@@ -3,7 +3,7 @@
 
 class InputSimulator {
   public:
-  
+  InputSimulator(string filename);
   protected:
 };
 

@@ -1,7 +1,7 @@
 #ifndef __Category_H
 #define __Category_H
 
-#include "./Category.h"
+#include "./Model.h"
 
 class Category : public Model {
   public:

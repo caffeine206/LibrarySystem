@@ -11,6 +11,7 @@ class Collection {
 public:
   Collection();
   virtural void apend(Model&);
+  virtural void apend(int key, Model&);
 
   // Sort functioin for single collection
   void sort(void (*f)(const Model&));
@@ -37,6 +38,7 @@ protected:
 
   // Collections can contain multiple lists
   // and This list are for display
+  // By defualt, list[0] will be used
   list<Model> **models;
 
   // hashtable for search

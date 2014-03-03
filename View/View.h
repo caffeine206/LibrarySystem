@@ -1,9 +1,9 @@
 #ifndef __View_H
 #define __View_H
 
-using namespace std
 #include <map>
 #include <string>
+using namespace std;
 
 class View {
   public:

@@ -2,13 +2,14 @@
 #define __User_H
 
 #include "./Model.h"
+#include "../Collection/Histories"
 
 class User : public Model {
   public:
     User(int userId, string firstName, string lastName);
-    getHistories();
+    Histories getHistories();
   protected:
-    histories Histories;
+    Histories histories;
 };
 
 #endif

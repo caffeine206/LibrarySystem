@@ -10,10 +10,14 @@ using namespace std;
 class Collection {
 public:
   Collection();
-  virtural void apend(Model&);
-  virtural void apend(int key, Model&);
 
-  // Sort functioin for single collection
+  // Insert function for single collection
+  virtural void append(Model&);
+
+  // Insert function for multiple collection
+  virtural void append(int key, Model&);
+
+  // Sort function for single collection
   void sort(void (*f)(const Model&));
 
   // Sort function for multiple collection

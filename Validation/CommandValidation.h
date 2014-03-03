@@ -3,7 +3,7 @@
 
 class CommandValidation {
   public:
-  
+    void check() = 0;
   protected:
 };
 

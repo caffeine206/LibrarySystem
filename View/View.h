@@ -3,7 +3,7 @@
 
 class View {
   public:
-  
+    void render();
   protected:
 };
 

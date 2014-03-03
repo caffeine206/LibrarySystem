@@ -3,7 +3,7 @@
 
 class TextView {
   public:
-  
+    void render();
   protected:
 };
 

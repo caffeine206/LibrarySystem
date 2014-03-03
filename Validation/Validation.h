@@ -3,7 +3,7 @@
 
 class Validation {
   public:
-  
+    virtual void check() = 0;
   protected:
 };
 

@@ -3,7 +3,7 @@
 
 class HistoryView {
   public:
-  
+    void render();
   protected:
 };
 

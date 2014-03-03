@@ -3,7 +3,7 @@
 
 class ListView {
   public:
-  
+    void render();
   protected:
 };
 

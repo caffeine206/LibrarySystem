@@ -3,7 +3,7 @@
 
 class ErrorView {
   public:
-  
+    void render(string message);
   protected:
 };
 

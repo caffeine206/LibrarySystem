@@ -1,7 +1,9 @@
 #ifndef __User_H
 #define __User_H
 
-class User {
+#include "./Model.h"
+
+class User : public Model {
   public:
   
   protected:

@@ -3,7 +3,7 @@
 
 class HistoryController {
 public:
-  void exec();
+  virtual void exec();
 
 protected:
 };

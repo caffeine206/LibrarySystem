@@ -2,7 +2,7 @@
 #define __Collection_H
 
 #include <algorithm>    // std::sort
-#include <vector>       // std::vector
+#include <list>         // std::list
 #include "../Model/Model.h"
 
 using namespace std;
@@ -10,21 +10,36 @@ using namespace std;
 class Collection {
 public:
   Collection();
-  void apend(Model&);
+  virtural void apend(Model&);
+
   // Sort functioin for single collection
   void sort(void (*f)(const Model&));
+
   // Sort function for multiple collection
   void sort(int index, void (*f)(const Model&));
-  Model[] getModels();
+
+  // return sum of size[0..n]
+  int size();
+
+  // return size of models[n]
+  int size(int n);
+
+  // Return list of models
+  list<Model> getModels(int n = 0);
+
   Model& find(string);
+
   //Optional
   void save();
 protected:
-  // It can make multiple vectors
-  // This vectors are for display
-  vector<Model> **models;
+  // array of sizes for each vectors
+  int *size;
 
-  //
+  // Collections can contain multiple lists
+  // and This list are for display
+  list<Model> **models;
+
+  // hashtable for search
   map<string key, Model&> searchMap;
 
   int primary_id = 1;

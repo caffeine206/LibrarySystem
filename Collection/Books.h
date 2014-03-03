@@ -4,7 +4,8 @@
 class Books : public Collection{
   public:
   Books();
-  Model[] getBooksByCatId(int category_id);
+  list getBooksByCatId(int category_id);
+  virtural void apend(Model&);
   protected:
 };
 

@@ -6,6 +6,7 @@
 class Users : public Collection {
   public:
   Users();
+  virtural void apend(Model&);
   bool isValidUser()
   protected:
 };

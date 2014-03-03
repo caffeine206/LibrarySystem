@@ -3,7 +3,7 @@
 
 class CheckoutController {
 public:
-  void exec();
+  virtual void exec();
 protected:
 };
 

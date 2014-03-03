@@ -6,7 +6,7 @@ using namespace std;
 class Controller {
   public:
   Controller(string command):info(command);
-  virtual void exec() = 0;
+  virtual void exec();
   
   protected:
   string info;

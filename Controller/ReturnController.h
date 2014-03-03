@@ -3,7 +3,7 @@
 
 class ReturnController {
 public:
-  void exec();
+  virtual void exec();
 protected:
 };
 

@@ -3,7 +3,7 @@
 
 #include "./Controller"
 
-class CheckoutController : public Controller{
+class initController : public Controller{
 public:
   virtual void exec();
 protected:

@@ -1,7 +1,9 @@
 #ifndef __ReturnController_H
 #define __ReturnController_H
 
-class ReturnController {
+#include "./Controller"
+
+class ReturnController : public Controller{
 public:
   virtual void exec();
 protected:

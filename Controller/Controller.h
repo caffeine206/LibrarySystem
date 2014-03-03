@@ -1,6 +1,8 @@
 #ifndef __Controller_H
 #define __Controller_H
 
+#include "../Config.h"
+
 using namespace std;
 
 class Controller {

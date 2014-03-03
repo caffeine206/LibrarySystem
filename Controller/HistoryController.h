@@ -1,7 +1,9 @@
 #ifndef __HistoryController_H
 #define __HistoryController_H
 
-class HistoryController {
+#include "./Controller"
+
+class HistoryController : public Controller{
 public:
   virtual void exec();
 

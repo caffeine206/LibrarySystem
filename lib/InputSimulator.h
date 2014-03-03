@@ -1,9 +1,12 @@
 #ifndef __InputSimulator_H
 #define __InputSimulator_H
 
+#include "../Controller/initController.h"
+
 class InputSimulator {
   public:
-  InputSimulator(string filename);
+  InputSimulator();
+  void exec();
   protected:
 };
 

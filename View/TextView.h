@@ -1,10 +1,12 @@
 #ifndef __TextView_H
 #define __TextView_H
 
-class TextView {
+class TextView : public View{
   public:
-    void render();
+  virtual void render();
+  void drowTable();
   protected:
+  
 };
 
 #endif

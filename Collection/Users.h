@@ -1,16 +1,13 @@
 #ifndef __Users_H
 #define __Users_H
 
-#include "./Model.h"
+#include "./Collection.h"
 
-class User : public Model {
+class Users : public Collection {
   public:
-    User(int library_id, string lastname,
-         string firstname) {}
-
-	Histories getHistories();  
+  Users();
+  bool isValidUser()
   protected:
-  	Histories hisotries;
 };
 
 #endif

@@ -3,6 +3,7 @@
 
 class Categories {
   public:
+  Categories();
   
   protected:
 };

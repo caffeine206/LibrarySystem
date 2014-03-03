@@ -1,9 +1,9 @@
 #ifndef __ErrorView_H
 #define __ErrorView_H
 
-class ErrorView {
+class ErrorView : public TextView{
   public:
-    void render(string message);
+    virtual void render(string message);
   protected:
 };
 

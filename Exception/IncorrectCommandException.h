@@ -1,10 +1,15 @@
 #ifndef __IncorrectCommandException_H
 #define __IncorrectCommandException_H
 
-class IncorrectCommandException {
-  public:
-  
-  protected:
-};
+#include <exception>
+
+class IncorrectCommandException: public exception
+{
+  virtual const char* what() const throw()
+  {
+    return "IncorrectCommandException happened";
+  }
+} IncorrectCommandException;
+
 
 #endif

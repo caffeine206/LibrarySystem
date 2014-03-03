@@ -3,6 +3,7 @@
 
 class Histories {
   public:
+  Histories();
   
   protected:
 };

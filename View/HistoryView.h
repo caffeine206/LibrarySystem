@@ -1,9 +1,9 @@
 #ifndef __HistoryView_H
 #define __HistoryView_H
 
-class HistoryView {
+class HistoryView : TextView{
   public:
-    void render();
+    virtual void render();
   protected:
 };
 

@@ -2,7 +2,6 @@
 #define __Model_H
 
 #include <map>
-#include <string>
 #include "boost/variant.hpp"
 
 using namespace std;

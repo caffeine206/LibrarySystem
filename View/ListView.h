@@ -1,9 +1,9 @@
 #ifndef __ListView_H
 #define __ListView_H
 
-class ListView {
+class ListView : TextView{
   public:
-    void render();
+    virtual void render();
   protected:
 };
 

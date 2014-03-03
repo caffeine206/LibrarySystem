@@ -2,9 +2,9 @@
 #define __ReturnController_H
 
 class ReturnController {
-  public:
-  
-  protected:
+public:
+  void exec();
+protected:
 };
 
 #endif

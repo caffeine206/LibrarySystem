@@ -4,7 +4,9 @@
 class Router {
   public:
     void registerRoute(string rounte, callback);
-  protected:
+  private:
+  string command[] =
+
 };
 
 #endif

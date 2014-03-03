@@ -1,9 +1,9 @@
 #ifndef __CommandValidation_H
 #define __CommandValidation_H
 
-class CommandValidation {
+class CommandValidation : public Validation{
   public:
-    void check() = 0;
+  virtual void check();
   protected:
 };
 

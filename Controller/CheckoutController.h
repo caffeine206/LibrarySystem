@@ -2,9 +2,9 @@
 #define __CheckoutController_H
 
 class CheckoutController {
-  public:
-  
-  protected:
+public:
+  void exec();
+protected:
 };
 
 #endif

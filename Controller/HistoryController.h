@@ -2,9 +2,10 @@
 #define __HistoryController_H
 
 class HistoryController {
-  public:
-  
-  protected:
+public:
+  void exec();
+
+protected:
 };
 
 #endif

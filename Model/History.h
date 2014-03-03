@@ -5,7 +5,7 @@
 
 class History : public Model {
   public:
-    
+    History(string History, bool checkedOut);
   protected:
 };
 

@@ -5,8 +5,10 @@
 
 class User : public Model {
   public:
-  
+    User(int ID, string firstName, string lastName);
+    getHistories();
   protected:
+    histories Histories;
 };
 
 #endif

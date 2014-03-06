@@ -1,15 +1,15 @@
-
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
 
-#include "assoc.h"
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <vector>
+#include "catch.hpp"
+#include "./assoc.cpp"
 
 using namespace std;
 
-string[] keys = [
+string testKeys[] = {
                  "2c57dc6d-b18c-4439-aa9c-0dfb2e52d61d",
                  "696715a9-99de-422f-9971-d6f343fd5a92",
                  "d0e4c41e-cbca-4e72-9967-8eee604472a9",
@@ -78,8 +78,8 @@ string[] keys = [
                  "b",
                  "0",
                  "/"
-                 ];
-int[] values = [3295,
+                 };
+int testValues[] = {3295,
                 7609,
                 392,
                 9697,
@@ -146,12 +146,160 @@ int[] values = [3295,
                 4,
                 5,
                 6,
-                7];
+                7};
 
-TEST_CASE( "0-1 insert and lookup", "[assoc]" ) {
-  assoc<int> map(60);
-  for (int i=0; i<60; i++) {
-    map.insert(keys[i], values[i]);
-    REQUIRE();
+// int test_assoc( int trials, int max )
+// {
+//   char buf[256];
+//   int errors = 0;
+
+//   int *values = new int[max];
+  
+//   for (int n = 0; n < trials; n++) {
+//     // construct the table
+//     assoc<int*> table;
+//     if (table.n() != 0) {
+//       cerr << "n() returned nonzero on a newly created table" << endl;
+//       errors++;
+//     }
+
+//     // initialize the test values
+//     for (int k = 0; k < max; k++)
+//       values[k] = 2*(n*max + k) + 1;
+        
+//     for (int k = 0; k < max; k++) {
+//       // Construct a new key having the form "n:k"
+//       sprintf(buf, "%d:%d", n, k);
+//       string key(buf);
+
+//       // the key is unique and should not be there
+//       if (table.contains(key)) {
+//     cerr << "False positive in containment test of '" << key <<"'" << endl;
+//     errors++;
+//       }
+
+//       // the value is a pointer to an integer
+//       int* value = values + k;
+
+//       // insert the value, given the key
+//       table.insert(key, value);
+
+//       // the number of elements should now be one more than 'k'
+//       int n_elem = table.n();
+//       if (n_elem != k + 1) {
+//     cerr << "invalid element count\n";
+//     errors++;
+//       }
+
+//       // the table should now contain 'key'
+//       if (!table.contains(key)) {
+//     cerr << "contains() returned false for the key just added" << endl;
+//     errors++;
+//       }
+      
+//       // test lookup of what we just inserted
+//       int* result;
+//       if (!table.lookup(result, key)) {
+//     cerr << "Lookup of '" << key << "' failed after insertion" << endl;
+//       }
+//       else if (result != value || *result != values[k]) {   
+//     cerr << "Lookup of '" << key << "' ";
+//     cerr << "gave wrong value ";
+//     cerr << "(immediately after insertion)" << endl;
+//     errors++;
+//       }      
+      
+//     } // (end of 'k' loop)
+
+//     //cerr << "min bucket count: " << table.min_bucket() << "\n";
+//     //cerr << "max bucket count: " << table.max_bucket() << "\n";
+//     //table.print(cerr);
+
+//     for (int k = 0; k < max; k++) {
+//       sprintf(buf, "%d:%d", n, k);
+//       string key(buf);
+
+//       // the table should contain 'key'
+//       if (!table.contains(key)) {
+//     cerr << "contains() returned false for a known key" << endl;
+//     errors++;
+//       }
+    
+//       // test lookup 
+//       int* result;
+//       if (!table.lookup(result, key)) {
+//     cerr << "Lookup of '" << key << "' failed" << endl;
+//       }      
+//       if (!result || result != values + k || *result != values[k]) {    
+//     cerr << "Lookup of '" << key << "' ";
+//     cerr << "gave wrong value " << endl;
+//     errors++;
+//       }      
+      
+//     } // (end of 'k' loop)
+    
+//   }
+
+  // free up the 'values' array
+//   delete[] values;
+  
+//   cerr << errors << " error" << (errors == 1 ? "" : "s") << " "
+//        << "(max = " << max << ", trials = " << trials << ")" << endl;
+
+//   return errors;
+// }
+
+TEST_CASE("0-1 insert and lookup", "[assoc]") {
+  assoc<int> map(100);
+  int value;
+  for (int i = 0; i < 68; i++) {
+    map.insert(testKeys[i], testValues[i]);
+    REQUIRE(map.contains(testKeys[i]) == true);
+    REQUIRE(map.lookup(value, testKeys[i]) == true);
+    REQUIRE(value == testValues[i]);
+    REQUIRE(map.lookup(value, testKeys[i] + "1231") == false);
   }
 }
+
+TEST_CASE("0-1 load factor", "[assoc]") {
+  assoc<int> map(100);
+  for (int i = 0; i < 68; i++) {
+    map.insert(testKeys[i], testValues[i]);
+    REQUIRE(map.load_factor() == (i+1)/100);
+  }
+}
+
+TEST_CASE("0-1 n()", "[assoc]") {
+    assoc<int> map(100);
+    REQUIRE(map.n() == 0);
+    for (int i = 0; i < 68; i++) {
+        map.insert(testKeys[i], testValues[i]);
+        REQUIRE(map.n() == (i+1));
+    }
+}
+
+TEST_CASE("0-1 max_load_factor", "[assoc]") {
+    double factors[] = {0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0};
+    assoc<int> map(0);
+    for (int i = 0; i < 7; i++) {
+        map.set_max_load_factor(factors[i]);
+        REQUIRE(map.get_max_load_factor() == factors[i]);
+    }
+}
+
+TEST_CASE("0-1 values", "[assoc]") {
+    assoc<int> map(100);
+    for (int i = 0; i < 68; i++) {
+        map.insert(testKeys[i], testValues[i]);
+    }
+    vector<int> v = map.values();
+
+    // for (std::vector<int>::iterator it = v.begin(), int i = 0;
+    //     it != v.end(); ++it, i++) {
+    //     REQUIRE(*it == testValues[i]);
+    // }
+}
+// TEST_CASE("0-1 stark's test", "[assoc]") {
+//   test_assoc(1, 16);
+//   test_assoc(1, 1024);
+// }

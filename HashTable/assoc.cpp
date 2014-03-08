@@ -10,9 +10,17 @@
 #include <vector>
 #include <list>     // list
 #include <iostream>
-#include "./assoc.h"
 
+// using std::string;
+// using std::vector;
+// using std::ostream;
+// using std::list;
+// using std::cout;
+// using std::cerr;
+// using std::endl;
 using namespace std;
+
+
 
 // Constructors
 template<class T>
@@ -31,17 +39,18 @@ void assoc<T>::init(int s) {
 
 // create an array
 template<class T>
-pair<T>* assoc<T>::createArray(int s) {
-    int * preTable = new pair<T> [s]();
+typename assoc<T>::pair** assoc<T>::createArray(int s) {
+    pair ** preTable = new pair*[s];
     for (int i = 0; i < s; i++) {
         preTable[i] = NULL;
     }
     return preTable;
 }
 
-unsigned long int hash(string key);
+template<class T>
+unsigned long int assoc<T>::hash(string key) {
     code = 2166136261;
-    const char *ptr = key;
+    const char *ptr = key.c_str();
     while (*ptr) {
         code = (16777619 * code)^(*ptr);
         ptr++;
@@ -52,28 +61,38 @@ unsigned long int hash(string key);
 template<class T>
 T assoc<T>::find(const string& key) {
     unsigned long int hashValue = hash(key);
-    pair<T>* front = table[hashValue];
-    if (front != NULL) {
-        pair<T>* current = front;
-        while (current != NULL) {
+    pair* front = table[hashValue];
+    // cout << "Searching key:" << key << " ...." << endl;
+    if (front) {
+        pair* current = front;
+        while (current) {
+            // cout << "current->key:" << current->key << endl;
             if (current->key == key) {
+                // cout << "key:" << key << " Found!" << endl;
                 return current->value;
             }
+            current = current->next;
         }
     }
-    return NULL;
+    // cout << "***********key:" << key << " not found" << endl;
+    return static_cast<T>(NULL);
 }
 
 // Basic Operations
 template<class T>
-bool assoc<T>::contains(const string& key) {
-    return (find(key) != NULL);
+bool assoc<T>::contains(const string& key)
+// POST: a condition where key.size == 0 returns false.
+{
+    if (key.size() == 0) {
+        return false;
+    }
+    return (find(key) != static_cast<T>(NULL));
 }
 
 template<class T>
 bool assoc<T>::lookup( T& value, const string& key ) {
     T preValue = find(key);
-    if (preValue != NULL) {
+    if (preValue != static_cast<T>(NULL)) {
         value = preValue;
         return true;
     } else {
@@ -84,45 +103,63 @@ bool assoc<T>::lookup( T& value, const string& key ) {
 template<class T>
 void assoc<T>::insert(const string& key, const T& value) {
 
-    if (key.size == 0) {
+    // cout << "key:" << key << endl;
+
+    if (key.size() == 0) {
         cerr << "key cannot be empty." << endl;
         return;
     }
 
     unsigned long int hashValue = hash(key);
-    pair<T>* front = table[hashValue];
-    if (front != NULL) {
-        table[hashValue] = new pair<T>(key, value, front);
+
+    // cout << "size:" << size << endl;
+    // cout << "hashValue:" << hashValue << endl;
+
+    pair* front = table[hashValue];
+    if (front) {
+        // cout << "Added Front" << endl;
+        table[hashValue] = new pair(key, value, front);
+        // cout << "Added:" << key << endl;
     } else {
-        table[hashValue] = new pair<T>(key, value);
-        usedBuckets.push_back(hashValue);
+        // cout << "Created " << endl;
+        table[hashValue] = new pair(key, value);
         n_elements++;
         checkSize();
+        // cout << "Created:" << key << endl;
     }
+    pairList.push_back(table[hashValue]);
+
+    // cout << "vector size:" << pairList.size() << endl;
+
 }
 
 template<class T>
-void assoc<t>::checkSize() {
+void assoc<T>::checkSize() {
     if (load_factor() > get_max_load_factor()) {
         resize();
     }
 }
 
 template<class T>
-void assoc<t>::resize() {
+void assoc<T>::resize() {
     int newSize = size * 2;
     assoc<T> newAssoc(newSize);
     T value;
-    for (list<int>::iterator it = usedBuckets.begin(); it != usedBuckets.end(); it++) {
-        lookup(value, )
-        newAssoc.insert();
+    for (typename list<pair*>::iterator it = pairList.begin(); it != pairList.end(); it++) {
+        lookup(value, (*it)->key);
+        newAssoc.insert((*it)->key, value);
     }
+    delete [] table;
+    table = newAssoc.table;
+    n_elements = newAssoc.n_elements;
+    size = newAssoc.size;
+    pairList = newAssoc.pairList;
 }
 
 // Other Stuff
 template<class T>
 int assoc<T>::n() const {
-    return n_elements;
+    return pairList.size();
 }
 
 template<class T>
@@ -147,6 +184,11 @@ void assoc<T>::set_max_load_factor(double factor) {
 template<class T>
 vector<T> assoc<T>::values() {
     vector<T> v;
+    T value;
+    for (typename list<pair*>::iterator it = pairList.begin(); it != pairList.end(); it++) {
+        lookup(value, (*it)->key);
+        v.push_back(value);
+    }
     return v;
 }
 

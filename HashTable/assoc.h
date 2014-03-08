@@ -1,8 +1,14 @@
 
+#ifndef __assoc_H
+#define __assoc_H
+
 #include <vector>
 #include <list>
 
-using namespace std;
+using std::string;
+using std::vector;
+using std::ostream;
+using std::list;
 
 template<class T> class assoc {
  public:
@@ -80,18 +86,25 @@ template<class T> class assoc {
   double max_load_factor;
 
   // Array for table
-  pair<T> * table;
+  pair ** table;
 
   // key tracker
-  list<int> indices;
+  list<pair*> pairList;
 
   // size of array
   int size;
 
   void init (int s);
-  T* createArray(int s);
+  pair** createArray(int s);
 
   unsigned long int code;
-  unsigned long int hash (unsigned int key);
+  unsigned long int hash(string key);
 
+  T find(const string& key);
+
+  void checkSize();
+  void resize();
 };
+
+#include "assoc.cpp"
+#endif

@@ -1,3 +1,14 @@
+/**
+ * Programming Assignment #4 HashTable<br>
+ * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/7/2014<br>
+ *
+ * <p>
+ * HashTable implementation
+ *
+ * @author      Sota Ogo, Derek Willms
+ * @since       1.0
+ * @version     1.0
+ */
 
 #ifndef __assoc_H
 #define __assoc_H
@@ -82,6 +93,9 @@ template<class T> class assoc {
   // Default max load factor
   static const double default_max_factor = 0.75;
 
+  // Default array size
+  static const int default_size = 4;
+
   // Max load factor
   double max_load_factor;
 
@@ -94,15 +108,25 @@ template<class T> class assoc {
   // size of array
   int size;
 
+  // Initialize table
   void init (int s);
+
+  // Create array
   pair** createArray(int s);
 
+  // Magic prime number
   unsigned long int code;
+
+  // Hash function
   unsigned long int hash(string key);
 
+  // Locate a given key
   T find(const string& key);
 
+  // Check current load factor
   void checkSize();
+
+  // Resize array and rehash values
   void resize();
 };
 

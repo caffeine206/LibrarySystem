@@ -191,6 +191,7 @@ int test_assoc( int trials, int max )
     errors++;
       }
 
+      cout << "key:" << key << endl;
       // the table should now contain 'key'
       if (!table.contains(key)) {
     cerr << "contains() returned false for the key just added" << endl;
@@ -251,7 +252,7 @@ int test_assoc( int trials, int max )
 
 TEST_CASE("0-1 insert and lookup", "[assoc]") {
   assoc<int> map(100);
-  int value;
+  // int value;
   // int n = 0;
   for (int i = 0; i < 68; i++) {
     map.insert(testKeys[i], testValues[i]);
@@ -274,6 +275,20 @@ TEST_CASE("0-1 load factor", "[assoc]") {
     map.insert(testKeys[i], testValues[i]);
     REQUIRE(map.load_factor() == (i+1)/100);
   }
+}
+
+TEST_CASE("0-1 load factor2", "[assoc]") {
+    assoc<int> map(10);
+    map.set_max_load_factor(0.7);
+    for (int i = 0; i < 7; i++) {
+        map.insert(testKeys[i], testValues[i]);
+        REQUIRE(map.load_factor() == (i+1)/10);
+    }
+    map.insert(testKeys[7], testValues[7]);
+    REQUIRE(map.load_factor() == (8)/10);
+
+    map.insert(testKeys[8], testValues[8]);
+    REQUIRE(map.load_factor() == (9)/20);
 }
 
 TEST_CASE("0-1 n()", "[assoc]") {

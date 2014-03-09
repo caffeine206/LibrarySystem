@@ -74,33 +74,6 @@ unsigned long int assoc<T>::hash(string key)
 }
 
 template<class T>
-T assoc<T>::find(const string& key) 
-// Helper function for locating a key in the table
-// Pre: Key must not be empty, else returns NULL
-// Post: Returns the associated value of the given key, or
-// NULL if not found
-{
-    if (key.size() == 0) { // key is empty
-        return static_cast<T>(NULL);
-    }
-    // get hash value for the key
-    unsigned long int hashValue = hash(key);
-
-    pair* front = table[hashValue];
-    if (front) { // a pair exists at the key
-        pair* current = front;
-        while (current) { // traverse the linked pairs
-            if (current->key == key) {
-                // return the value if it matches
-                return current->value; 
-            }
-            current = current->next;
-        }
-    }
-    return static_cast<T>(NULL); // key not found
-}
-
-template<class T>
 void assoc<T>::checkSize() 
 // Helper function for checking if the table's size needs
 // to be increased
@@ -123,12 +96,15 @@ void assoc<T>::resize()
     // Iterate over the list of active pairs and rehash them into new
     // array
     for (typename list<pair*>::iterator it = pairList.begin(); it != pairList.end(); it++) {
-        unsigned long int hashValue = hash((*it)->key);
+        pair * tmpPair = (*it);
+        unsigned long int hashValue = hash(tmpPair->key);
         pair* front = tmpTable[hashValue];
+        tmpPair->next = NULL;
         if (front) {
-            tmpTable[hashValue] = new pair((*it)->key, (*it)->value, front);
+            tmpPair->next = front;
+            tmpTable[hashValue] = tmpPair;
         } else {
-            tmpTable[hashValue] = new pair((*it)->key, (*it)->value);
+            tmpTable[hashValue] = tmpPair;
             tmp_n_elements++;
         }
     }
@@ -149,7 +125,8 @@ bool assoc<T>::contains(const string& key)
 // Post: returns true if key is contained in table,
 // false otherwise
 {
-    return (find(key) != static_cast<T>(NULL));
+    T value;
+    return lookup(value, key);
 }
 
 template<class T>
@@ -160,13 +137,25 @@ bool assoc<T>::lookup( T& value, const string& key )
 // value of the key if the key is contained in the table, 
 // false otherwise
 {
-    T preValue = find(key); // call the find helper function
-    if (preValue != static_cast<T>(NULL)) { // key exists
-        value = preValue; // update given value
-        return true;
-    } else { // key not found
+    if (key.size() == 0) { // key is empty
         return false;
     }
+    // get hash value for the key
+    unsigned long int hashValue = hash(key);
+
+    pair* front = table[hashValue];
+    if (front) { // a pair exists at the key
+        pair* current = front;
+        while (current) { // traverse the linked pairs
+            if (current->key == key) {
+                // return the value if it matches
+                value = current->value;
+                return true;
+            }
+            current = current->next;
+        }
+    }
+    return false; // key not found
 }
 
 template<class T>
@@ -185,16 +174,32 @@ void assoc<T>::insert(const string& key, const T& value)
     // get hash value for given key
     unsigned long int hashValue = hash(key);
 
+
     pair* front = table[hashValue];
     if (front) { // key already exists
-        table[hashValue] = new pair(key, value, front);
+        pair* current = front;
+        bool contains = false; // flag for key exists
+        while (current) { // traverse the linked pairs
+            if (current->key == key) {
+                contains = true;
+                // Update the value
+                current->value = value;
+                break;
+            }
+            current = current->next;
+        }
+        if (contains == false) { // Add new pair
+            table[hashValue] = new pair(key, value, front);
+            // add to list of active pairs
+            pairList.push_back(table[hashValue]); 
+        }
     } else { // make new key here
         table[hashValue] = new pair(key, value);
         n_elements++; // update number of elements
         checkSize(); // check if load factor is surpassed
+        // add to list of active pairs
+        pairList.push_back(table[hashValue]); 
     }
-    // add to list of active pairs
-    pairList.push_back(table[hashValue]); 
 }
 
 // Other Stuff
@@ -209,7 +214,7 @@ template<class T>
 double assoc<T>::load_factor() const 
 // Returns the current ratio of keys to the size of the array
 {
-    return n_elements / size;
+    return (double) n() / (double) size;
 }
 
 template<class T>

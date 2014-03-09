@@ -120,9 +120,6 @@ template<class T> class assoc {
   // Hash function
   unsigned long int hash(string key);
 
-  // Locate a given key
-  T find(const string& key);
-
   // Check current load factor
   void checkSize();
 

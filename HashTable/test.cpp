@@ -70,10 +70,10 @@ string testKeys[] = {
                  "(802) 426-2420 Eckford Street, Juarez, Alabama, 1901",
                  "(983) 405-3049 Dunne Place, Byrnedale, Missouri, 9240",
                  "(876) 532-2943 Dewey Place, Bellamy, Alaska, 141",
-                 "",
-                 "",
-                 "(876) 532-2943 Dewey Place, Bellamy, Alaska, 141",
-                 "(876) 532-2943 Dewey Place, Bellamy, Alaska, 141",
+                 "3",
+                 "1",
+                 "1(876) 532-2943 Dewey Place, Bellamy, Alaska, 141",
+                 "2(876) 532-2943 Dewey Place, Bellamy, Alaska, 141",
                  "a",
                  "b",
                  "0",
@@ -147,6 +147,28 @@ int testValues[] = {3295,
                 5,
                 6,
                 7};
+string testKeys2[] = {
+                 "3"
+             };
+int testValues2[] = {
+                 0
+             };
+string testKeys3[] = {
+                 "3",
+                 "3",
+                 "3",
+                 "3",
+                 "3",
+                 "5"
+             };
+int testValues3[] = {
+                 7,
+                 9,
+                 3,
+                 2,
+                 0,
+                 1
+             };
 
 int test_assoc( int trials, int max )
 {
@@ -191,7 +213,7 @@ int test_assoc( int trials, int max )
     errors++;
       }
 
-      cout << "key:" << key << endl;
+      // cout << "key:" << key << endl;
       // the table should now contain 'key'
       if (!table.contains(key)) {
     cerr << "contains() returned false for the key just added" << endl;
@@ -252,7 +274,7 @@ int test_assoc( int trials, int max )
 
 TEST_CASE("0-1 insert and lookup", "[assoc]") {
   assoc<int> map(100);
-  // int value;
+  int value;
   // int n = 0;
   for (int i = 0; i < 68; i++) {
     map.insert(testKeys[i], testValues[i]);
@@ -260,12 +282,29 @@ TEST_CASE("0-1 insert and lookup", "[assoc]") {
     // cout << v.at(n) << endl;
     if (testKeys[i].size() == 0) {
         REQUIRE(map.contains(testKeys[i]) == false);
+        REQUIRE(map.lookup(value, testKeys[i]) == false);
     } else {
+        // cout << "key" << testKeys[i] << endl;
         REQUIRE(map.contains(testKeys[i]) == true);
+        REQUIRE(map.lookup(value, testKeys[i]) == true);
+        REQUIRE(value == testValues[i]);
+        REQUIRE(map.lookup(value, testKeys[i] + "1231") == false);
     }
-    // REQUIRE(map.lookup(value, testKeys[i]) == true);
-    // REQUIRE(value == testValues[i]);
-    // REQUIRE(map.lookup(value, testKeys[i] + "1231") == false);
+  }
+}
+
+// 
+TEST_CASE("0-1 insert and lookup2", "[assoc]") {
+  assoc<int> map(100);
+  int value;
+  // int n = 0;
+  for (int i = 0; i < 1; i++) {
+    map.insert(testKeys2[i], testValues2[i]);
+    // cout << "key" << testKeys2[i] << endl;
+    REQUIRE(map.contains(testKeys2[i]) == true);
+    REQUIRE(map.lookup(value, testKeys2[i]) == true);
+    REQUIRE(value == testValues2[i]);
+    REQUIRE(map.lookup(value, testKeys2[i] + "1231") == false);
   }
 }
 
@@ -273,7 +312,8 @@ TEST_CASE("0-1 load factor", "[assoc]") {
   assoc<int> map(100);
   for (int i = 0; i < 68; i++) {
     map.insert(testKeys[i], testValues[i]);
-    REQUIRE(map.load_factor() == (i+1)/100);
+    double factor = (double) (i+1) / 100.0;
+    REQUIRE(map.load_factor() == factor);
   }
 }
 
@@ -282,13 +322,14 @@ TEST_CASE("0-1 load factor2", "[assoc]") {
     map.set_max_load_factor(0.7);
     for (int i = 0; i < 7; i++) {
         map.insert(testKeys[i], testValues[i]);
-        REQUIRE(map.load_factor() == (i+1)/10);
+        double factor = (double) (i+1) / 10.0;        
+        REQUIRE(map.load_factor() == factor);
     }
     map.insert(testKeys[7], testValues[7]);
-    REQUIRE(map.load_factor() == (8)/10);
+    REQUIRE(map.load_factor() == 8.0/10.0);
 
     map.insert(testKeys[8], testValues[8]);
-    REQUIRE(map.load_factor() == (9)/20);
+    REQUIRE(map.load_factor() == 9.0/20.0);
 }
 
 TEST_CASE("0-1 n()", "[assoc]") {
@@ -305,6 +346,14 @@ TEST_CASE("0-1 n()", "[assoc]") {
         }
         REQUIRE(map.n() == (n));
     }
+}
+
+TEST_CASE("0-1 n()2", "[assoc]") {
+    assoc<int> map(100);
+    for (int i = 0; i < 6; i++) {
+        map.insert(testKeys3[i], testValues3[i]);
+    }
+    REQUIRE(map.n() == 2);
 }
 
 TEST_CASE("0-1 max_load_factor", "[assoc]") {

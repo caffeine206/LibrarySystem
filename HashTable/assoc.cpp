@@ -10,6 +10,8 @@
  * @version     1.0
  */
 
+#define DEFAULT_MAX_FACTOR 0.75
+#define DEFAULT_SIZE 4
 
 #include <string>
 #include <vector>
@@ -35,13 +37,12 @@ void assoc<T>::init(int s)
 // Post: Initializes a new assoc object
 {
     if (s < 1) { // invalid size
-        s = default_size;
-        cerr << "size set to default due to invalid size" << endl;
+        s = DEFAULT_SIZE;
+        cerr << "InputError: Size set to default due to invalid size" << endl;
     }
     size = s;
-    n_elements = 0;
     table = createArray(s); // call create array helper
-    set_max_load_factor(assoc<T>::default_max_factor);
+    set_max_load_factor(DEFAULT_MAX_FACTOR);
 }
 
 template<class T>
@@ -64,7 +65,7 @@ unsigned long int assoc<T>::hash(string key)
 // same value each time
 // Post: Returns a hash value for a key
 {
-    code = 2166136261; // magic prime number
+    code = 2166136261u; // magic prime number
     const char *ptr = key.c_str();
     while (*ptr) {
         code = (16777619 * code)^(*ptr);
@@ -91,11 +92,11 @@ void assoc<T>::resize()
 {
     int newSize = size * 2;
     pair ** tmpTable = createArray(newSize);
-    int tmp_n_elements;
 
     // Iterate over the list of active pairs and rehash them into new
     // array
-    for (typename list<pair*>::iterator it = pairList.begin(); it != pairList.end(); it++) {
+    for (typename list<pair*>::iterator it = pairList.begin();
+            it != pairList.end(); it++) {
         pair * tmpPair = (*it);
         unsigned long int hashValue = hash(tmpPair->key);
         pair* front = tmpTable[hashValue];
@@ -105,14 +106,12 @@ void assoc<T>::resize()
             tmpTable[hashValue] = tmpPair;
         } else {
             tmpTable[hashValue] = tmpPair;
-            tmp_n_elements++;
         }
     }
 
     // assign new values and delete old table
     delete [] table;
     table = tmpTable;
-    n_elements = tmp_n_elements;
     size = newSize;
 }
 
@@ -168,7 +167,7 @@ void assoc<T>::insert(const string& key, const T& value)
 // if max load factor is surpassed.
 {
     if (key.size() == 0) { // key is empty
-        cerr << "key cannot be empty." << endl;
+        cerr << "InputError: key cannot be empty." << endl;
         return;
     }
     // get hash value for given key
@@ -195,7 +194,6 @@ void assoc<T>::insert(const string& key, const T& value)
         }
     } else { // make new key here
         table[hashValue] = new pair(key, value);
-        n_elements++; // update number of elements
         checkSize(); // check if load factor is surpassed
         // add to list of active pairs
         pairList.push_back(table[hashValue]); 
@@ -235,7 +233,7 @@ void assoc<T>::set_max_load_factor(double factor)
     if (factor > 0.0)
         max_load_factor = factor;
     else
-        cerr << "max load factor has to be more than 0.0." << endl;
+        cerr << "InputError: max load factor has to be more than 0.0." << endl;
 }
 
 // All value extraction
@@ -246,10 +244,9 @@ vector<T> assoc<T>::values()
 // Post: Returns list of all values currently in the table
 {
     vector<T> v;
-    T value;
-    for (typename list<pair*>::iterator it = pairList.begin(); it != pairList.end(); it++) {
-        lookup(value, (*it)->key);
-        v.push_back(value);
+    for (typename list<pair*>::iterator it = pairList.begin();
+            it != pairList.end(); it++) {
+        v.push_back((*it)->value);
     }
     return v;
 }
@@ -257,4 +254,11 @@ vector<T> assoc<T>::values()
 // (Test Stuff)
 template<class T>
 void assoc<T>::print(ostream& out) const {
+    out << "***Output all pairs..." << endl;
+    for (typename list<pair*>::const_iterator it = pairList.begin();
+            it != pairList.end(); it++) {
+        out << "Key: " << (*it)->key << " Value: " << (*it)->value << endl;
+    }
+    out << "***Finished..." << endl;
 }
+

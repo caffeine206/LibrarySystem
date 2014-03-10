@@ -87,22 +87,13 @@ template<class T> class assoc {
   friend int test_assoc(int, int);
 
  private:
-  // Number of elements in the table
-  int n_elements;
-
-  // Default max load factor
-  static const double default_max_factor = 0.75;
-
-  // Default array size
-  static const int default_size = 4;
-
   // Max load factor
   double max_load_factor;
 
   // Array for table
   pair ** table;
 
-  // key tracker
+  // List of pairs
   list<pair*> pairList;
 
   // size of array

@@ -350,10 +350,15 @@ TEST_CASE("0-1 n()", "[assoc]") {
 
 TEST_CASE("0-1 n()2", "[assoc]") {
     assoc<int> map(100);
+    int value;
     for (int i = 0; i < 6; i++) {
         map.insert(testKeys3[i], testValues3[i]);
+        map.lookup(value, testKeys3[i]);
+        REQUIRE(value == testValues3[i]);
     }
     REQUIRE(map.n() == 2);
+    map.lookup(value, "3");
+    REQUIRE(value == 0);
 }
 
 TEST_CASE("0-1 max_load_factor", "[assoc]") {
@@ -375,13 +380,39 @@ TEST_CASE("0-1 values", "[assoc]") {
         map.insert(testKeys[i], testValues[i]);
     }
     vector<int> v = map.values();
-
-    // for (std::vector<int>::iterator it = v.begin(), int i = 0;
-    //     it != v.end(); ++it, i++) {
-    //     REQUIRE(*it == testValues[i]);
-    // }
+    int i = 0;
+    for (vector<int>::iterator it = v.begin();
+        it != v.end(); ++it) {
+        REQUIRE(*it == testValues[i]);
+        i++;
+    }
 }
 TEST_CASE("0-1 stark's test", "[assoc]") {
   test_assoc(1, 16);
   test_assoc(1, 1024);
+  int j = 2;
+  for (int i = 1024; i < 5000; i = i+1024) {
+      test_assoc(j, i);
+      j++;
+  }
 }
+TEST_CASE("0-1 Sota's test", "[assoc]") {
+    double factors[] = {-0.0, -0.1, -0.3, -0.5, -0.7, -0.9, -1.0};
+    assoc<int> map(-12);
+    for (int i = 0; i < 7; i++) {
+        map.set_max_load_factor(factors[i]);
+        if (factors[i] == 0.0) {
+            REQUIRE(map.get_max_load_factor() == 0.75);
+        } else {
+            REQUIRE(map.get_max_load_factor() == 0.75);
+        }
+    }
+}
+TEST_CASE("0-1 print", "[assoc]") {
+    assoc<int> map(100);
+    for (int i = 0; i < 68; i++) {
+        map.insert(testKeys[i], testValues[i]);
+    }
+    map.print(cout);
+}
+

@@ -281,7 +281,7 @@ TEST_CASE("0-1 time", "[assoc]") {
   gettimeofday(&tim, NULL);  
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
   printf("%.6lf seconds elapsed\n", t2-t1);  
-  REQUIRE((t2-t1) < 1.5);
+  REQUIRE((t2-t1) < 5);
 }
 TEST_CASE("0-1 insert and lookup", "[assoc]") {
   assoc<int> map(100);

@@ -18,6 +18,9 @@
 
 using namespace std;
 
+#define DEFAULT_MAX_FACTOR 0.5
+#define DEFAULT_SIZE 4
+
 template<class T> class assoc {
  public:
   /* An internal structure is needed for the key/value pairs */
@@ -106,13 +109,12 @@ template<class T> class assoc {
   unsigned long int code;
 
   // Hash function
-  unsigned long int hash(string key);
-
-  // Check current load factor
-  void checkSize();
+  int hash(const string& key);
 
   // Resize array and rehash values
   void resize();
+
+  void find(const string& key);
 };
 
 #include "assoc.cpp"

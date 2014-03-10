@@ -10,12 +10,10 @@
  * @version     1.0
  */
 
-#define DEFAULT_MAX_FACTOR 0.75
-#define DEFAULT_SIZE 4
-
 #include <vector>   // vector
 #include <list>     // list
 #include <iostream> // cout, cerr, endl
+#include <sys/time.h> 
 
 using namespace std;
 
@@ -58,7 +56,7 @@ typename assoc<T>::pair** assoc<T>::createArray(int s)
 }
 
 template<class T>
-unsigned long int assoc<T>::hash(string key) 
+int assoc<T>::hash(const string& key) 
 // Helper function for generating a hash value for a key
 // Pre: Key should not be empty, else it will generate the
 // same value each time
@@ -70,18 +68,7 @@ unsigned long int assoc<T>::hash(string key)
         code = (16777619 * code)^(*ptr);
         ptr++;
     }
-    return code % size;
-}
-
-template<class T>
-void assoc<T>::checkSize() 
-// Helper function for checking if the table's size needs
-// to be increased
-// Post: If load factor has been reached, call resize helper
-{
-    if (load_factor() > get_max_load_factor()) {
-        resize();
-    }
+    return (int) (code % size);
 }
 
 template<class T>
@@ -89,29 +76,27 @@ void assoc<T>::resize()
 // Helper function for resizing the table
 // Post: Doubles the size of the array and rehashes the contents
 {
-    int newSize = size * 2;
-    pair ** tmpTable = createArray(newSize);
+    size *= 2;
+    pair ** tmpTable = createArray(size);
 
     // Iterate over the list of active pairs and rehash them into new
     // array
     for (typename list<pair*>::iterator it = pairList.begin();
             it != pairList.end(); it++) {
-        pair * tmpPair = (*it);
-        unsigned long int hashValue = hash(tmpPair->key);
-        pair* front = tmpTable[hashValue];
-        tmpPair->next = NULL;
-        if (front) {
-            tmpPair->next = front;
-            tmpTable[hashValue] = tmpPair;
+        int hashValue = hash((*it)->key);
+        (*it)->next = NULL;
+        if (tmpTable[hashValue]) {
+            (*it)->next = tmpTable[hashValue];
+            tmpTable[hashValue] = (*it);
         } else {
-            tmpTable[hashValue] = tmpPair;
+            tmpTable[hashValue] = (*it);
         }
     }
 
     // assign new values and delete old table
     delete [] table;
+
     table = tmpTable;
-    size = newSize;
 }
 
 // Basic Operations
@@ -139,11 +124,10 @@ bool assoc<T>::lookup( T& value, const string& key )
         return false;
     }
     // get hash value for the key
-    unsigned long int hashValue = hash(key);
+    int hashValue = hash(key);
 
-    pair* front = table[hashValue];
-    if (front) { // a pair exists at the key
-        pair* current = front;
+    if (table[hashValue]) { // a pair exists at the key
+        pair* current = table[hashValue];
         while (current) { // traverse the linked pairs
             if (current->key == key) {
                 // return the value if it matches
@@ -170,12 +154,10 @@ void assoc<T>::insert(const string& key, const T& value)
         return;
     }
     // get hash value for given key
-    unsigned long int hashValue = hash(key);
+    int hashValue = hash(key);
 
-
-    pair* front = table[hashValue];
-    if (front) { // key already exists
-        pair* current = front;
+    if (table[hashValue]) { // key already exists
+        pair* current = table[hashValue];
         bool contains = false; // flag for key exists
         while (current) { // traverse the linked pairs
             if (current->key == key) {
@@ -187,15 +169,18 @@ void assoc<T>::insert(const string& key, const T& value)
             current = current->next;
         }
         if (contains == false) { // Add new pair
-            table[hashValue] = new pair(key, value, front);
+            table[hashValue] = new pair(key, value, table[hashValue]);
             // add to list of active pairs
-            pairList.push_back(table[hashValue]); 
+            pairList.push_back(table[hashValue]);
         }
     } else { // make new key here
         table[hashValue] = new pair(key, value);
-        checkSize(); // check if load factor is surpassed
         // add to list of active pairs
-        pairList.push_back(table[hashValue]); 
+        pairList.push_back(table[hashValue]);
+
+        if (load_factor() > get_max_load_factor()) {
+            resize();
+        }
     }
 }
 

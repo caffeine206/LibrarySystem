@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <vector>
 #include "./assoc.h"
+#include <sys/time.h> 
 
 using namespace std;
 
@@ -115,8 +116,39 @@ int test_assoc( int trials, int max )
 
 // Possible 'main'
 
+// int elapsed( timeval &startTime, timeval &endTime ) {
+//     return ( endTime.tv_sec - startTime.tv_sec ) * 1000
+//     + ( endTime.tv_usec - startTime.tv_usec );
+// }
+unsigned long int hash1(const string& key) 
+// Helper function for generating a hash value for a key
+// Pre: Key should not be empty, else it will generate the
+// same value each time
+// Post: Returns a hash value for a key
+{
+    unsigned long int code = 2166136261u; // magic prime number
+    const char *ptr = key.c_str();
+    while (*ptr) {
+        code = (16777619 * code)^(*ptr);
+        ptr++;
+    }
+    return code % 100000000000;
+}
 int main( int argc, char *argv[] )
 {
-  test_assoc(1, 16);
-  test_assoc(1, 1024);
+  // test_assoc(1, 16);
+  // test_assoc(1, 1024);
+  // struct timeval startTime, endTime;
+  // gettimeofday( &startTime, 0 );
+  // gettimeofday( &endTime, 0 );
+  // cout << "elapsed time: " << elapsed( startTime, endTime ) << endl;
+  struct timeval tim;  
+  gettimeofday(&tim, NULL);  
+  double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
+  // hash1("100000000000");
+  test_assoc(1, 1000000);
+  gettimeofday(&tim, NULL);  
+  double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
+  printf("%.6lf seconds elapsed\n", t2-t1);  
+
 }

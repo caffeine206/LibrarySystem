@@ -13,7 +13,6 @@
 #include <vector>   // vector
 #include <list>     // list
 #include <iostream> // cout, cerr, endl
-#include <sys/time.h> 
 
 using namespace std;
 
@@ -148,9 +147,6 @@ void assoc<T>::insert(const string& key, const T& value)
 // of elements with the new key value pair. Also resizes
 // if max load factor is surpassed.
 {
-  // struct timeval tim;  
-  // gettimeofday(&tim, NULL);  
-  // double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
 
     if (key.size() == 0) { // key is empty
         cerr << "InputError: key cannot be empty." << endl;
@@ -186,9 +182,6 @@ void assoc<T>::insert(const string& key, const T& value)
         if (load_factor() > get_max_load_factor()) {
             resize();
         }
-  // gettimeofday(&tim, NULL);  
-  // double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
-  // printf("%.6lf seconds elapsed\n", t2-t1);  
     }
 }
 

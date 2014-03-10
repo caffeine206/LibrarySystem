@@ -147,6 +147,7 @@ int main( int argc, char *argv[] )
   double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
   // hash1("100000000000");
   test_assoc(1, 1000000);
+
   gettimeofday(&tim, NULL);  
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
   printf("%.6lf seconds elapsed\n", t2-t1);  

@@ -18,7 +18,7 @@
 
 using namespace std;
 
-#define DEFAULT_MAX_FACTOR 0.5
+#define DEFAULT_MAX_FACTOR 0.75
 #define DEFAULT_SIZE 4
 
 template<class T> class assoc {
@@ -89,6 +89,9 @@ template<class T> class assoc {
  private:
   // Max load factor
   double max_load_factor;
+
+  // Number of elements
+  int n_elements;
 
   // Array for table
   pair ** table;

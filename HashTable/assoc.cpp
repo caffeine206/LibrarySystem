@@ -40,6 +40,7 @@ void assoc<T>::init(int s)
     size = s;
     table = createArray(s); // call create array helper
     set_max_load_factor(DEFAULT_MAX_FACTOR);
+    n_elements = 0;
 }
 
 template<class T>
@@ -76,11 +77,10 @@ void assoc<T>::resize()
 // Helper function for resizing the table
 // Post: Doubles the size of the array and rehashes the contents
 {
-    size *= 2;
-    pair ** tmpTable = createArray(size);
+    size *= 2; // Update size here
+    pair ** tmpTable = createArray(size); // new Array
 
-    // Iterate over the list of active pairs and rehash them into new
-    // array
+    // Iterate over the list of active pairs and rehash them into new array
     for (typename list<pair*>::iterator it = pairList.begin();
             it != pairList.end(); it++) {
         int hashValue = hash((*it)->key);
@@ -95,7 +95,6 @@ void assoc<T>::resize()
 
     // assign new values and delete old table
     delete [] table;
-
     table = tmpTable;
 }
 
@@ -149,6 +148,10 @@ void assoc<T>::insert(const string& key, const T& value)
 // of elements with the new key value pair. Also resizes
 // if max load factor is surpassed.
 {
+  // struct timeval tim;  
+  // gettimeofday(&tim, NULL);  
+  // double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
+
     if (key.size() == 0) { // key is empty
         cerr << "InputError: key cannot be empty." << endl;
         return;
@@ -172,15 +175,20 @@ void assoc<T>::insert(const string& key, const T& value)
             table[hashValue] = new pair(key, value, table[hashValue]);
             // add to list of active pairs
             pairList.push_back(table[hashValue]);
+            n_elements++;
         }
     } else { // make new key here
         table[hashValue] = new pair(key, value);
         // add to list of active pairs
         pairList.push_back(table[hashValue]);
+        n_elements++;
 
         if (load_factor() > get_max_load_factor()) {
             resize();
         }
+  // gettimeofday(&tim, NULL);  
+  // double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
+  // printf("%.6lf seconds elapsed\n", t2-t1);  
     }
 }
 
@@ -189,7 +197,7 @@ template<class T>
 int assoc<T>::n() const 
 // Returns the number of pairs in the table
 {
-    return pairList.size();
+    return n_elements;
 }
 
 template<class T>

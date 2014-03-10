@@ -281,7 +281,7 @@ TEST_CASE("0-1 time", "[assoc]") {
   gettimeofday(&tim, NULL);  
   double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
   printf("%.6lf seconds elapsed\n", t2-t1);  
-  REQUIRE((t2-t1) < 3.0);
+  REQUIRE((t2-t1) < 1.5);
 }
 TEST_CASE("0-1 insert and lookup", "[assoc]") {
   assoc<int> map(100);
@@ -320,15 +320,10 @@ TEST_CASE("0-1 insert and lookup2", "[assoc]") {
 }
 
 TEST_CASE("0-1 load factor", "[assoc]") {
-  assoc<int> map(100);
-  for (int i = 0; i < 50; i++) {
+  assoc<int> map(1000);
+  for (int i = 0; i < 68; i++) {
     map.insert(testKeys[i], testValues[i]);
-    double factor = (double) (i+1) / 100.0;
-    REQUIRE(map.load_factor() == factor);
-  }
-  for (int i = 50; i < 68; i++) {
-    map.insert(testKeys[i], testValues[i]);
-    double factor = (double) (i+1) / 200.0;
+    double factor = (double) (i+1) / 1000.0;
     REQUIRE(map.load_factor() == factor);
   }
 }

@@ -13,10 +13,9 @@
 #define DEFAULT_MAX_FACTOR 0.75
 #define DEFAULT_SIZE 4
 
-#include <string>
-#include <vector>
+#include <vector>   // vector
 #include <list>     // list
-#include <iostream>
+#include <iostream> // cout, cerr, endl
 
 using namespace std;
 

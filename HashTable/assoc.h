@@ -13,13 +13,10 @@
 #ifndef __assoc_H
 #define __assoc_H
 
-#include <vector>
-#include <list>
+#include <vector> // vector
+#include <list>   // list
 
-using std::string;
-using std::vector;
-using std::ostream;
-using std::list;
+using namespace std;
 
 template<class T> class assoc {
  public:

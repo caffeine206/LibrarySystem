@@ -1,9 +1,9 @@
 /**
  * Programming Assignment #4 HashTable<br>
- * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/7/2014<br>
+ * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/9/2014<br>
  *
  * <p>
- * HashTable implementation
+ * HashTable definition
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0

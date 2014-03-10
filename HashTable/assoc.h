@@ -112,7 +112,7 @@ template<class T> class assoc {
   unsigned long int code;
 
   // Hash function
-  int hash(const string& key);
+  unsigned long int hash(const string& key);
 
   // Resize array and rehash values
   void resize();

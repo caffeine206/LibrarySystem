@@ -56,7 +56,7 @@ typename assoc<T>::pair** assoc<T>::createArray(int s)
 }
 
 template<class T>
-int assoc<T>::hash(const string& key) 
+unsigned long int assoc<T>::hash(const string& key) 
 // Helper function for generating a hash value for a key
 // Pre: Key should not be empty, else it will generate the
 // same value each time
@@ -82,7 +82,7 @@ void assoc<T>::resize()
     // Iterate over the list of active pairs and rehash them into new array
     for (typename list<pair*>::iterator it = pairList.begin();
             it != pairList.end(); it++) {
-        int hashValue = hash((*it)->key);
+        unsigned long int hashValue = hash((*it)->key);
         (*it)->next = NULL;
         if (tmpTable[hashValue]) {
             (*it)->next = tmpTable[hashValue];
@@ -122,7 +122,7 @@ bool assoc<T>::lookup( T& value, const string& key )
         return false;
     }
     // get hash value for the key
-    int hashValue = hash(key);
+    unsigned long int hashValue = hash(key);
 
     if (table[hashValue]) { // a pair exists at the key
         pair* current = table[hashValue];
@@ -153,7 +153,7 @@ void assoc<T>::insert(const string& key, const T& value)
         return;
     }
     // get hash value for given key
-    int hashValue = hash(key);
+    unsigned long int hashValue = hash(key);
 
     if (table[hashValue]) { // key already exists
         pair* current = table[hashValue];

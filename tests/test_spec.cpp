@@ -1,5 +1,15 @@
 #define CATCH_CONFIG_MAIN
 
+#include "../Model/Book/Periodical.h"
+#include "../Model/Book/Fiction.h"
+#include "../Model/Book/Youth.h"
+#include "../Model/History.h"
+#include "../Model/User.h"
+#include "../Collection/Books.h"
+#include "../Collection/Histories.h"
+#include "../Collection/Users.h"
+
+
 #include <set>
 #include <string>
 #include <iostream>
@@ -8,15 +18,56 @@
 #include <list>
 #include "catch.hpp"
 
-#include "../Model/Book/Periodical.h"
-#include "../Model/Book/Fiction.h"
-#include "../Model/Book/Youth.h"
-#include "../Model/History.h"
-#include "../Model/User.h"
-#include "../Collection/Books.h"
-#include "../Collection/Histories.h"
-
 using namespace std;
+
+TEST_CASE("0-1 Users", "[collection]") {
+    User* user = new User();
+    user->setID(1000);
+    user->setName("TestFirstName", "TestLastName");
+
+    User* user2 = new User();
+    user2->setID(1100);
+    user2->setName("TestFirstName2", "TestLastName2");
+
+    User* user3 = new User();
+    user3->setID(1200);
+    user3->setName("TestFirstName3", "TestLastName3");
+
+    Youth* youth = new Youth();
+    youth->setYear(2014);
+    youth->setAuthor("TestAuthor");
+    youth->setTitle("TestYouth");
+
+    Books books;
+    books.append(youth);
+
+    char command = 'R';
+    History* history = new History();
+    history->setCommand(command);
+    history->setBook(youth);
+
+    user->addHistory(history);
+    user->getHistories();
+
+    // Create Users
+    Users users;
+    users.append(user);
+    users.append(user2);
+    users.append(user3);
+
+    Model* models[] = {
+        user,
+        user2,
+        user3
+    };
+
+    int i = 0;
+    for (set<Model*>::iterator it = users.begin();
+        it != users.end(); ++it) {
+        REQUIRE((*it)->key() == models[i]->key());
+        i++;
+    }
+}
 
 TEST_CASE("0-1 User", "[model]") {
     User* user = new User();
@@ -40,6 +91,7 @@ TEST_CASE("0-1 User", "[model]") {
     user->getHistories();
 
     REQUIRE(user->getID() == 1000);
+    REQUIRE(user->key() == "1000");
     REQUIRE(user->getFirstName() != "Test");
     REQUIRE(user->getLastName() != "Test");
     REQUIRE(user->getFirstName() == "TestFirstName");

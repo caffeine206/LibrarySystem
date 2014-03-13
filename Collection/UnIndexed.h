@@ -8,7 +8,7 @@ typedef list<Model*> modelList;
 
 class UnIndexed : public Collection {
   public:
-    virtual ~UnIndexed();
+    ~UnIndexed();
     // Insert function for collection
     virtual void append(Model* model);
 

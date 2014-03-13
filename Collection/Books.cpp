@@ -12,5 +12,7 @@
 
 #include "./Books.h"
 
-Books::Books() {
+void Books::append(Book* book) {
+    // Call superclass function
+    Indexed::append(book);
 }

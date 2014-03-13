@@ -12,7 +12,7 @@ class Model;
 class Collection {
  public:
   Collection();
-
+  virtual ~Collection();
   // ~Collection();
 
   // Insert function for collection

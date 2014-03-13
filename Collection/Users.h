@@ -2,13 +2,12 @@
 #define __Users_H
 
 #include "./Indexed.h"
+#include "../Model/User.h"
 
 class Users : public Indexed {
-  public:
-  Users();
-  virtural void apend(Model&);
-  bool isValidUser()
-  protected:
+ public:
+    void append(User* model);
+ protected:
 };
 
 #endif

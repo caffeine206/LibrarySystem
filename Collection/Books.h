@@ -2,10 +2,11 @@
 #define __Books_H
 
 #include "./Indexed.h"
+#include "../Model/Book.h"
 
 class Books : public Indexed {
  public:
-  Books();
+    void append(Book* model);
  protected:
 };
 

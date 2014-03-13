@@ -1,57 +1,49 @@
 #ifndef __Collection_H
 #define __Collection_H
 
-#include <algorithm>    // std::sort
-#include <list>         // std::list
+#include <algorithm>   // std::sort
+#include <map>         // std::map
+#include <set>         // std::set
+#include <utility>     // std::pair
 #include "../Model/Model.h"
 
 using namespace std;
 
+class Model;
+
+typedef map<string, Model*> modelMap;
+typedef pair<string, Model*> modelPair;
+typedef set<Model*> modelSet;
+
 class Collection {
-public:
+ public:
   Collection();
 
-  // Insert function for single collection
-  virtural void append(Model&);
+  ~Collection();
 
-  // Insert function for multiple collection
-  virtural void append(int key, Model&);
-
-  // Sort function for single collection
-  void sort(void (*f)(const Model&));
-
-  // Sort function for multiple collection
-  void sort(int index, void (*f)(const Model&));
+  // Insert function for collection
+  virtual void append(Model* model);
 
   // return sum of size[0..n]
-  int size();
-
-  // return size of models[n]
-  int size(int n);
+  virtual int size();
 
   // Return list of models
-  list<Model> getModels(int n = 0);
+  virtual set<Model*> getModels();
 
-  Model& find(string);
+  virtual Model* find(string);
 
-  //Optional
-  void save();
-protected:
-  // array of sizes for each vectors
-  int *size;
+  // Optional
+  // virtual void save();
 
-  // Collections can contain multiple lists
-  // and This list are for display
-  // By defualt, list[0] will be used
-  list<Model> **models;
+ protected:
+  // number of models
+  int n;
+
+  // Binary tree for sort
+  modelSet setModels;
 
   // hashtable for search
-  map<string key, Model&> searchMap;
-
-  int primary_id = 1;
-
-  // Add key-value to the map
-  void createIndex(string, Model&);
+  modelMap mapModels;
 };
 
 #endif

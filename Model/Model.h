@@ -1,26 +1,31 @@
 #ifndef __Model_H
 #define __Model_H
 
-#include <map>
-#include "boost/variant.hpp"
+// #include <map>
+#include <string>
+#include <sstream>
+#include <iostream>
+#include <stdio.h>
 
+#include "../lib/Config.h"
 using namespace std;
-typedef boost::variant<int, string> varientType;
+// typedef boost::variant<int, string> varientType;
 
 
 class Model {
-public:
+ public:
   Model();
-  void getById();
+  ~Model() {}
+  // void getById();
   // Todo make get(key)
-  string getS(string key);
-  int getI(string key);
-  void set(string key, string value);
-  void set(string key, int value);
+  // string getS(string key);
+  // int getI(string key);
+  // void set(string key, string value);
+  // void set(string key, int value);
   void save();
-protected:
-  std::map< string, varientType > columns;
-  Collection collection;
+  virtual string key() = 0;
+ protected:
+  // std::map< string, varientType > columns;
 };
 
 #endif

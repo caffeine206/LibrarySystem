@@ -1,7 +1,9 @@
 #ifndef __InputSimulator_H
 #define __InputSimulator_H
 
-#include "../Controller/initController.h"
+#include "./Config.h"
+
+using namespace std;
 
 class InputSimulator {
   public:

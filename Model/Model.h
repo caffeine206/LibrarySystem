@@ -15,7 +15,7 @@ using namespace std;
 class Model {
  public:
   Model();
-  ~Model() {}
+  virtual ~Model() {}
   // void getById();
   // Todo make get(key)
   // string getS(string key);

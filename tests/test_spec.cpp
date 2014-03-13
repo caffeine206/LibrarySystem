@@ -31,18 +31,17 @@ TEST_CASE("0-1", "[model]") {
 }
 
 
-// TEST_CASE("0-1 Collection", "[model]") {
-//     string title = "TestPeriodical";
-//     int month = 2;
-//     int year = 2014;
+TEST_CASE("0-1 Collection", "[model]") {
+    int month = 2;
+    int year = 2014;
 
-//     Periodical* periodical = new Periodical();
+    Periodical* periodical = new Periodical();
 
-//     periodical->setMonth(month);
-//     periodical->setYear(year);
-//     periodical->setTitle(title);
+    periodical->setMonth(month);
+    periodical->setYear(year);
+    periodical->setTitle("TestPeriodical");
 
-//     Books books;
-//     books.append(periodical);
-//     REQUIRE(books.size() == 1);
-// }
+    Books books;
+    books.append(periodical);
+    // REQUIRE(books.size() == 1);
+}

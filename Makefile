@@ -53,7 +53,7 @@ MAIN = shhh
 .PHONY: depend clean
 
 all:	$(MAIN)
-		@echo  Simple compiler named mycc has been compiled
+		@echo  shhh has been compiled
 
 $(MAIN):	$(OBJS) 
 		$(CC) $(CFLAGS) $(INCLUDES) -o $(MAIN) $(OBJS) $(LFLAGS) $(LIBS)
@@ -66,7 +66,7 @@ $(MAIN):	$(OBJS)
 		$(CC) $(CFLAGS) $(INCLUDES) -c $<  -o $@
 
 clean:
-		$(RM)r ./*/*.o *.o *~ $(MAIN)
+		$(RM) ./*/*/*.o ./*/*.o *.o *~ $(MAIN)
 
 depend:	$(SRCS)
 		makedepend $(INCLUDES) $^

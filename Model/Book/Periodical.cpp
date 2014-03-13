@@ -24,9 +24,7 @@ int Periodical::getMonth() {
 }
 
 string Periodical::key() {
-    char buffer [255];
-    snprintf ( buffer, sizeof(buffer), "%d%d", this->month, this->year);
-    string key(buffer);
-    key = this->title + key;
-    return key;
+    ostringstream out;
+    out << this->title << this->month << this->year;
+    return out.str();
 }

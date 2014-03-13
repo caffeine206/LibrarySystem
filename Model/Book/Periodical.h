@@ -22,6 +22,8 @@ class Periodical : public Book {
     void setMonth(int month);
     int getMonth();
     virtual string key();
+    // virtual bool operator<(const Model & rhs) const;
+    virtual bool operator<(const Periodical & rhs) const;
  protected:
     int month;
 };

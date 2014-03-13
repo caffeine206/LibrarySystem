@@ -12,9 +12,19 @@
 
 #include "./NonPeriodical.h"
 
-NonPeriodical::NonPeriodical() {
-}
+// NonPeriodical::NonPeriodical() : author(NULL) {
+// }
 
 string NonPeriodical::getAuthor() {
-    return "";
+    return author;
+}
+
+void NonPeriodical::setAuthor(string str) {
+    this->author = str;
+}
+
+string NonPeriodical::key() {
+    ostringstream out;
+    out << this->author << this->title << this->year;
+    return out.str();
 }

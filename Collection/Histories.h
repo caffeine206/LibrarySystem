@@ -1,11 +1,26 @@
 #ifndef __Histories_H
 #define __Histories_H
 
-class Histories {
+#include "Collection.h"
+#include <list>
+
+typedef list<Model*> modelList;
+
+class Histories : public Collection {
   public:
-  Histories();
-  
+    ~Histories();
+    // Insert function for collection
+    virtual void append(Model* model);
+
+    // Return list of models
+    virtual modelList getModels() const;
+
+    // Functions to iterate through the set of models
+    virtual modelList::iterator begin();
+    virtual modelList::iterator end();
   protected:
+    modelList listModel;
+
 };
 
 #endif

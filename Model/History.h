@@ -2,11 +2,19 @@
 #define __History_H
 
 #include "./Model.h"
+#include "./Book.h"
 
 class History : public Model {
   public:
-    History(string command, int user_id, int category_id, int book_id);
+    // History();
+    void setCommand(const char commandType);
+    void setBook(Book* book);
+    char getCommand() const;
+    Book* getBook() const;
+    virtual string key() {return NULL;}
   protected:
+    char command;
+    Book* book;
 };
 
 #endif

@@ -17,10 +17,15 @@
 
 class NonPeriodical : public Book {
  public:
-    NonPeriodical();
-    string getAuthor();
+    // NonPeriodical();
+    // ~NonPeriodical();
+    virtual string getAuthor();
+    virtual void setAuthor(string str);
+
+    virtual string key();
+    // virtual bool operator<(const NonPeriodical & rhs) const;
  protected:
-    int author;
+    string author;
 };
 
 #endif

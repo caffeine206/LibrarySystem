@@ -1,12 +1,11 @@
 #ifndef __Books_H
 #define __Books_H
 
-#include "./Collection.h"
+#include "./Indexed.h"
 
-class Books : public Collection {
+class Books : public Indexed {
  public:
   Books();
-  
  protected:
 };
 

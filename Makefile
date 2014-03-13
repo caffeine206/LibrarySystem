@@ -30,7 +30,7 @@ LFLAGS =
 LIBS =
 
 # define the C source files
-SRCS = tests/test_spec.cpp Collection/Collection.cpp Collection/Books.cpp Model/Model.cpp Model/Book.cpp Model/Book/Periodical.cpp
+SRCS = tests/test_spec.cpp Collection/Collection.cpp Collection/Histories.cpp Collection/Indexed.cpp Collection/Books.cpp Model/Model.cpp Model/Book.cpp Model/Book/Periodical.cpp Model/Book/NonPeriodical.cpp Model/Book/Fiction.cpp Model/Book/Youth.cpp Model/History.cpp
 
 # define the C object files 
 #

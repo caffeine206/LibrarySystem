@@ -10,16 +10,4 @@
  * @version     1.0
  */
 
-#ifndef __Fiction_H
-#define __Fiction_H
-
-#include "./NonPeriodical.h"
-
-class Fiction : public NonPeriodical {
- public:
-    // Fiction();
-    // ~Fiction() {}
- protected:
-};
-
-#endif
+#include "./Youth.h"

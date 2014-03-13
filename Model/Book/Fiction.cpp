@@ -12,5 +12,5 @@
 
 #include "./Fiction.h"
 
-Fiction::Fiction() {
-}
+// Fiction::Fiction() {
+// }

@@ -12,31 +12,9 @@
 
 #include "./Collection.h"
 
-Collection::Collection() {
+Collection::Collection(): n(0) {
 }
 
-Collection::~Collection() {
-    for (modelSet::iterator it = setModels.begin();
-        it != setModels.end(); ++it) {
-        delete *it;
-    }
-}
-
-void Collection::append(Model* model) {
-    mapModels.insert(modelPair(model->key(), model));
-    setModels.insert(model);
-    n++;
-}
-
-int Collection::size() {
+int Collection::size() const {
     return n;
-}
-
-
-modelSet Collection::getModels() {
-    return setModels;
-}
-
-Model* Collection::find(string) {
-    return NULL;
 }

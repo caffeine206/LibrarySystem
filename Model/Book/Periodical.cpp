@@ -28,3 +28,16 @@ string Periodical::key() {
     out << this->title << this->month << this->year;
     return out.str();
 }
+
+bool Periodical::operator<(const Periodical & rhs) const {
+    if (this->year < rhs.year) {
+        return true;
+    } else if (this->year == rhs.year) {
+        if (this->month < rhs.month) {
+            return true;
+        } else if (this->title < rhs.title) {
+            return true;
+        }
+    }
+    return false;
+}

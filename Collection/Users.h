@@ -1,9 +1,9 @@
 #ifndef __Users_H
 #define __Users_H
 
-#include "./Collection.h"
+#include "./Indexed.h"
 
-class Users : public Collection {
+class Users : public Indexed {
   public:
   Users();
   virtural void apend(Model&);

@@ -12,26 +12,7 @@
 
 #include "./Histories.h"
 
-Histories::~Histories() {
-    for (modelList::iterator it = listModel.begin();
-        it != listModel.end(); ++it) {
-        delete *it;
-    }
-}
-
-void Histories::append(Model* model) {
-    listModel.push_back(model);
-    this->n++;
-}
-
-modelList Histories::getModels() const {
-    return listModel;
-}
-
-modelList::iterator Histories::begin() {
-    return listModel.begin();
-}
-
-modelList::iterator Histories::end() {
-    return listModel.end();
+void Histories::append(History* history) {
+    // Call superclass function
+    UnIndexed::append(history);
 }

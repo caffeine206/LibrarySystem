@@ -12,12 +12,42 @@
 #include "../Model/Book/Fiction.h"
 #include "../Model/Book/Youth.h"
 #include "../Model/History.h"
+#include "../Model/User.h"
 #include "../Collection/Books.h"
 #include "../Collection/Histories.h"
 
 using namespace std;
 
-TEST_CASE("0-1 histories", "[model]") {
+TEST_CASE("0-1 User", "[model]") {
+    User* user = new User();
+    user->setID(1000);
+    user->setName("TestFirstName", "TestLastName");
+
+    Youth* youth = new Youth();
+    youth->setYear(2014);
+    youth->setAuthor("TestAuthor");
+    youth->setTitle("TestYouth");
+
+    Books books;
+    books.append(youth);
+
+    char command = 'R';
+    History* history = new History();
+    history->setCommand(command);
+    history->setBook(youth);
+
+    user->addHistory(history);
+    user->getHistories();
+
+    REQUIRE(user->getID() == 1000);
+    REQUIRE(user->getFirstName() != "Test");
+    REQUIRE(user->getLastName() != "Test");
+    REQUIRE(user->getFirstName() == "TestFirstName");
+    REQUIRE(user->getLastName() == "TestLastName");
+    delete user;
+}
+
+TEST_CASE("0-1 histories", "[collection]") {
     Youth* youth = new Youth();
     youth->setYear(2014);
     youth->setAuthor("TestAuthor");
@@ -133,7 +163,7 @@ TEST_CASE("0-1 Periodical", "[model]") {
 }
 
 
-TEST_CASE("0-1 Collection", "[model]") {
+TEST_CASE("0-1 Collection", "[collection]") {
     Periodical* periodical = new Periodical();
 
     // Test book 1

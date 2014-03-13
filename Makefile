@@ -15,7 +15,7 @@ CC = g++
 # define any compile-time flags
 CFLAGS = -Wall -g
 
-# define any directories containing header files other than /usr/include
+# define any directories containiang header files other than /usr/include
 #
 INCLUDES = -I${CURDIR}/Catch/include/
 
@@ -30,7 +30,7 @@ LFLAGS =
 LIBS =
 
 # define the C source files
-SRCS = tests/test_spec.cpp Collection/Collection.cpp Collection/Histories.cpp Collection/Indexed.cpp Collection/Books.cpp Model/Model.cpp Model/Book.cpp Model/Book/Periodical.cpp Model/Book/NonPeriodical.cpp Model/Book/Fiction.cpp Model/Book/Youth.cpp Model/History.cpp
+SRCS = tests/test_spec.cpp $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
 
 # define the C object files 
 #

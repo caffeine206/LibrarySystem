@@ -30,7 +30,7 @@ LFLAGS =
 LIBS =
 
 # define the C source files
-SRCS = tests/test_spec.cpp $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
+SRCS = tests/test_collection_model_spec.cpp tests/test_view_spec.cpp $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
 
 # define the C object files 
 #

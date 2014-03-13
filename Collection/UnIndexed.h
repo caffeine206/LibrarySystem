@@ -9,8 +9,6 @@ typedef list<Model*> modelList;
 class UnIndexed : public Collection {
   public:
     ~UnIndexed();
-    // Insert function for collection
-    virtual void append(Model* model);
 
     // Return list of models
     virtual modelList getModels() const;
@@ -19,6 +17,9 @@ class UnIndexed : public Collection {
     virtual modelList::iterator begin();
     virtual modelList::iterator end();
   protected:
+    // Insert function for collection
+    virtual void append(Model* model);
+
     modelList listModel;
 
 };

@@ -15,15 +15,15 @@ class Collection {
   virtual ~Collection();
   // ~Collection();
 
-  // Insert function for collection
-  virtual void append(Model* model) = 0;
-
   // return sum of size[0..n]
   virtual int size() const;
 
  protected:
   // number of models
   int n;
+
+  // Insert function for collection
+  virtual void append(Model* model) = 0;
 };
 
 #endif

@@ -14,8 +14,6 @@ typedef set<Model*> modelSet;
 class Indexed : public Collection {
  public:
     ~Indexed();
-    // Insert function for collection
-    virtual void append(Model* model);
 
     // Return list of models
     virtual set<Model*> getModels() const;
@@ -31,6 +29,9 @@ class Indexed : public Collection {
     // virtual void save();
 
  protected:
+    // Insert function for collection
+    virtual void append(Model* model);
+
     // Binary tree for sort
     modelSet setModels;
 

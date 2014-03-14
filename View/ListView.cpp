@@ -15,7 +15,7 @@
 
 void ListView::render() {
     // Fiction rendering
-    Books* fictionBooks = static_cast<Books *>(mapCollection["fiction"]);
+    Books* fictionBooks = static_cast<Books *>(clMap[Config::CAT_FICTION_NAME]);
     // Drawing the header
     this->headerFiction();
     // Drawing the data

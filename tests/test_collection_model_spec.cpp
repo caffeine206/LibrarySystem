@@ -172,7 +172,7 @@ TEST_CASE("0-1 Youth", "[model]") {
     REQUIRE(title == youth->getTitle());
     REQUIRE(author == youth->getAuthor());
     REQUIRE(year == youth->getYear());
-    REQUIRE("TestAuthorTestYouth2014" == youth->key());
+    REQUIRE("TestAuthorTestYouth" == youth->key());
 
     delete youth;
 }
@@ -222,7 +222,7 @@ TEST_CASE("0-1 Fiction", "[model]") {
     REQUIRE(title == fiction->getTitle());
     REQUIRE(author == fiction->getAuthor());
     REQUIRE(year == fiction->getYear());
-    REQUIRE("TestAuthorTestFiction2014" == fiction->key());
+    REQUIRE("TestAuthorTestFiction" == fiction->key());
 
     delete fiction;
 }
@@ -241,7 +241,7 @@ TEST_CASE("0-1 Periodical", "[model]") {
     REQUIRE(title == periodical->getTitle());
     REQUIRE(month == periodical->getMonth());
     REQUIRE(year == periodical->getYear());
-    REQUIRE("TestPeriodical22014" == periodical->key());
+    REQUIRE("20142TestPeriodical" == periodical->key());
 
     delete periodical;
 }
@@ -286,7 +286,7 @@ TEST_CASE("0-1 Collection", "[collection]") {
     REQUIRE(!result); // Shouldn't be there
 
     // Find a periodical that exist
-    result = static_cast<Periodical *>(books.find("TestPeriodical122014"));
+    result = static_cast<Periodical *>(books.find("20142TestPeriodical1"));
     REQUIRE(result == periodical); // Should be there
 
     // Model* models[] = {

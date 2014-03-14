@@ -1,12 +1,12 @@
 #ifndef __ReturnController_H
 #define __ReturnController_H
 
-#include "./Controller"
+#include "./BookController.h"
 
-class ReturnController : public Controller{
-public:
-  virtual void exec();
-protected:
+class ReturnController : public BookController {
+  public:
+    void exec();
+  protected:
 };
 
 #endif

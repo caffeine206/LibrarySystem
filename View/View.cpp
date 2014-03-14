@@ -13,7 +13,7 @@
 #include "./View.h"
 
 void View::setCollection(string key, Collection* collection) {
-    mapCollection[key] = collection;
+    clMap[key] = collection;
 }
 void View::setOstream(ostream* o) {
     out = o;

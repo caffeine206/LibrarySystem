@@ -14,7 +14,7 @@
 #define CONFIG_H
 
 #include <string>
- 
+
 using namespace std;
 
 namespace Config {
@@ -28,6 +28,13 @@ namespace Config {
     extern int OUTPUT_WIDTH_YEAR;
     extern int OUTPUT_WIDTH_AUTHOR;
     extern int OUTPUT_WIDTH_TITLE;
+    extern char CAT_FICTION_CMD;
+    extern char CAT_PERIODICAL_CMD;
+    extern char CAT_YOUTH_CMD;
+    extern string CAT_FICTION_NAME;
+    extern string CAT_PERIODICAL_NAME;
+    extern string CAT_YOUTH_NAME;
+    extern char TYPE_HARDCOPY;
 }
 
 #endif

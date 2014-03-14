@@ -7,8 +7,6 @@
 
 using namespace std;
 
-class Model;
-
 class Collection {
  public:
   Collection();

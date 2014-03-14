@@ -27,7 +27,7 @@ int Periodical::getMonth() const {
 
 string Periodical::key() const {
     ostringstream out;
-    out << this->title << this->month << this->year;
+    out << this->year << this->month << this->title;
     return out.str();
 }
 

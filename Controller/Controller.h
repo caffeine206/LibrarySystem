@@ -1,17 +1,21 @@
 #ifndef __Controller_H
 #define __Controller_H
 
-#include "../Config.h"
-
+#include <map>
+#include "../lib/Config.h"
+#include "../Collection/Collection.h"
 using namespace std;
+
+typedef map<string, Collection*> collectoinMap;
 
 class Controller {
   public:
-  Controller(string command):info(command);
-  virtual void exec();
-  
+    Controller();
+    virtual ~Controller();
+    virtual void exec() = 0;
+    virtual void setCollection(string key, Collection* collection);
   protected:
-  string info;
+    collectoinMap clMap;
 };
 
 #endif

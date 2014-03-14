@@ -27,6 +27,6 @@ void NonPeriodical::setAuthor(string str) {
 
 string NonPeriodical::key() const {
     ostringstream out;
-    out << this->author << this->title << this->year;
+    out << this->author << this->title;
     return out.str();
 }

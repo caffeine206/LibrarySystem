@@ -12,20 +12,20 @@
 
 #include "./Periodical.h"
 
-NonPeriodical::NonPeriodical() :
-    availableCount(Config::HARDCOPY_PERIODICAL),
-    hardCopyCount(Config::HARDCOPY_PERIODICAL) {
+Periodical::Periodical()
+    :Book::Book(Config::HARDCOPY_NONPERIODICAL,
+                Config::HARDCOPY_NONPERIODICAL) {
 }
 
 void Periodical::setMonth(int month) {
     this->month = month;
 }
 
-int Periodical::getMonth() {
+int Periodical::getMonth() const {
     return month;
 }
 
-string Periodical::key() {
+string Periodical::key() const {
     ostringstream out;
     out << this->title << this->month << this->year;
     return out.str();

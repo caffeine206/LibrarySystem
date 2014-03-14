@@ -9,11 +9,11 @@ class User : public Model {
 //    User();
 	void setID(int id);
 	void setName(string first, string last);
-	int getID();
-	string getFirstName();
-    string getLastName();
+	int getID() const;
+	string getFirstName() const;
+    string getLastName() const;
     void addHistory(History* history);
-    virtual string key();
+    virtual string key() const;
     Histories& getHistories();
   protected:
 	int ID;

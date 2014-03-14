@@ -14,19 +14,21 @@
 
 Book::Book() : title(""), year(0), availableCount(0), hardCopyCount(0) {
 }
+Book::Book(int available, int hardcopy) : availableCount(available), hardCopyCount(hardcopy) {
+}
 
-string Book::getTitle() {
+string Book::getTitle() const {
     return title;
 }
 
-int Book::getAvailableCount() {
+int Book::getAvailableCount() const {
     return availableCount;
 }
-int Book::getHardCopyCount() {
+int Book::getHardCopyCount() const {
     return hardCopyCount;
 }
 
-int Book::getYear() {
+int Book::getYear() const {
     return year;
 }
 
@@ -56,8 +58,4 @@ bool Book::returnBook() {
     // Todo:: Exception
     cerr << "Error::More book is returned" << endl;
     return false;
-}
-
-void Book::setTitle(string str) {
-    this->title = str;
 }

@@ -20,8 +20,8 @@ class Periodical : public Book {
     Periodical();
     ~Periodical() {}
     void setMonth(int month);
-    int getMonth();
-    virtual string key();
+    int getMonth() const;
+    virtual string key() const;
     // virtual bool operator<(const Model & rhs) const;
     virtual bool operator<(const Periodical & rhs) const;
  protected:

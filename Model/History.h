@@ -11,7 +11,7 @@ class History : public Model {
     void setBook(Book* book);
     char getCommand() const;
     Book* getBook() const;
-    virtual string key() {return NULL;}
+    virtual string key() const {return NULL;}
   protected:
     char command;
     Book* book;

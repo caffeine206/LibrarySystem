@@ -12,12 +12,12 @@
 
 #include "./NonPeriodical.h"
 
-NonPeriodical::NonPeriodical() :
-    availableCount(Config::HARDCOPY_NONPERIODICAL),
-    hardCopyCount(Config::HARDCOPY_NONPERIODICAL) {
+NonPeriodical::NonPeriodical()
+    :Book::Book(Config::HARDCOPY_NONPERIODICAL,
+                Config::HARDCOPY_NONPERIODICAL) {
 }
 
-string NonPeriodical::getAuthor() {
+string NonPeriodical::getAuthor() const {
     return author;
 }
 
@@ -25,7 +25,7 @@ void NonPeriodical::setAuthor(string str) {
     this->author = str;
 }
 
-string NonPeriodical::key() {
+string NonPeriodical::key() const {
     ostringstream out;
     out << this->author << this->title << this->year;
     return out.str();

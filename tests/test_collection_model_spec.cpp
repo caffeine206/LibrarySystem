@@ -186,6 +186,8 @@ TEST_CASE("0-1 Fiction", "[model]") {
     fiction->setYear(year);
     fiction->setAuthor(author);
     fiction->setTitle(title);
+
+    // Renting test
     bool r;
     r = fiction->rentOut();
     REQUIRE(r == true);
@@ -196,10 +198,13 @@ TEST_CASE("0-1 Fiction", "[model]") {
     r = fiction->rentOut();
     r = fiction->rentOut();
     REQUIRE(0 == fiction->getAvailableCount());
+
+    // Try to rentOut of book that isn't Available
     r = fiction->rentOut();
     REQUIRE(0 == fiction->getAvailableCount());
     REQUIRE(r == false);
 
+    // Renting test
     r = fiction->returnBook();
     REQUIRE(1 == fiction->getAvailableCount());
     REQUIRE(r == true);
@@ -208,10 +213,11 @@ TEST_CASE("0-1 Fiction", "[model]") {
     r = fiction->returnBook();
     r = fiction->returnBook();
     REQUIRE(5 == fiction->getAvailableCount());
+
+    // Returning more than it's hard copy
     r = fiction->returnBook();
     REQUIRE(5 == fiction->getAvailableCount());
     REQUIRE(r == false);
-
 
     REQUIRE(title == fiction->getTitle());
     REQUIRE(author == fiction->getAuthor());

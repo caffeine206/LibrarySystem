@@ -16,7 +16,7 @@ void User::setID(int id) {
     this->ID = id;
 }
 
-int User::getID() {
+int User::getID() const {
     return this->ID;
 }
 
@@ -25,11 +25,11 @@ void User::setName(string first, string last) {
     this->lastName = last;
 }
 
-string User::getFirstName() {
+string User::getFirstName() const {
     return this->firstName;
 }
 
-string User::getLastName() {
+string User::getLastName() const {
     return this->lastName;
 }
 
@@ -40,7 +40,7 @@ void User::addHistory(History* history) {
     this->histories.append(history);
 }
 
-string User::key() {
+string User::key() const {
     ostringstream out;
     out << this->ID;
     return out.str();

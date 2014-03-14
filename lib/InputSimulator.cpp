@@ -10,11 +10,11 @@
  * @version     1.0
  */
 
-#include <fstream>
+// #include <fstream>
 
-InputSimulator::InputSimulator() {
-    ifstream infile(".txt");
-    int a, b;
-    while (infile >> a >> b) {
-    }
-}
+// InputSimulator::InputSimulator() {
+//     ifstream infile(".txt");
+//     int a, b;
+//     while (infile >> a >> b) {
+//     }
+// }

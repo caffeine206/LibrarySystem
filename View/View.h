@@ -7,7 +7,8 @@ using namespace std;
 
 class View {
   public:
-    virtual ~View();
+    View() {}
+    virtual ~View() {}
     virtual void render() = 0;
   protected:
 };

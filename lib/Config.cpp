@@ -23,7 +23,6 @@ namespace Config {
     int OUTPUT_WIDTH_AVAIL = 5;
     int OUTPUT_WIDTH_MONTH = 2;
     int OUTPUT_WIDTH_YEAR = 4;
-    int OUTPUT_WIDTH_TITLE = 60;
-    int OUTPUT_WIDTH_SIDE_MARGIN = 2;
-    int OUTPUT_WIDTH_SIDE_PADDING = 2;
+    int OUTPUT_WIDTH_AUTHOR = 25;
+    int OUTPUT_WIDTH_TITLE = 40;
 }

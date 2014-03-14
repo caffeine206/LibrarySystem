@@ -17,7 +17,7 @@
 
 class NonPeriodical : public Book {
  public:
-    // NonPeriodical();
+     NonPeriodical();
     // ~NonPeriodical();
     virtual string getAuthor();
     virtual void setAuthor(string str);

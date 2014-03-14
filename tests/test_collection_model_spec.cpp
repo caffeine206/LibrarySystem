@@ -186,6 +186,32 @@ TEST_CASE("0-1 Fiction", "[model]") {
     fiction->setYear(year);
     fiction->setAuthor(author);
     fiction->setTitle(title);
+    bool r;
+    r = fiction->rentOut();
+    REQUIRE(r == true);
+    REQUIRE(4 == fiction->getAvailableCount());
+    r = fiction->rentOut();
+    REQUIRE(3 == fiction->getAvailableCount());
+    r = fiction->rentOut();
+    r = fiction->rentOut();
+    r = fiction->rentOut();
+    REQUIRE(0 == fiction->getAvailableCount());
+    r = fiction->rentOut();
+    REQUIRE(0 == fiction->getAvailableCount());
+    REQUIRE(r == false);
+
+    r = fiction->returnBook();
+    REQUIRE(1 == fiction->getAvailableCount());
+    REQUIRE(r == true);
+    r = fiction->returnBook();
+    r = fiction->returnBook();
+    r = fiction->returnBook();
+    r = fiction->returnBook();
+    REQUIRE(5 == fiction->getAvailableCount());
+    r = fiction->returnBook();
+    REQUIRE(5 == fiction->getAvailableCount());
+    REQUIRE(r == false);
+
 
     REQUIRE(title == fiction->getTitle());
     REQUIRE(author == fiction->getAuthor());

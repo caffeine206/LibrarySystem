@@ -12,8 +12,10 @@
 
 #include "./NonPeriodical.h"
 
-// NonPeriodical::NonPeriodical() : author(NULL) {
-// }
+NonPeriodical::NonPeriodical() :
+    availableCount(Config::HARDCOPY_NONPERIODICAL),
+    hardCopyCount(Config::HARDCOPY_NONPERIODICAL) {
+}
 
 string NonPeriodical::getAuthor() {
     return author;

@@ -9,13 +9,19 @@ class Book : public Model {
     ~Book() {}
     bool isBookAvailable();
     bool checkout();
+    int getAvailableCount();
+    int getHardCopyCount();
     string getTitle();
     int getYear();
     void setTitle(string str);
     void setYear(int y);
+    bool rentOut();
+    bool returnBook();
  protected:
     string title;
     int year;
+    int availableCount;
+    int hardCopyCount;
 };
 
 #endif

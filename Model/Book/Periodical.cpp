@@ -12,7 +12,9 @@
 
 #include "./Periodical.h"
 
-Periodical::Periodical() {
+NonPeriodical::NonPeriodical() :
+    availableCount(Config::HARDCOPY_PERIODICAL),
+    hardCopyCount(Config::HARDCOPY_PERIODICAL) {
 }
 
 void Periodical::setMonth(int month) {

@@ -3,12 +3,10 @@
 
 #include <map>         // std::map
 #include <set>         // std::set
-#include <utility>     // std::pair
 
 #include "./Collection.h"
 
 typedef map<string, Model*> modelMap;
-typedef pair<string, Model*> modelPair;
 typedef set<Model*> modelSet;
 
 class Indexed : public Collection {

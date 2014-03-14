@@ -9,8 +9,6 @@ class Router {
   public:
     void registerRoute(string rounte, callback);
   private:
-  
-
 };
 
 #endif

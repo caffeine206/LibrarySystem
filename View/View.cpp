@@ -10,16 +10,12 @@
  * @version     1.0
  */
 
-#ifndef __ListView_H
-#define __ListView_H
+#include "./View.h"
 
-#include "./TextView.h"
-#include "../Collection/Books.h"
+void View::setCollection(string key, Collection* collection) {
+    mapCollection[key] = collection;
+}
+void View::setOstream(ostream* o) {
+    out = o;
+}
 
-class ListView : public TextView {
-  public:
-    void render();
-  protected:
-};
-
-#endif

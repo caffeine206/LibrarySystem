@@ -13,12 +13,8 @@
 #include <iomanip>  //setw, setFill,
 #include "./TextView.h"
 
-TextView::TextView(ostream* o) : out(o) {
-}
-
-
 void TextView::headerFiction() const {
-    *out << endl
+    *(this->out) << endl
          << "Fiction:"
          << endl
          << "+" << setfill('-') << setw(Config::OUTPUT_WIDTH_AVAIL + 1)
@@ -47,7 +43,7 @@ void TextView::headerFiction() const {
 }
 
 void TextView::draw(const Fiction* book) const {
-    *out << "| "
+    *(this->out) << "| "
          << left
          << setfill(' ') << setw(Config::OUTPUT_WIDTH_AVAIL - 1)
          << book->getAvailableCount()

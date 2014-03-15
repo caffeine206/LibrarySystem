@@ -10,9 +10,12 @@
  * @version     1.0
  */
 
-#include "./lib/InputSimulator.h"
+#include "./lib/Router.h"
+#include "./lib/Request/ArgumentRequest.h"
 
 int main( int argc, char *argv[] ) {
-    InputSimulator simulator;
-    simulator.exec();
+    ArgumentRequest request;
+    request.parse(argc, argv);
+    Router& router = Router::getInstance();
+    router.start(&request);
 }

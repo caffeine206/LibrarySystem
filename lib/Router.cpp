@@ -13,28 +13,39 @@
 
 #include "./Router.h"
 
-Router::Router(Request* request) {
-    init(request);
+Router& Router::getInstance() {
+    // Auto destroyed Singleton
+    static Router instance;
+    return instance;
+}
+
+Router::Router() {
+    init();
 }
 
 Router::~Router() {
     clear();
 }
 
+void Router::start(Request* request) {
+    InitController initCtr;
+    initCtr.exec(request);
+}
+
 void Router::clear() {
-    for (collectoinMap::iterator it = mapCtr.begin();
+    for (collectionMap::iterator it = mapCtr.begin();
          it != mapCtr.end(); ++it) {
         delete it->second;
     }
     mapCtr.clear();
 }
 
-void Router::init(Request* request) {
+void Router::init() {
     clear();
 
     // Add Checkout Controller
-    CheckoutController* checoutCtr = new CheckoutController();
-    registerRoute(Config::CMD_CHECKOUT, checoutCtr);
+    CheckoutController* checkoutCtr = new CheckoutController();
+    registerRoute(Config::CMD_CHECKOUT, checkoutCtr);
 
     // Add Return Controller
     ReturnController* returnCtr = new ReturnController();
@@ -43,9 +54,6 @@ void Router::init(Request* request) {
     // Add History Controller
     HistoryController* historyCtr = new HistoryController();
     registerRoute(Config::CMD_HISOTRY, historyCtr);
-
-    InitController initCtr;
-    initCtr.exec(request);
 }
 
 void Router::go(Request* request) {

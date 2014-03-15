@@ -21,18 +21,22 @@
 
 using namespace std;
 
-typedef map<string, Controller*> collectoinMap;
+typedef map<string, Controller*> collectionMap;
 
 class Router {
   public:
+    static Router& getInstance();
     Router(Request* request);
     ~Router();
+    void start(Request* request);
     void go(Request* request);
   private:
-    void init(Request* request);
+    void init();
     void clear();
     void registerRoute(string route, Controller* ctr);
-    collectoinMap mapCtr;
+    collectionMap mapCtr;
+    Router();
+    Router(Router const&);
 };
 
 #endif

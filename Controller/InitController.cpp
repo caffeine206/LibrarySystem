@@ -32,5 +32,5 @@ void InitController::exec(Request* request) {
 
     InitialView view;
     view.setOstream(&cout);
-    view.render(NULL);
+    view.render(request);
 }

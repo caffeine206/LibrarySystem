@@ -16,6 +16,8 @@ CommandRequest::CommandRequest() {}
 CommandRequest::~CommandRequest() {}
 
 void CommandRequest::parse(string cmd) {
+    // Clear the data
+    this->clear();
     // Create string stream
     stringstream ss(cmd);
     // tmp string

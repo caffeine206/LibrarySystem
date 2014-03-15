@@ -8,6 +8,7 @@
 #include "../Model/Book/Youth.h"
 #include "../Model/Book/Periodical.h"
 #include "../Model/History.h"
+#include "../lib/Request/CommandRequest.h"
 
 class TextView : public View {
   public:
@@ -22,6 +23,7 @@ class TextView : public View {
     void headerPeriodical() const;
     void headerYouth() const;
     void headerHistory() const;
+    // TODO(SOTA): REMOVE these funcitons
     void draw(const Fiction* book) const;
     void draw(const Youth* book) const;
     void draw(const Periodical* book) const;

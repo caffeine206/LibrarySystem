@@ -11,7 +11,16 @@
  */
 
 #include "./InitialView.h"
+#include "../lib/Router.h"
 
 void InitialView::render(Request* request) {
     this->welcome();
+
+    Router& router = Router::getInstance();
+    CommandRequest commandRequest;
+    string line;
+    while (getline(cin, line)) {
+        commandRequest.parse(line);
+        router.go(&commandRequest);
+    }
 }

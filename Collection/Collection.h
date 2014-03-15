@@ -9,7 +9,6 @@ using namespace std;
 
 class Collection {
  public:
-  Collection();
   virtual ~Collection();
   // ~Collection();
 
@@ -22,6 +21,9 @@ class Collection {
 
   // Insert function for collection
   virtual void append(Model* model) = 0;
+  Collection();
+  Collection(Collection const&);
+  void operator=(Collection const&);
 };
 
 #endif

@@ -7,6 +7,7 @@
 class Users : public Indexed {
  public:
     void append(User* model);
+    static Users& getInstance();
  protected:
 };
 

@@ -33,4 +33,8 @@ namespace Config {
     string CAT_PERIODICAL       = "P";
     string CAT_YOUTH            = "Y";
     string USER_KEY             = "user";
+    string CMD_CHECKOUT         = "C";
+    string CMD_RETURN           = "R";
+    string CMD_HISOTRY          = "H";
+    string CMD_DESPLAY          = "D";
 }

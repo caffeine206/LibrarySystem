@@ -36,6 +36,10 @@ namespace Config {
     extern string CAT_YOUTH;
     extern string TYPE_HARDCOPY;
     extern string USER_KEY;
+    extern string CMD_CHECKOUT;
+    extern string CMD_RETURN;
+    extern string CMD_HISOTRY;
+    extern string CMD_DESPLAY;
 }
 
 #endif

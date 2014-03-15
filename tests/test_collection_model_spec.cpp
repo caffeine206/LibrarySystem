@@ -50,7 +50,7 @@ TEST_CASE("0-1 Users", "[collection]") {
     user->getHistories();
 
     // Create Users
-    Users users;
+    Users& users = Users::getInstance();
     users.append(user);
     users.append(user2);
     users.append(user3);

@@ -12,6 +12,12 @@
 
 #include "./Users.h"
 
+Users& Users::getInstance() {
+    // Auto destroyed Singleton
+    static Users instance;
+    return instance;
+}
+
 void Users::append(User* user) {
     // Call superclass function
     Indexed::append(user);

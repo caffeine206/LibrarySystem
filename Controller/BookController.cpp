@@ -37,7 +37,7 @@ Book* BookController::fetchBook(Request* request) {
         cerr << "ERROR: ReturnController::exec() INVALID BOOK KEY" << endl;
         return NULL;
     }
-
+    // Look for the book
     Book* book = static_cast<Book *>(books->find(bookKey));
     if (!book) {
         // Todo: Error handling for bookKey

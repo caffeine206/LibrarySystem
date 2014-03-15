@@ -18,12 +18,13 @@
 class NonPeriodical : public Book {
  public:
      NonPeriodical();
-    // ~NonPeriodical();
+    ~NonPeriodical() {}
     virtual string getAuthor() const;
     virtual void setAuthor(string str);
 
     virtual string key() const;
     // virtual bool operator<(const NonPeriodical & rhs) const;
+    virtual void print(ostream& out) const;
  protected:
     string author;
 };

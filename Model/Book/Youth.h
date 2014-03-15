@@ -17,6 +17,8 @@
 
 class Youth : public NonPeriodical {
  public:
+    Youth() {}
+    ~Youth() {}
  protected:
 };
 

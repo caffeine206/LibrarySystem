@@ -10,8 +10,9 @@ class History : public Model {
     void setCommand(const char commandType);
     void setBook(Book* book);
     char getCommand() const;
-    Book* getBook() const;
+    Book& getBook() const;
     virtual string key() const {return NULL;}
+    void print(ostream& out) const;
   protected:
     char command;
     Book* book;

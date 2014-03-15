@@ -41,7 +41,7 @@ void Book::setYear(int y) {
     this->year = y;
 }
 
-bool Book::rentOut() {
+bool Book::checkout() {
     if (availableCount > 0) {
         availableCount--;
         return true;
@@ -59,4 +59,9 @@ bool Book::returnBook() {
     // Todo:: Exception
     cerr << "Error::More book is returned" << endl;
     return false;
+}
+
+ostream& operator<< (ostream& out, const Book& book) {
+    book.print(out);
+    return out;
 }

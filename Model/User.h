@@ -15,6 +15,7 @@ class User : public Model {
     void addHistory(History* history);
     virtual string key() const;
     Histories& getHistories();
+    void print(ostream& out) const;
   protected:
 	int ID;
 	string firstName;

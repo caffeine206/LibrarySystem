@@ -30,3 +30,23 @@ string NonPeriodical::key() const {
     out << this->author << this->title;
     return out.str();
 }
+
+void NonPeriodical::print(ostream& out) const {
+    out << left
+         << setfill(' ') << setw(Config::OUTPUT_WIDTH_AVAIL - 1)
+         << this->getAvailableCount()
+         << " "
+         << left
+         << setw(Config::OUTPUT_WIDTH_AUTHOR)
+         << string(this->getAuthor()).substr(0, Config::OUTPUT_WIDTH_AUTHOR)
+         << " "
+         << left
+         << setw(Config::OUTPUT_WIDTH_TITLE)
+         << string(this->getTitle()).substr(0, Config::OUTPUT_WIDTH_TITLE)
+         << " "
+         << left
+         << setw(Config::OUTPUT_WIDTH_YEAR)
+         << this->getYear()
+         << " "
+         << endl;
+}

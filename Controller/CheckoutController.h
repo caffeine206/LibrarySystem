@@ -1,9 +1,9 @@
 #ifndef __CheckoutController_H
 #define __CheckoutController_H
 
-#include "./ShhhController.h"
+#include "./BookController.h"
 
-class CheckoutController : public ShhhController {
+class CheckoutController : public BookController {
   public:
     CheckoutController();
     void exec(Request* request);

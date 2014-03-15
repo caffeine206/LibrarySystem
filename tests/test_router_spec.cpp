@@ -42,7 +42,7 @@ TEST_CASE("0-1 Router", "[controller]") {
 
     REQUIRE(youth);
 
-    youth->rentOut();
+    youth->checkout();
 
     int available = youth->getAvailableCount();
 

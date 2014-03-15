@@ -10,7 +10,6 @@
  * @version     1.0
  */
 
-#include <iomanip>  // setw, setFill,
 #include "./TextView.h"
 
 void TextView::headerFiction() const {

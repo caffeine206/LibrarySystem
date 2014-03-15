@@ -24,6 +24,8 @@ char History::getCommand() const {
     return this->command;
 }
 
-Book* History::getBook() const {
-    return this->book;
+Book& History::getBook() const {
+    return *(this->book);
 }
+
+void History::print(ostream& out) const {}

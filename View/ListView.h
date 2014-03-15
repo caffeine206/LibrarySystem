@@ -20,7 +20,7 @@
 
 class ListView : public TextView {
   public:
-    void render();
+    void render(Request* request = NULL);
   protected:
 };
 

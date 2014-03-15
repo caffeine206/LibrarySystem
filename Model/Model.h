@@ -25,6 +25,7 @@ class Model {
   void save();
   virtual string key() const = 0;
   // virtual bool operator<(const Model & rhs) const = 0;
+  virtual void print(ostream& out) const = 0;
  protected:
   // std::map< string, varientType > columns;
 };

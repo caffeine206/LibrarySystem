@@ -13,7 +13,7 @@
 #include <set>
 #include "./ListView.h"
 
-void ListView::render() {
+void ListView::render(Request* request) {
     // Fiction rendering
     BooksFiction& booksFiction = BooksFiction::getInstance();
     // Drawing the header

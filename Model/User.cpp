@@ -46,3 +46,5 @@ string User::key() const {
     out << right << setfill('0') << setw(4) << this->ID;
     return out.str();
 }
+
+void User::print(ostream& out) const {}

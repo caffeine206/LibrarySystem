@@ -43,3 +43,5 @@ bool Periodical::operator<(const Periodical & rhs) const {
     }
     return false;
 }
+
+void Periodical::print(ostream& out) const {}

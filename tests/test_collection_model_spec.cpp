@@ -154,7 +154,7 @@ TEST_CASE("0-1 history", "[model]") {
     history->setBook(youth);
 
     REQUIRE(history->getCommand() == 'R');
-    REQUIRE(history->getBook() == youth);
+    REQUIRE(&(history->getBook()) == youth);
 
     delete youth;
     delete history;
@@ -190,18 +190,18 @@ TEST_CASE("0-1 Fiction", "[model]") {
 
     // Renting test
     bool r;
-    r = fiction->rentOut();
+    r = fiction->checkout();
     REQUIRE(r == true);
     REQUIRE(4 == fiction->getAvailableCount());
-    r = fiction->rentOut();
+    r = fiction->checkout();
     REQUIRE(3 == fiction->getAvailableCount());
-    r = fiction->rentOut();
-    r = fiction->rentOut();
-    r = fiction->rentOut();
+    r = fiction->checkout();
+    r = fiction->checkout();
+    r = fiction->checkout();
     REQUIRE(0 == fiction->getAvailableCount());
 
-    // Try to rentOut of book that isn't Available
-    r = fiction->rentOut();
+    // Try to checkout of book that isn't Available
+    r = fiction->checkout();
     REQUIRE(0 == fiction->getAvailableCount());
     REQUIRE(r == false);
 

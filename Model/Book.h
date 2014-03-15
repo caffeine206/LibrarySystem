@@ -1,6 +1,8 @@
 #ifndef __Book_H
 #define __Book_H
 
+#include <iostream>
+#include <iomanip>  // setw, setFill,
 #include "./Model.h"
 
 class Book : public Model {
@@ -9,15 +11,16 @@ class Book : public Model {
     Book(int available, int hardCopy);
     ~Book() {}
     bool isBookAvailable() const;
-    bool checkout();
     int getAvailableCount() const;
     int getHardCopyCount() const;
     string getTitle() const;
     int getYear() const;
     void setTitle(string str);
     void setYear(int y);
-    bool rentOut();
+    bool checkout();
     bool returnBook();
+    friend ostream& operator<< (std::ostream &out,
+                               const Book &book);
  protected:
     string title;
     int year;

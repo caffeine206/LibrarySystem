@@ -2,6 +2,7 @@
 #define __TextView_H
 
 #include <iostream>
+#include <iomanip>  // setw, setFill,
 #include "./View.h"
 #include "../Model/Book/Fiction.h"
 #include "../Model/Book/Youth.h"
@@ -11,7 +12,7 @@
 class TextView : public View {
   public:
     virtual ~TextView() {}
-    virtual void render() {}
+    virtual void render(Request* request = NULL) {}
     // Helper function for displaying a raw of a book information.
     // The reason why we are not overriding operator<< for each class is
     // because we do not want to implement any view related tasks in

@@ -19,8 +19,53 @@
 #include "../Collection/Users.h"
 #include "../View/TextView.h"
 #include "../View/ListView.h"
+#include "../View/HistoryView.h"
+#include "../Controller/ReturnController.h"
+#include "../Controller/CheckoutController.h"
+#include "../lib/Request/CommandRequest.h"
 
 using namespace std;
+
+
+TEST_CASE("0-1 HistoryView", "[view]") {
+    User* user = new User();
+    user->setID(9999);
+    user->setName("TestHistoryFirstName", "TestHistoryLastName");
+
+    // Creat dummy books
+    Fiction* fiction = new Fiction();
+    fiction->setYear(2014);
+    fiction->setAuthor("HistoryViewTest Name");
+    fiction->setTitle("HistoryViewTest Title");
+
+    // Create dummy collections
+    BooksFiction& fictionBooks = BooksFiction::getInstance();
+    fictionBooks.append(fiction);
+
+    Users& users = Users::getInstance();
+    users.append(user);
+
+    // Checkout
+    CommandRequest request;
+    request.parse("C 9999 F H HistoryViewTest Title, HistoryViewTest Name,");
+    CheckoutController checkoutCtr;
+    checkoutCtr.exec(&request);
+
+    // Return
+    request.clear();
+    request.parse("R 9999 F H HistoryViewTest Title, HistoryViewTest Name,");
+    ReturnController ReturnCtr;
+    ReturnCtr.exec(&request);
+
+    // Render a divider
+    cout << endl << "********HistoryViewTest******" << endl;
+
+    // Create list view
+    HistoryView historyView;
+    historyView.setOstream(&cout);
+    historyView.render(&request);
+}
+
 
 TEST_CASE("0-1 ListView", "[view]") {
     // Creat dummy books
@@ -61,7 +106,7 @@ TEST_CASE("0-1 ListView", "[view]") {
     // Create list view
     ListView listView;
     listView.setOstream(&cout);
-    listView.render();
+    listView.render(NULL);
 }
 
 TEST_CASE("0-1 TextView Fiction", "[view]") {
@@ -79,7 +124,7 @@ TEST_CASE("0-1 TextView Fiction", "[view]") {
     // books.append(fiction);
     // books.append(fiction2);
 
-    // fiction->rentOut();
+    // fiction->checkout();
 
     // // cout << endl << "********TextViewTest******" << endl;
     // TextView textView;

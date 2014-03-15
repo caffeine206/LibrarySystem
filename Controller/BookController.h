@@ -8,7 +8,6 @@ class BookController : public ShhhController {
   protected:
     Books& fetchBooks(string category);
     Book* fetchBook(Request* request);
-    void updateHistory(char command, User* user, Book* book);
 };
 
 #endif

@@ -42,12 +42,7 @@ TEST_CASE("0-1 Users", "[collection]") {
     BooksYouth& booksYouth = BooksYouth::getInstance();
     booksYouth.append(youth);
 
-    char command = 'R';
-    History* history = new History();
-    history->setCommand(command);
-    history->setBook(youth);
-
-    user->addHistory(history);
+    user->addHistory("R", youth);
     user->getHistories();
 
     // Create Users
@@ -83,13 +78,7 @@ TEST_CASE("0-1 User", "[model]") {
     BooksYouth& booksYouth = BooksYouth::getInstance();
     booksYouth.append(youth);
 
-    char command = 'R';
-    History* history = new History();
-    history->setCommand(command);
-    history->setBook(youth);
-
-    user->addHistory(history);
-    user->getHistories();
+    user->addHistory("R", youth);
 
     REQUIRE(user->getID() == 1000);
     REQUIRE(user->key() == "1000");
@@ -110,15 +99,15 @@ TEST_CASE("0-1 histories", "[collection]") {
     booksYouth.append(youth);
 
     History* history = new History();
-    history->setCommand('R');
+    history->setCommand("R");
     history->setBook(youth);
 
     History* history2 = new History();
-    history2->setCommand('C');
+    history2->setCommand("C");
     history2->setBook(youth);
 
     History* history3 = new History();
-    history3->setCommand('D');
+    history3->setCommand("D");
     history3->setBook(youth);
     Histories histories;
 
@@ -148,12 +137,11 @@ TEST_CASE("0-1 history", "[model]") {
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
-    char command = 'R';
     History* history = new History();
-    history->setCommand(command);
+    history->setCommand("R");
     history->setBook(youth);
 
-    REQUIRE(history->getCommand() == 'R');
+    REQUIRE(history->getCommand() == "R");
     REQUIRE(&(history->getBook()) == youth);
 
     delete youth;

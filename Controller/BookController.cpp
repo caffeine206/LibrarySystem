@@ -18,7 +18,7 @@ Books& BookController::fetchBooks(string category) {
     } else if (category == Config::CAT_YOUTH) { // Youth
         return static_cast<Books &>(BooksYouth::getInstance());
     } else if (category == Config::CAT_FICTION) { // Fiction
-        return static_cast<Books &>(BooksYouth::getInstance());
+        return static_cast<Books &>(BooksFiction::getInstance());
     }
 
     // Todo: Error handling for bookKey
@@ -40,8 +40,8 @@ Book* BookController::fetchBook(Request* request) {
         bookKey += request->get("month");
         bookKey += request->get("title");
     } else {
-        bookKey = request->get("title");
-        bookKey += request->get("author");
+        bookKey = request->get("author");
+        bookKey += request->get("title");
     }
 
     if (bookKey.size() == 0) {
@@ -60,11 +60,3 @@ Book* BookController::fetchBook(Request* request) {
     return book;
 }
 
-void BookController::updateHistory(char command, User* user, Book* book) {
-    // Create History
-    History* history = new History();
-    history->setCommand(command);
-    history->setBook(book);
-    // Add a history to user
-    user->addHistory(history);
-}

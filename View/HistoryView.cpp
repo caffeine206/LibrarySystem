@@ -15,27 +15,19 @@
 void HistoryView::render(Request* request) {
     User* user = Users::fetchUser(request->get("user_id"));
     Histories& histories = user->getHistories();
-
-    *(this->out) << "HistoryView!" << endl;
-
-    *(this->out) << endl
-                 << "*** Patron ID = "
-                 << left
-                 << setfill('0') << setw(4)
-                 << user->getID() << " "
-                 << user->getFirstName()
-                 << user->getLastName()
-                 << endl;
+    // Show user information
+    *(this->out) << *(user);
 
     // Drawing the data
     for (list<Model*>::iterator it = histories.begin();
         it != histories.end(); ++it) {
         History* history = static_cast<History *>(*it);
-
-        *(this->out) << "| "
+        string cmd = history->getCommand();
+        *(this->out)
              << left
-             << setfill(' ') << setw(12)
-             << request->get("command")
+             << setfill(' ') << setw(10)
+             << ((cmd == Config::CMD_RETURN) ? "Return":
+                (cmd == Config::CMD_CHECKOUT) ? "CheckOut" : "")
              << history->getBook();
     }
 }

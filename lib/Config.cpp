@@ -20,8 +20,8 @@ namespace Config {
     int OUTPUT_WIDTH_AVAIL      = 5;
     int OUTPUT_WIDTH_MONTH      = 2;
     int OUTPUT_WIDTH_YEAR       = 4;
-    int OUTPUT_WIDTH_AUTHOR     = 25;
-    int OUTPUT_WIDTH_TITLE      = 40;
+    int OUTPUT_WIDTH_AUTHOR     = 30;
+    int OUTPUT_WIDTH_TITLE      = 30;
     // char CAT_FICTION_CMD        = 'F';
     // char CAT_PERIODICAL_CMD     = 'P';
     // char CAT_YOUTH_CMD          = 'Y';

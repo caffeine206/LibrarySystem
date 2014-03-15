@@ -12,5 +12,18 @@
 
 #include "./Fiction.h"
 
-// Fiction::Fiction() {
-// }
+void Fiction::print(ostream& out) const {
+    out << left
+        << setw(Config::OUTPUT_WIDTH_AUTHOR)
+        << string(this->getAuthor()).substr(0, Config::OUTPUT_WIDTH_AUTHOR)
+        << " "
+        << left
+        << setw(Config::OUTPUT_WIDTH_TITLE)
+        << string(this->getTitle()).substr(0, Config::OUTPUT_WIDTH_TITLE)
+        << " "
+        << left
+        << setw(Config::OUTPUT_WIDTH_YEAR)
+        << this->getYear()
+        << " "
+        << endl;
+}

@@ -10,17 +10,9 @@
  * @version     1.0
  */
 
-#ifndef __Youth_H
-#define __Youth_H
+#include "./Model.h"
 
-#include "./NonPeriodical.h"
-
-class Youth : public NonPeriodical {
- public:
-    Youth() {}
-    ~Youth() {}
-    virtual void print(ostream& out) const;
- protected:
-};
-
-#endif
+ostream& operator<< (ostream& out, const Model& model) {
+    model.print(out);
+    return out;
+}

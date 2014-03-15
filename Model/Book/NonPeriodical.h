@@ -24,7 +24,7 @@ class NonPeriodical : public Book {
 
     virtual string key() const;
     // virtual bool operator<(const NonPeriodical & rhs) const;
-    virtual void print(ostream& out) const;
+    // virtual void print(ostream& out) const;
  protected:
     string author;
 };

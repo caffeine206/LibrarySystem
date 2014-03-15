@@ -22,6 +22,6 @@ void CheckoutController::exec(Request* request) {
     if (book && book->checkout()) { // True if succeed
         // Get the command
         string command = request->get("command");
-        this->updateHistory(command[0], user, book);
+        user->addHistory(command, book);
     }
 }

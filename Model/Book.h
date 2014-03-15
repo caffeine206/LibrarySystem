@@ -19,8 +19,6 @@ class Book : public Model {
     void setYear(int y);
     bool checkout();
     bool returnBook();
-    friend ostream& operator<< (std::ostream &out,
-                               const Book &book);
  protected:
     string title;
     int year;

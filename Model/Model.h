@@ -26,6 +26,8 @@ class Model {
   virtual string key() const = 0;
   // virtual bool operator<(const Model & rhs) const = 0;
   virtual void print(ostream& out) const = 0;
+  friend ostream& operator<< (std::ostream &out,
+                             const Model &model);
  protected:
   // std::map< string, varientType > columns;
 };

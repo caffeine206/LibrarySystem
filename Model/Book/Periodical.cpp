@@ -44,4 +44,17 @@ bool Periodical::operator<(const Periodical & rhs) const {
     return false;
 }
 
-void Periodical::print(ostream& out) const {}
+void Periodical::print(ostream& out) const {
+    out << left
+        << setw(Config::OUTPUT_WIDTH_YEAR)
+        << this->getYear()
+        << " "
+        << setw(Config::OUTPUT_WIDTH_MONTH)
+        << this->getMonth()
+        << " "
+        << left
+        << setw(Config::OUTPUT_WIDTH_TITLE)
+        << string(this->getTitle()).substr(0, Config::OUTPUT_WIDTH_TITLE)
+        << " "
+        << endl;
+}

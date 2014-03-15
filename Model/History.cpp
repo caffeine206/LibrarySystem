@@ -12,7 +12,7 @@
 
 #include "./History.h"
 
-void History::setCommand(const char commandType) {
+void History::setCommand(const string commandType) {
     this->command = commandType;
 }
 
@@ -20,7 +20,7 @@ void History::setBook(Book* bookModel) {
     this->book = bookModel;
 }
 
-char History::getCommand() const {
+string History::getCommand() const {
     return this->command;
 }
 
@@ -28,4 +28,9 @@ Book& History::getBook() const {
     return *(this->book);
 }
 
-void History::print(ostream& out) const {}
+void History::print(ostream& out) const {
+    out << left
+        << setfill(' ') << setw(12)
+        << this->getCommand()
+        << this->getBook();
+}

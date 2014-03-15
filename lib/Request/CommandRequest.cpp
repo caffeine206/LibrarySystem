@@ -52,17 +52,22 @@ void CommandRequest::parse(string cmd) {
     }
 
     // Parse the rest of book Info
-    if (cat == "P") { // Periodical
+    if (cat == Config::CAT_PERIODICAL) { // Periodical
         ss >> tmp;
         this->set("year", tmp);
         ss >> tmp;
         this->set("month", tmp);
         getline(ss, tmp, ',');
         this->set("title", tmp.substr(1, tmp.size()-1));
-    } else { // NonPeriodical
+    } else if (cat == Config::CAT_FICTION) { // NonPeriodical
         getline(ss, tmp, ',');
         this->set("author", tmp.substr(1, tmp.size()-1));
         getline(ss, tmp, ',');
         this->set("title", tmp.substr(1, tmp.size()-1));
+    } else if (cat == Config::CAT_YOUTH) { // NonPeriodical
+        getline(ss, tmp, ',');
+        this->set("title", tmp.substr(1, tmp.size()-1));
+        getline(ss, tmp, ',');
+        this->set("author", tmp.substr(1, tmp.size()-1));
     }
 }

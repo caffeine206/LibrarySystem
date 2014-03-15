@@ -16,7 +16,6 @@ Request::Request() {}
 
 Request::~Request() {}
 
-
 string Request::get(const string key) const {
     if (key.size() > 0) {
         return requests.at(key);

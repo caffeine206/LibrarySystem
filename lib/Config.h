@@ -28,13 +28,14 @@ namespace Config {
     extern int OUTPUT_WIDTH_YEAR;
     extern int OUTPUT_WIDTH_AUTHOR;
     extern int OUTPUT_WIDTH_TITLE;
-    extern char CAT_FICTION_CMD;
-    extern char CAT_PERIODICAL_CMD;
-    extern char CAT_YOUTH_CMD;
-    extern string CAT_FICTION_NAME;
-    extern string CAT_PERIODICAL_NAME;
-    extern string CAT_YOUTH_NAME;
-    extern char TYPE_HARDCOPY;
+    // extern char CAT_FICTION_CMD;
+    // extern char CAT_PERIODICAL_CMD;
+    // extern char CAT_YOUTH_CMD;
+    extern string CAT_FICTION;
+    extern string CAT_PERIODICAL;
+    extern string CAT_YOUTH;
+    extern string TYPE_HARDCOPY;
+    extern string USER_KEY;
 }
 
 #endif

@@ -14,6 +14,7 @@
 
 Book::Book() : title(""), year(0), availableCount(0), hardCopyCount(0) {
 }
+
 Book::Book(int available, int hardcopy) : availableCount(available), hardCopyCount(hardcopy) {
 }
 

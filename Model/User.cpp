@@ -10,6 +10,7 @@
  * @version     1.0
  */
 
+#include <iomanip>  // setw, setFill,
 #include "./User.h"
 
 void User::setID(int id) {
@@ -42,6 +43,6 @@ void User::addHistory(History* history) {
 
 string User::key() const {
     ostringstream out;
-    out << this->ID;
+    out << right << setfill('0') << setw(4) << this->ID;
     return out.str();
 }

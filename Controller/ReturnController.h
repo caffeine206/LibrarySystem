@@ -5,7 +5,7 @@
 
 class ReturnController : public BookController {
   public:
-    void exec();
+    void exec(Request* request);
   protected:
 };
 

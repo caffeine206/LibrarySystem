@@ -23,7 +23,7 @@ void CommandRequest::parse(string cmd) {
 
     // First one is the main Command
     if (ss >> tmp) {
-        this->set("cmd", tmp);
+        this->set("command", tmp);
     } else {
         cerr << "ERROR: Empty command" << endl; // TODO(Sota): Error handling
         return;
@@ -39,7 +39,7 @@ void CommandRequest::parse(string cmd) {
     // Thrid one is the book category
     string cat;
     if (ss >> cat) {
-        this->set("cat", cat);
+        this->set("category", cat);
     } else {
         return;
     }

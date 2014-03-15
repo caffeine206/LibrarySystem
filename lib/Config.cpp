@@ -25,12 +25,12 @@ namespace Config {
     int OUTPUT_WIDTH_YEAR       = 4;
     int OUTPUT_WIDTH_AUTHOR     = 25;
     int OUTPUT_WIDTH_TITLE      = 40;
-    char CAT_FICTION_CMD        = 'F';
-    char CAT_PERIODICAL_CMD     = 'P';
-    char CAT_YOUTH_CMD          = 'Y';
-    char TYPE_HARDCOPY          = 'H';
-    string CAT_FICTION_NAME       = "Fiction";
-    string CAT_PERIODICAL_NAME    = "Periodical";
-    string CAT_YOUTH_NAME         = "Youth";
-    string USER_KEY               = "user";
+    // char CAT_FICTION_CMD        = 'F';
+    // char CAT_PERIODICAL_CMD     = 'P';
+    // char CAT_YOUTH_CMD          = 'Y';
+    string TYPE_HARDCOPY        = "H";
+    string CAT_FICTION          = "F";
+    string CAT_PERIODICAL       = "P";
+    string CAT_YOUTH            = "Y";
+    string USER_KEY             = "user";
 }

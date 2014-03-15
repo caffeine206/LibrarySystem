@@ -3,18 +3,22 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- * 
+ *
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
  */
 
-#include "./Books.h"
+#include "./BooksYouth.h"
 
-Books& Books::getInstance() {
+BooksYouth& BooksYouth::getInstance() {
     // Auto destroyed Singleton
-    static Books instance;
+    static BooksYouth instance;
     return instance;
 }
 
+void BooksYouth::append(Youth* book) {
+    // Call superclass function
+    Indexed::append(book);
+}

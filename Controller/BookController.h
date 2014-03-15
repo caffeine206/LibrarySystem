@@ -6,6 +6,7 @@
 class BookController : public ShhhController {
   public:
   protected:
+    Books& fetchBooks(string category);
     Book* fetchBook(Request* request);
     void updateHistory(char command, User* user, Book* book);
 };

@@ -1,15 +1,5 @@
 #define CATCH_CONFIG_MAIN
 
-#include "../Model/Book/Periodical.h"
-#include "../Model/Book/Fiction.h"
-#include "../Model/Book/Youth.h"
-#include "../Model/History.h"
-#include "../Model/User.h"
-#include "../Collection/Books.h"
-#include "../Collection/Histories.h"
-#include "../Collection/Users.h"
-
-
 #include <set>
 #include <string>
 #include <iostream>
@@ -17,6 +7,19 @@
 #include <vector>
 #include <list>
 #include "catch.hpp"
+
+
+#include "../Model/Book/Periodical.h"
+#include "../Model/Book/Fiction.h"
+#include "../Model/Book/Youth.h"
+#include "../Model/History.h"
+#include "../Model/User.h"
+#include "../Collection/BooksYouth.h"
+#include "../Collection/BooksFiction.h"
+#include "../Collection/BooksPeriodical.h"
+#include "../Collection/Histories.h"
+#include "../Collection/Users.h"
+
 
 using namespace std;
 
@@ -38,8 +41,8 @@ TEST_CASE("0-1 Users", "[collection]") {
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
-    Books books;
-    books.append(youth);
+    BooksYouth& booksYouth = BooksYouth::getInstance();
+    booksYouth.append(youth);
 
     char command = 'R';
     History* history = new History();
@@ -79,8 +82,8 @@ TEST_CASE("0-1 User", "[model]") {
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
-    Books books;
-    books.append(youth);
+    BooksYouth& booksYouth = BooksYouth::getInstance();
+    booksYouth.append(youth);
 
     char command = 'R';
     History* history = new History();
@@ -105,8 +108,8 @@ TEST_CASE("0-1 histories", "[collection]") {
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
-    Books books;
-    books.append(youth);
+    BooksYouth& booksYouth = BooksYouth::getInstance();
+    booksYouth.append(youth);
 
     History* history = new History();
     history->setCommand('R');
@@ -267,11 +270,12 @@ TEST_CASE("0-1 Collection", "[collection]") {
     periodical3->setYear(2015);
     periodical3->setTitle("TestPeriodical3");
 
-    Books books;
-
     // Add one book
+
+    BooksPeriodical& books = BooksPeriodical::getInstance();
     books.append(periodical);
     REQUIRE(books.size() == 1);
+
 
     // Add one more book
     books.append(periodical2);

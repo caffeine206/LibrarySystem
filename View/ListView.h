@@ -14,7 +14,9 @@
 #define __ListView_H
 
 #include "./TextView.h"
-#include "../Collection/Books.h"
+#include "../Collection/BooksFiction.h"
+#include "../Collection/BooksPeriodical.h"
+#include "../Collection/BooksYouth.h"
 
 class ListView : public TextView {
   public:

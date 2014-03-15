@@ -15,12 +15,12 @@
 
 void ListView::render() {
     // Fiction rendering
-    Books* fictionBooks = static_cast<Books *>(clMap[Config::CAT_FICTION]);
+    BooksFiction& booksFiction = BooksFiction::getInstance();
     // Drawing the header
     this->headerFiction();
     // Drawing the data
-    for (set<Model*>::iterator it = fictionBooks->begin();
-        it != fictionBooks->end(); ++it) {
+    for (set<Model*>::iterator it = booksFiction.begin();
+        it != booksFiction.end(); ++it) {
         this->draw(static_cast<Fiction *>(*it));
     }
 }

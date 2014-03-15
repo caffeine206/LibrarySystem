@@ -12,7 +12,9 @@
 #include "../Model/Book/Youth.h"
 #include "../Model/History.h"
 #include "../Model/User.h"
-#include "../Collection/Books.h"
+#include "../Collection/BooksFiction.h"
+#include "../Collection/BooksPeriodical.h"
+#include "../Collection/BooksYouth.h"
 #include "../Collection/Histories.h"
 #include "../Collection/Users.h"
 #include "../View/TextView.h"
@@ -43,15 +45,15 @@ TEST_CASE("0-1 ListView", "[view]") {
     periodical->setTitle("Comic bon bon");
 
     // Create dummy collections
-    Books* fictionBooks = new Books();
-    fictionBooks->append(fiction);
-    fictionBooks->append(fiction2);
+    BooksFiction& fictionBooks = BooksFiction::getInstance();
+    fictionBooks.append(fiction);
+    fictionBooks.append(fiction2);
 
-    Books* youthBooks = new Books();
-    youthBooks->append(youth);
+    BooksYouth& youthBooks = BooksYouth::getInstance();
+    youthBooks.append(youth);
 
-    Books* periodicalBooks = new Books();
-    periodicalBooks->append(periodical);
+    BooksPeriodical& periodicalBooks = BooksPeriodical::getInstance();
+    periodicalBooks.append(periodical);
 
     // Render a divider
     cout << endl << "********ListViewTest******" << endl;
@@ -59,41 +61,33 @@ TEST_CASE("0-1 ListView", "[view]") {
     // Create list view
     ListView listView;
     listView.setOstream(&cout);
-    listView.setCollection(Config::CAT_FICTION, fictionBooks);
-    listView.setCollection(Config::CAT_YOUTH, youthBooks);
-    listView.setCollection(Config::CAT_PERIODICAL, periodicalBooks);
     listView.render();
-
-    // Delete Collections
-    delete fictionBooks;
-    delete youthBooks;
-    delete periodicalBooks;
 }
 
 TEST_CASE("0-1 TextView Fiction", "[view]") {
-    Fiction* fiction = new Fiction();
-    fiction->setYear(2014);
-    fiction->setAuthor("Sota Ogo");
-    fiction->setTitle("A Japanese Guy");
+    // Fiction* fiction = new Fiction();
+    // fiction->setYear(2014);
+    // fiction->setAuthor("Sota Ogo");
+    // fiction->setTitle("A Japanese Guy");
 
-    Fiction* fiction2 = new Fiction();
-    fiction2->setYear(2013);
-    fiction2->setAuthor("Long Author Name Yayyyy abcdefghijklmnopqrstuvwxyz");
-    fiction2->setTitle("Long Title Yayyyyabcdefghijklmnopqrstuvwxyz");
+    // Fiction* fiction2 = new Fiction();
+    // fiction2->setYear(2013);
+    // fiction2->setAuthor("Long Author Name Yayyyy abcdefghijklmnopqrstuvwxyz");
+    // fiction2->setTitle("Long Title Yayyyyabcdefghijklmnopqrstuvwxyz");
 
-    Books books;
-    books.append(fiction);
-    books.append(fiction2);
+    // BooksFiction& books = BooksFiction::getInstance();
+    // books.append(fiction);
+    // books.append(fiction2);
 
-    fiction->rentOut();
+    // fiction->rentOut();
 
-    cout << endl << "********TextViewTest******" << endl;
-    TextView textView;
-    textView.setOstream(&cout);
-    textView.headerFiction();
+    // // cout << endl << "********TextViewTest******" << endl;
+    // TextView textView;
+    // textView.setOstream(&cout);
+    // textView.headerFiction();
 
-    for (set<Model*>::iterator it = books.begin();
-        it != books.end(); ++it) {
-        textView.draw(static_cast<Fiction *>(*it));
-    }
+    // for (set<Model*>::iterator it = books.begin();
+    //     it != books.end(); ++it) {
+    //     textView.draw(static_cast<Fiction *>(*it));
+    // }
 }

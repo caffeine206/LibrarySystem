@@ -13,15 +13,15 @@
 #include "./ShhhController.h"
 
 User* ShhhController::fetchUser(string user_id) {
-    Users* users = static_cast<Users *>(clMap[Config::USER_KEY]);
-
     if (user_id.size() == 0) {
         // Todo: Error handling for userKey
         cerr << "ERROR: ReturnController::exec() EMPTY USER ID" << endl;
         return NULL;
     }
 
-    User* user = static_cast<User *>(users->find(user_id));
+    Users& users = Users::getInstance();
+
+    User* user = static_cast<User *>(users.find(user_id));
 
     if (!user) {
         // Todo: Error handling for user

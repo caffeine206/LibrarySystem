@@ -63,27 +63,23 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     periodical->setTitle("Comic bon bon");
 
     // Create dummy collections
-    Users* users = new Users();
-    users->append(user);
-    users->append(user2);
-    users->append(user3);
+    Users& users = Users::getInstance();
+    users.append(user);
+    users.append(user2);
+    users.append(user3);
 
-    Books* fictionBooks = new Books();
-    fictionBooks->append(fiction);
-    fictionBooks->append(fiction2);
+    BooksFiction& fictionBooks = BooksFiction::getInstance();
+    fictionBooks.append(fiction);
+    fictionBooks.append(fiction2);
 
-    Books* youthBooks = new Books();
-    youthBooks->append(youth);
+    BooksYouth& youthBooks = BooksYouth::getInstance();
+    youthBooks.append(youth);
 
-    Books* periodicalBooks = new Books();
-    periodicalBooks->append(periodical);
+    BooksPeriodical& periodicalBooks = BooksPeriodical::getInstance();
+    periodicalBooks.append(periodical);
 
     // Create list view
     ReturnController returnCtr;
-    returnCtr.setCollection(Config::USER_KEY, users);
-    returnCtr.setCollection(Config::CAT_FICTION, fictionBooks);
-    returnCtr.setCollection(Config::CAT_YOUTH, youthBooks);
-    returnCtr.setCollection(Config::CAT_PERIODICAL, periodicalBooks);
 
     REQUIRE(youth->getAvailableCount() == 4);
 
@@ -93,10 +89,4 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
 
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);
-
-    // Delete Collections
-    delete fictionBooks;
-    delete youthBooks;
-    delete periodicalBooks;
-    delete users;
 }

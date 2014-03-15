@@ -12,7 +12,6 @@ class TextView : public View {
   public:
     virtual ~TextView() {}
     virtual void render() {}
-    
     // Helper function for displaying a raw of a book information.
     // The reason why we are not overriding operator<< for each class is
     // because we do not want to implement any view related tasks in
@@ -26,7 +25,9 @@ class TextView : public View {
     void draw(const Youth* book) const;
     void draw(const Periodical* book) const;
     void draw(const History* history) const;
+    virtual void setOstream(ostream* out);
   protected:
+    ostream* out;
 };
 
 #endif

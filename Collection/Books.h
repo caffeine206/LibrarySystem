@@ -6,7 +6,7 @@
 
 class Books : public Indexed {
  public:
-    void append(Book* model);
+    static Books& getInstance();
  protected:
 };
 

@@ -15,7 +15,3 @@
 Controller::Controller() {}
 Controller::~Controller() {}
 
-void Controller::setCollection(string key, Collection* collection) {
-    clMap[key] = collection;
-}
-

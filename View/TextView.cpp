@@ -68,3 +68,8 @@ void TextView::draw(const Fiction* book) const {
          << "+" << "+" << endl;
 }
 
+void TextView::setOstream(ostream* o) {
+    this->out = o;
+}
+
+

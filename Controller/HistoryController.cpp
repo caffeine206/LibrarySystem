@@ -14,5 +14,10 @@
 
 HistoryController::HistoryController() {}
 
-void HistoryController::exec(Request* request) {}
+void HistoryController::exec(Request* request) {
+    // Create list view
+    HistoryView historyView;
+    historyView.setOstream(&cout);
+    historyView.render(request);
+}
 

@@ -60,5 +60,6 @@ void User::print(ostream& out) const {
         << " "
         << this->getFirstName()
         << " "
-        << this->getLastName();
+        << this->getLastName()
+        << endl;
 }

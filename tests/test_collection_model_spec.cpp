@@ -1,5 +1,3 @@
-#define CATCH_CONFIG_MAIN
-
 #include <set>
 #include <string>
 #include <iostream>

@@ -1,12 +1,13 @@
 #ifndef __CheckoutController_H
 #define __CheckoutController_H
 
-#include "./Controller"
+#include "./ShhhController.h"
 
-class CheckoutController : public Controller{
-public:
-  virtual void exec();
-protected:
+class CheckoutController : public ShhhController {
+  public:
+    CheckoutController();
+    void exec(Request* request);
+  protected:
 };
 
 #endif

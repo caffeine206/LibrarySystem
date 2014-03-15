@@ -25,6 +25,7 @@ class TextView : public View {
     void draw(const Youth* book) const;
     void draw(const Periodical* book) const;
     void draw(const History* history) const;
+    void welcome();
     virtual void setOstream(ostream* out);
   protected:
     ostream* out;

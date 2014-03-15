@@ -15,9 +15,6 @@
 using namespace std;
 
 namespace Config {
-    string DATA4BOOKS           = "data/data4books.txt";
-    string DATA4PATRONS         = "data/data4patrons.txt";
-    string DATA4COMMANDS        = "data/data4commands.txt";
     int HARDCOPY_PERIODICAL     = 1;
     int HARDCOPY_NONPERIODICAL  = 5;
     int OUTPUT_WIDTH_AVAIL      = 5;

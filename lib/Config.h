@@ -18,9 +18,6 @@
 using namespace std;
 
 namespace Config {
-    extern string DATA4BOOKS;
-    extern string DATA4PATRONS;
-    extern string DATA4COMMANDS;
     extern int HARDCOPY_PERIODICAL;
     extern int HARDCOPY_NONPERIODICAL;
     extern int OUTPUT_WIDTH_AVAIL;

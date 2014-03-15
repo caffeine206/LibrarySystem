@@ -1,1 +1,1 @@
-valgrind --tool=callgrind --tool=memcheck --leak-check=full --show-reachable=yes --num-callers=20 --track-fds=yes ./shhh
+valgrind --tool=callgrind --tool=memcheck --leak-check=full --show-reachable=yes --num-callers=20 --track-fds=yes ./shhh data4books.txt data4patrons.txt 

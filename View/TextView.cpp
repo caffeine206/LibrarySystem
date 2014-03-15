@@ -68,6 +68,25 @@ void TextView::draw(const Fiction* book) const {
          << "+" << "+" << endl;
 }
 
+void TextView::welcome() {
+    *(this->out)  << endl
+                  << right
+                  << setfill('*') << setw(80)
+                  << "*"
+                  << endl
+                  << left
+                  << setfill('*') << setw(20)
+                  << "*"
+                  << left
+                  << setfill('*') << setw(60)
+                  << "   WELCOME TO SHHH LIBRARY SYSTEM!!   "
+                  << endl
+                  << left
+                  << setfill('*') << setw(80)
+                  << "*"
+                  << endl;
+}
+
 void TextView::setOstream(ostream* o) {
     this->out = o;
 }

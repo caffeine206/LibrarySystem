@@ -17,18 +17,20 @@
 #include "../Controller/CheckOutController.h"
 #include "../Controller/HistoryController.h"
 #include "../Controller/ReturnController.h"
+#include "../Controller/InitController.h"
 
 using namespace std;
 
-typedef map<string, Collection*> collectoinMap;
+typedef map<string, Controller*> collectoinMap;
 
 class Router {
   public:
-    Router();
+    Router(Request* request);
     ~Router();
-    void init();
-    bool go(Request* request);
+    void go(Request* request);
   private:
+    void init(Request* request);
+    void clear();
     void registerRoute(string route, Controller* ctr);
     collectoinMap mapCtr;
 };

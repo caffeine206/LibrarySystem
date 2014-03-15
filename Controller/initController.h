@@ -1,12 +1,14 @@
-#ifndef __CheckoutController_H
-#define __CheckoutController_H
+#ifndef __InitController_H
+#define __InitController_H
 
-#include "./Controller"
+#include "./ShhhController.h"
+#include "../View/InitialView.h"
 
-class initController : public Controller{
-public:
-  virtual void exec();
-protected:
+class InitController : public ShhhController {
+  public:
+    InitController();
+    void exec(Request* request);
+  protected:
 };
 
 #endif

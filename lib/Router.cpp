@@ -13,24 +13,43 @@
 
 #include "./Router.h"
 
-Router::Router() {
-    init();
+Router::Router(Request* request) {
+    init(request);
 }
 
 Router::~Router() {
-    for (collectoinMap::iterator it = mapCtr.begin(); it != mapCtr.end(); ++it)
+    clear();
+}
+
+void Router::clear() {
+    for (collectoinMap::iterator it = mapCtr.begin();
+         it != mapCtr.end(); ++it) {
         delete it->second;
-}
-
-void Router::init() {
+    }
     mapCtr.clear();
-    mapCtr[Config::CMD_CHECKOUT] = new CheckOutController();
-    mapCtr[Config::CMD_RETURN] = new ReturnController();
-    mapCtr[Config::CMD_HISOTRY] = new HistoryController();
 }
 
-bool Router::go(Request* request) {
-    mapCtr[route]->exec(request);
+void Router::init(Request* request) {
+    clear();
+
+    // Add Checkout Controller
+    CheckoutController* checoutCtr = new CheckoutController();
+    registerRoute(Config::CMD_CHECKOUT, checoutCtr);
+
+    // Add Return Controller
+    ReturnController* returnCtr = new ReturnController();
+    registerRoute(Config::CMD_RETURN, returnCtr);
+
+    // Add History Controller
+    HistoryController* historyCtr = new HistoryController();
+    registerRoute(Config::CMD_HISOTRY, historyCtr);
+
+    InitController initCtr;
+    initCtr.exec(request);
+}
+
+void Router::go(Request* request) {
+    mapCtr[request->get("command")]->exec(request);
 }
 
 void Router::registerRoute(string route, Controller* ctr) {

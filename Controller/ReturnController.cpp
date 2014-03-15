@@ -12,6 +12,8 @@
 
 #include "./ReturnController.h"
 
+ReturnController::ReturnController() {}
+
 void ReturnController::exec(Request* request) {
     // Fetch user to see if it's a valid user
     User* user = this->fetchUser(request->get("user_id"));

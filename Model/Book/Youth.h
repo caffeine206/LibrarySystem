@@ -18,7 +18,6 @@
 class Youth : public NonPeriodical {
  public:
     virtual void print(ostream& out) const;
-    bool operator<(const Youth & rhs) const;
  protected:
 };
 

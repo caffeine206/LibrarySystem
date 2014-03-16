@@ -18,7 +18,6 @@
 class Fiction : public NonPeriodical {
  public:
     virtual void print(ostream& out) const;
-    bool operator<(const Periodical & rhs) const;
  protected:
 };
 

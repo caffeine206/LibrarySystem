@@ -17,7 +17,6 @@
 #include "../Collection/BooksYouth.h"
 #include "../Collection/Histories.h"
 #include "../Collection/Users.h"
-#include "../View/TextView.h"
 #include "../View/ListView.h"
 #include "../View/HistoryView.h"
 #include "../Controller/ReturnController.h"
@@ -96,45 +95,44 @@ using namespace std;
 
 
 TEST_CASE("0-1 ListView", "[view]") {
-    // Creat dummy books
-    Fiction* fiction = new Fiction();
-    fiction->setYear(2014);
-    fiction->setAuthor("ListViewTest Name");
-    fiction->setTitle("ListViewTest Title");
+    // // Creat dummy books
+    // Fiction* fiction = new Fiction();
+    // fiction->setYear(2014);
+    // fiction->setAuthor("ListViewTest Name");
+    // fiction->setTitle("ListViewTest Title");
 
-    Fiction* fiction2 = new Fiction();
-    fiction2->setYear(2013);
-    fiction2->setAuthor("ListViewTest Author Name abcdefghijklmnopqrstuvwxyz");
-    fiction2->setTitle("ListViewTest Title abcdefghijklmnopqrstuvwxyz");
+    // Fiction* fiction2 = new Fiction();
+    // fiction2->setYear(2013);
+    // fiction2->setAuthor("ListViewTest Author Name abcdefghijklmnopqrstuvwxyz");
+    // fiction2->setTitle("ListViewTest Title abcdefghijklmnopqrstuvwxyz");
 
-    Youth* youth = new Youth();
-    youth->setYear(2011);
-    youth->setAuthor("TestAuthor");
-    youth->setTitle("TestYouth");
+    // Youth* youth = new Youth();
+    // youth->setYear(2011);
+    // youth->setAuthor("TestAuthor");
+    // youth->setTitle("TestYouth");
 
-    Periodical* periodical = new Periodical();
-    periodical->setMonth(2);
-    periodical->setYear(2000);
-    periodical->setTitle("Comic bon bon");
+    // Periodical* periodical = new Periodical();
+    // periodical->setMonth(2);
+    // periodical->setYear(2000);
+    // periodical->setTitle("Comic bon bon");
 
-    // Create dummy collections
-    BooksFiction& fictionBooks = BooksFiction::getInstance();
-    fictionBooks.append(fiction);
-    fictionBooks.append(fiction2);
+    // // Create dummy collections
+    // BooksFiction& fictionBooks = BooksFiction::getInstance();
+    // fictionBooks.append(fiction);
+    // fictionBooks.append(fiction2);
 
-    BooksYouth& youthBooks = BooksYouth::getInstance();
-    youthBooks.append(youth);
+    // BooksYouth& youthBooks = BooksYouth::getInstance();
+    // youthBooks.append(youth);
 
-    BooksPeriodical& periodicalBooks = BooksPeriodical::getInstance();
-    periodicalBooks.append(periodical);
+    // BooksPeriodical& periodicalBooks = BooksPeriodical::getInstance();
+    // periodicalBooks.append(periodical);
 
-    // Render a divider
-    cout << endl << "********ListViewTest******" << endl;
+    // // Render a divider
+    // cout << endl << "********ListViewTest******" << endl;
 
-    // Create list view
-    ListView listView;
-    listView.setOstream(&cout);
-    listView.render(NULL);
+    // // Create list view
+    // ListView listView(&cout);
+    // listView.render();
 }
 
 TEST_CASE("0-1 TextView Fiction", "[view]") {

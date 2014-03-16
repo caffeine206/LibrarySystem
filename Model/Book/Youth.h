@@ -17,9 +17,8 @@
 
 class Youth : public NonPeriodical {
  public:
-    Youth() {}
-    ~Youth() {}
     virtual void print(ostream& out) const;
+    bool operator<(const Youth & rhs) const;
  protected:
 };
 

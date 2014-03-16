@@ -31,10 +31,17 @@ void ReturnController::exec(Request* request) {
         return;
     }
 
+    if (!user->hasBook(book)) {
+        // Todo: Error handling
+        cerr << "ERROR: ReturnController::exec() NOT HAVING THE BOOK" << endl;
+        return;
+    }
+
     if (book->returnBook()) { // True if succeed
         // Get the command
         string command = request->get("command");
         user->addHistory(command, book);
+        user->returnBook(book);
     } else {
         // Todo: Error handling
         cerr << "ERROR: ReturnController::exec() RETURN FAILD" << endl;

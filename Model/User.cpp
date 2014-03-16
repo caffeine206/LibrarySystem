@@ -37,12 +37,31 @@ string User::getLastName() const {
 Histories& User::getHistories() {
     return this->histories;
 }
+
+bool User::hasBook(const Book* book) const{
+    if (this->books.find(book->key())) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool User::returnBook(const Book* book) {
+    return this->books.remove(book->key());
+}
+
 void User::addHistory(string command, Book* book) {
     // Create History
     History* history = new History();
     history->setCommand(command);
     history->setBook(book);
+    // Add to user history
     this->histories.append(history);
+}
+
+void User::addBook(Book* book) {
+    // Add to UserBooks
+    this->books.append(book);
 }
 
 string User::key() const {

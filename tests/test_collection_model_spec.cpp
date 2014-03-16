@@ -45,6 +45,11 @@ TEST_CASE("0-1 Users", "[collection]") {
     user->addHistory("R", youth);
     user->getHistories();
 
+    REQUIRE(user->hasBook(youth) == false);
+
+    user->addBook(youth);
+    REQUIRE(user->hasBook(youth) == true);
+
     // Create Users
     Users& users = Users::getInstance();
     users.append(user);

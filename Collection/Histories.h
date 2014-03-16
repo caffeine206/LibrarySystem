@@ -6,8 +6,6 @@
 
 class Histories : public UnIndexed {
   public:
-    Histories() {}
-    ~Histories() {}
     // Insert function for collection
     void append(History* model);
   protected:

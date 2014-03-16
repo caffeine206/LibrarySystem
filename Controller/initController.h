@@ -1,9 +1,9 @@
 #ifndef __InitController_H
 #define __InitController_H
 
-#include "./ShhhController.h"
+#include "./Controller.h"
 
-class InitController : public ShhhController {
+class InitController : public Controller {
   public:
     InitController();
     void exec(Request* request);

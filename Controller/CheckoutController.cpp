@@ -31,10 +31,17 @@ void CheckoutController::exec(Request* request) {
         return;
     }
 
+    if (user->hasBook(book)) {
+        // Todo: Error handling
+        cerr << "ERROR: ReturnController::exec() USER CANT HAVE TWO" << endl;
+        return;
+    }
+
     if (book->checkout()) { // True if succeed
         // Get the command
         string command = request->get("command");
         user->addHistory(command, book);
+        user->addBook(book);
     } else {
         // Todo: Error handling
         cerr << "ERROR: ReturnController::exec() RETURN FAILD" << endl;

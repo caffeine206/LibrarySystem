@@ -15,7 +15,6 @@
 #include "../Collection/Books.h"
 #include "../Collection/Histories.h"
 #include "../Collection/Users.h"
-#include "../View/TextView.h"
 #include "../View/ListView.h"
 #include "../Controller/ReturnController.h"
 #include "../lib/Request/CommandRequest.h"

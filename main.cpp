@@ -10,7 +10,7 @@
  * @version     1.0
  */
 
-// #define DEBUG
+#define DEBUG
 
 #include "./lib/Config.h"
 #include "./lib/Router.h"

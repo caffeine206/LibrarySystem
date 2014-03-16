@@ -23,7 +23,7 @@ class Periodical : public Book {
     int getMonth() const;
     virtual string key() const;
     // virtual bool operator<(const Model & rhs) const;
-    virtual bool operator<(const Periodical & rhs) const;
+    bool operator<(const Periodical & rhs) const;
     // Std:ostream Operator << overload
     virtual void print(ostream& out) const;
  protected:

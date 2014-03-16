@@ -12,10 +12,17 @@
 
 #include "./Indexed.h"
 
+Indexed::Indexed() : need2Destruct(true) {}
+
 Indexed::~Indexed() {
-    for (modelSet::iterator it = setModels.begin();
-        it != setModels.end(); ++it) {
-        delete *it;
+    if (need2Destruct) {
+        for (modelSet::iterator it = setModels.begin();
+            it != setModels.end(); ++it) {
+            if (*it) {
+                delete *it;
+            }
+        }
+        setModels.clear();
     }
 }
 
@@ -29,13 +36,26 @@ modelSet Indexed::getModels() const {
     return setModels;
 }
 
-Model* Indexed::find(const string key) {
+Model* Indexed::find(const string key) const {
     if ( key.empty() || mapModels.find(key) == mapModels.end() ) { // not found
         // TODO(Sota): Add error handling
         cerr << "ERROR: Indexed::find() Invalid Key" << endl;
         return NULL;
     } else { // found
-        return mapModels[key];
+        return mapModels.at(key);
+    }
+}
+
+bool Indexed::remove(const string key) {
+    modelMap::iterator it = mapModels.find(key);
+    if ( key.empty() || it == mapModels.end() ) { // not found
+        // TODO(Sota): Add error handling
+        cerr << "ERROR: Indexed::remove() Invalid Key" << endl;
+        return false;
+    } else { // found
+        setModels.erase(it->second);
+        mapModels.erase(it);
+        return true;
     }
 }
 

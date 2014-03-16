@@ -15,7 +15,6 @@
 #include "../Collection/Books.h"
 #include "../Collection/Histories.h"
 #include "../Collection/Users.h"
-#include "../View/TextView.h"
 #include "../View/ListView.h"
 #include "../View/HistoryView.h"
 #include "../Controller/ReturnController.h"
@@ -196,7 +195,6 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     youth->setYear(2011);
     youth->setAuthor("Williams Jay");
     youth->setTitle("Danny Dunn & the Homework Machine");
-    youth->checkout();
 
     Periodical* periodical = new Periodical();
     periodical->setMonth(2);
@@ -222,11 +220,23 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     // Create list view
     ReturnController returnCtr;
 
-    REQUIRE(youth->getAvailableCount() == 4);
+    REQUIRE(youth->getAvailableCount() == 5);
 
     // Create Request
     CommandRequest request;
     request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+
+    returnCtr.exec(&request);
+    REQUIRE(youth->getAvailableCount() == 5);
+
+    request.parse("C 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+    CheckoutController ctr;
+    ctr.exec(&request);
+
+    REQUIRE(youth->getAvailableCount() == 4);
+
+    request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+
 
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);

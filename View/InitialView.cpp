@@ -15,7 +15,6 @@
 
 void InitialView::render(Request* request) {
     this->welcome();
-
     Router& router = Router::getInstance();
     CommandRequest commandRequest;
     string line;

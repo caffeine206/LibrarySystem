@@ -13,7 +13,11 @@
 #include "./lib/Router.h"
 #include "./lib/Request/ArgumentRequest.h"
 
+#define CATCH_CONFIG_RUNNER
+#include "catch.hpp"
+
 int main( int argc, char *argv[] ) {
+    Catch::Session().run( );
     ArgumentRequest request;
     request.parse(argc, argv);
     Router& router = Router::getInstance();

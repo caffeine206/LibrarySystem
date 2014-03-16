@@ -30,7 +30,7 @@ LFLAGS =
 LIBS =
 
 # define the C source files
-SRCS = main.cpp $(wildcard Controller/*.cpp) $(wildcard lib/*.cpp) $(wildcard lib/*/*.cpp) $(wildcard View/*.cpp) $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
+SRCS = main.cpp $(wildcard tests/*.cpp) $(wildcard Controller/*.cpp) $(wildcard lib/*.cpp) $(wildcard lib/*/*.cpp) $(wildcard View/*.cpp) $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
 # SRCS = $(wildcard tests/*.cpp) $(wildcard Controller/*.cpp) $(wildcard lib/*.cpp) $(wildcard lib/*/*.cpp) $(wildcard View/*.cpp) $(wildcard Collection/*.cpp) $(wildcard Model/*.cpp) $(wildcard Model/Book/*.cpp)
 
 # define the C object files 

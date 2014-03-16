@@ -24,37 +24,37 @@
 
 using namespace std;
 
-#define CATCH_CONFIG_RUNNER
-#include "catch.hpp"
+// #define CATCH_CONFIG_RUNNER
+// #include "catch.hpp"
 
-string arg1;
-string arg2;
+// string arg1;
+// string arg2;
 
-int main( int argc, char* const argv[] ) {
-    arg1 = argv[1];
-    arg2 = argv[2];
-    return Catch::Session().run( );
-}
+// int main( int argc, char* const argv[] ) {
+//     arg1 = argv[1];
+//     arg2 = argv[2];
+//     return Catch::Session().run( );
+// }
 
-TEST_CASE("0-1 Router", "[controller]") {
-    BooksYouth& books = BooksYouth::getInstance();
-    Youth* youth = static_cast<Youth*> (books.find("Williams JayDanny Dunn & the Homework Machine"));
+// TEST_CASE("0-1 Router", "[controller]") {
+//     BooksYouth& books = BooksYouth::getInstance();
+//     Youth* youth = static_cast<Youth*> (books.find("Williams JayDanny Dunn & the Homework Machine"));
 
-    REQUIRE(youth);
+//     REQUIRE(youth);
 
-    youth->checkout();
+//     youth->checkout();
 
-    int available = youth->getAvailableCount();
+//     int available = youth->getAvailableCount();
 
-    CommandRequest request;
-    request.set("bookText", arg1);
-    request.set("patronText", arg2);
+//     CommandRequest request;
+//     request.set("bookText", arg1);
+//     request.set("patronText", arg2);
 
-    Router router(&request);
+//     Router& router = Router::getInstance();
 
-    request.clear();
-    request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
-    router.go(&request);
+//     request.clear();
+//     request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+//     router.go(&request);
 
-    REQUIRE(youth->getAvailableCount() == available + 1);
-}
+//     REQUIRE(youth->getAvailableCount() == available + 1);
+// }

@@ -13,15 +13,21 @@
 #ifndef __ListView_H
 #define __ListView_H
 
-#include "./TextView.h"
+#include "./View.h"
 #include "../Collection/BooksFiction.h"
 #include "../Collection/BooksPeriodical.h"
 #include "../Collection/BooksYouth.h"
 
-class ListView : public TextView {
+class ListView : public View {
   public:
+    ListView(ostream* o = NULL);
+    ~ListView() {}
     void render(Request* request = NULL);
   protected:
+    void headerFiction() const;
+    void headerYouth() const;
+    void headerPeriodical() const;
+    void draw(const Books& books) const;
 };
 
 #endif

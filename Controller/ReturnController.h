@@ -1,9 +1,9 @@
 #ifndef __ReturnController_H
 #define __ReturnController_H
 
-#include "./BookController.h"
+#include "./Controller.h"
 
-class ReturnController : public BookController {
+class ReturnController : public Controller {
   public:
     ReturnController();
     void exec(Request* request);

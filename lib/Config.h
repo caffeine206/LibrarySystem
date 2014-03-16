@@ -36,7 +36,7 @@ namespace Config {
     extern string CMD_CHECKOUT;
     extern string CMD_RETURN;
     extern string CMD_HISOTRY;
-    extern string CMD_DESPLAY;
+    extern string CMD_DISPLAY;
 }
 
 #endif

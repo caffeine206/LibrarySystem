@@ -12,6 +12,8 @@
 #include <list>
 #include "./HistoryView.h"
 
+HistoryView::HistoryView(ostream* o) : View::View(o) {}
+
 void HistoryView::render(Request* request) {
     User* user = Users::fetchUser(request->get("user_id"));
     Histories& histories = user->getHistories();

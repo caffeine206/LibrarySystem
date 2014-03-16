@@ -30,7 +30,13 @@ modelSet Indexed::getModels() const {
 }
 
 Model* Indexed::find(const string key) {
-    return mapModels[key];
+    if ( key.empty() || mapModels.find(key) == mapModels.end() ) { // not found
+        // TODO(Sota): Add error handling
+        cerr << "ERROR: Indexed::find() Invalid Key" << endl;
+        return NULL;
+    } else { // found
+        return mapModels[key];
+    }
 }
 
 modelSet::iterator Indexed::begin() const {

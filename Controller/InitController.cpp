@@ -62,8 +62,8 @@ void InitController::exec(Request* request) {
             } else if (category == Config::CAT_PERIODICAL) {
                 ss.get();
                 getline(ss, title, ',');
-                ss >> year;
                 ss >> month;
+                ss >> year;
 
                 // Create a new book
                 Periodical* periodical = new Periodical();

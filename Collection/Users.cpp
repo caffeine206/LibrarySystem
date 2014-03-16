@@ -26,7 +26,7 @@ void Users::append(User* user) {
 User* Users::fetchUser(string user_id) {
     if (user_id.size() == 0) {
         // Todo: Error handling for userKey
-        cerr << "ERROR: ReturnController::exec() EMPTY USER ID" << endl;
+        cerr << "ERROR: Users::fetchUser() EMPTY USER ID" << endl;
         return NULL;
     }
 
@@ -36,7 +36,7 @@ User* Users::fetchUser(string user_id) {
 
     if (!user) {
         // Todo: Error handling for user
-        cerr << "ERROR: ReturnController::exec() INVALID USER ID" << endl;
+        cerr << "ERROR: Users::fetchUser() INVALID USER ID" << endl;
         return NULL;
     }
     return user;

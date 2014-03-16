@@ -17,21 +17,21 @@ Request::Request() {}
 Request::~Request() {}
 
 string Request::get(const string key) const {
-    if (key.size() > 0) {
-        return requests.at(key);
-    } else {
+    if ( key.empty() || requests.find(key) == requests.end() ) { // not found
         // TODO(Sota): Add error handling
         cerr << "ERROR: Request::get(string) Invalid Key" << endl;
         return "";
+    } else { // found
+        return requests.at(key);
     }
 }
 
 void Request::set(const string key, const string value) {
-    if (key.size() > 0) {
-        requests[key] = value;
-    } else {
+    if (key.empty()) {
         // TODO(Sota): Add error handling
-        cerr << "ERROR: Request::get(string) Invalid Key" << endl;
+        cerr << "ERROR: Request::set(string) Invalid Key" << endl;
+    } else {
+        requests[key] = value;
     }
 }
 

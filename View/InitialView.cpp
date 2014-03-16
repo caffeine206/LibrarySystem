@@ -13,6 +13,8 @@
 #include "./InitialView.h"
 #include "../lib/Router.h"
 
+InitialView::InitialView(ostream* o) : View::View(o) {}
+
 void InitialView::render(Request* request) {
     this->welcome();
     Router& router = Router::getInstance();
@@ -22,4 +24,23 @@ void InitialView::render(Request* request) {
         commandRequest.parse(line);
         router.go(&commandRequest);
     }
+}
+
+void InitialView::welcome() {
+    *(this->out)  << endl
+                  << right
+                  << setfill('*') << setw(80) 
+                  << "*"
+                  << endl
+                  << left
+                  << setfill('*') << setw(20)
+                  << "*"
+                  << left
+                  << setfill('*') << setw(60)
+                  << "   WELCOME TO SHHH LIBRARY SYSTEM!!   "
+                  << endl
+                  << left
+                  << setfill('*') << setw(80)
+                  << "*"
+                  << endl;
 }

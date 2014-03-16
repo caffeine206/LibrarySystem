@@ -13,8 +13,8 @@
 #include "./Periodical.h"
 
 Periodical::Periodical()
-    :Book::Book(Config::HARDCOPY_NONPERIODICAL,
-                Config::HARDCOPY_NONPERIODICAL) {
+    :Book::Book(Config::HARDCOPY_PERIODICAL,
+                Config::HARDCOPY_PERIODICAL) {
 }
 
 void Periodical::setMonth(int month) {
@@ -49,6 +49,7 @@ void Periodical::print(ostream& out) const {
         << setw(Config::OUTPUT_WIDTH_YEAR)
         << this->getYear()
         << " "
+        << right
         << setw(Config::OUTPUT_WIDTH_MONTH)
         << this->getMonth()
         << " "

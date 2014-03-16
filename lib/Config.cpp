@@ -33,5 +33,5 @@ namespace Config {
     string CMD_CHECKOUT         = "C";
     string CMD_RETURN           = "R";
     string CMD_HISOTRY          = "H";
-    string CMD_DESPLAY          = "D";
+    string CMD_DISPLAY          = "D";
 }

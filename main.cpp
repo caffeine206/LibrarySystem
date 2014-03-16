@@ -10,14 +10,22 @@
  * @version     1.0
  */
 
+// #define DEBUG
+
+#include "./lib/Config.h"
 #include "./lib/Router.h"
 #include "./lib/Request/ArgumentRequest.h"
 
+// Remove unit tests if it's not in DEBUG mode
+#ifdef DEBUG
 #define CATCH_CONFIG_RUNNER
 #include "catch.hpp"
+#endif
 
 int main( int argc, char *argv[] ) {
+#ifdef DEBUG
     Catch::Session().run( );
+#endif
     ArgumentRequest request;
     request.parse(argc, argv);
     Router& router = Router::getInstance();

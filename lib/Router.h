@@ -18,6 +18,7 @@
 #include "../Controller/HistoryController.h"
 #include "../Controller/ReturnController.h"
 #include "../Controller/InitController.h"
+#include "../Controller/DisplayController.h"
 
 using namespace std;
 

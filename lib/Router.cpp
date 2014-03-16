@@ -54,10 +54,19 @@ void Router::init() {
     // Add History Controller
     HistoryController* historyCtr = new HistoryController();
     registerRoute(Config::CMD_HISOTRY, historyCtr);
+
+    // Add Display Controller
+    DisplayController* displayCtr = new DisplayController();
+    registerRoute(Config::CMD_DISPLAY, displayCtr);
 }
 
 void Router::go(Request* request) {
-    mapCtr[request->get("command")]->exec(request);
+    string key = request->get("command");
+    if ( key.empty() || mapCtr.find(key) == mapCtr.end() ) { // not found
+        cerr << "Error: Router::go() Invalid Command" << endl;
+    } else { // found
+        mapCtr[key]->exec(request);
+    }
 }
 
 void Router::registerRoute(string route, Controller* ctr) {

@@ -13,11 +13,13 @@
 #ifndef __HistoryView_H
 #define __HistoryView_H
 
-#include "./TextView.h"
+#include "./View.h"
 #include "../Collection/Users.h"
 
-class HistoryView : public TextView {
+class HistoryView : public View {
   public:
+    HistoryView(ostream* o = NULL);
+    ~HistoryView() {}
     void render(Request* request = NULL);
   protected:
 };

@@ -20,9 +20,12 @@ void InitialView::render(Request* request) {
     Router& router = Router::getInstance();
     CommandRequest commandRequest;
     string line;
+    string message = "Type your command (i.e. 'D' 'H 1xxx' ) here:";
+    cout << endl << message << endl;
     while (getline(cin, line)) {
         commandRequest.parse(line);
         router.go(&commandRequest);
+        cout << endl << message << endl;
     }
 }
 

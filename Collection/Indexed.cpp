@@ -37,12 +37,19 @@ modelSet Indexed::getModels() const {
 }
 
 Model* Indexed::find(const string key) const {
-    if ( key.empty() || mapModels.find(key) == mapModels.end() ) { // not found
+    if (key.empty()) {
         // TODO(Sota): Add error handling
-        cerr << "ERROR: Indexed::find() Invalid Key" << endl;
+        cerr << "ERROR: Indexed::find() Empty Key" << endl;
+        return NULL;
+    }
+
+    modelMap::const_iterator it = mapModels.find(key);
+    if (it == mapModels.end()) { // not found
+        // TODO(Sota): Add error handling
+        cerr << "ERROR: Indexed::find() Not found" << endl;
         return NULL;
     } else { // found
-        return mapModels.at(key);
+        return it->second;
     }
 }
 

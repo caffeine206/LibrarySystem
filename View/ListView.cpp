@@ -47,7 +47,7 @@ void ListView::headerFiction() const {
 
 void ListView::headerYouth() const {
     *(this->out) << endl
-         << "Yourh:" << endl
+         << "Youth:" << endl
          << left << setfill(' ') << setw(Config::OUTPUT_WIDTH_AVAIL)
          << "AVAIL"
          << " "

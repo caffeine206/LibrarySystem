@@ -44,6 +44,9 @@ class Book : public Model {
     void setYear(int y);
     bool checkout();
     bool returnBook();
+    
+    // Overloaded comparison operator
+    virtual bool operator<(const Book & rhs) const;
  protected:
     string title; // Book's title
     int year; // Year of publication

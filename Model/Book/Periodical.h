@@ -25,7 +25,7 @@ class Periodical : public Book {
     int getMonth() const; // Returns month of periodical
     virtual string key() const; // Unique key for the periodical
     // virtual bool operator<(const Model & rhs) const;
-    virtual bool operator<(const Periodical & rhs) const; // Book comparison
+    virtual bool operator<(const Book & rhs) const; // Book comparison
     // Std:ostream Operator << overload
     virtual void print(ostream& out) const; // Output for periodical books
  protected:

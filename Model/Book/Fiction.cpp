@@ -8,6 +8,9 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ * 
+ * Fiction extends the functionality of a book by including a special output 
+ * format and sorting comparison method
  */
 
 #include "./Fiction.h"
@@ -30,13 +33,21 @@ void Fiction::print(ostream& out) const {
 }
 
 // Overloaded operator for fiction comparison
-// Sort by author, then by title
-// Returns true if this book comes before rhs book, false otherwise
-bool Fiction::operator<(const Fiction & rhs) const {
-    if (this->author < rhs.author) {
+// Pre: sort by author, then by title
+// Post: returns true if this book comes before rhs book, false otherwise
+bool Fiction::operator<(const Book & rhs) const {
+    // cast rhs book to Fiction
+    const Fiction& rhsCopy = const_cast<const Fiction &>(rhs);
+    // make authors lower case for comparison purposes
+    string lhsAuthor = Util::toLowerCase(this->author);
+    string rhsAuthor = Util::toLowerCase(rhsCopy.author);
+    if (lhsAuthor < rhsAuthor) { // Author is earlier
         return true;
-    } else if (this->author == rhs.author) {
-        if (this->title < rhs.title) {
+    } else if (lhsAuthor == rhsAuthor) {
+        // make titles lower case for comparison purposes
+        string lhsTitle = Util::toLowerCase(this->title);
+        string rhsTitle = Util::toLowerCase(rhsCopy.title);
+        if (lhsTitle < rhsTitle) {
             return true;
         } 
     }

@@ -1,3 +1,4 @@
+#ifdef DEBUG
 
 #include <set>
 #include <string>
@@ -241,3 +242,4 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);
 }
+#endif

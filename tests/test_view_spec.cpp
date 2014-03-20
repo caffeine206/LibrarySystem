@@ -1,3 +1,4 @@
+#ifdef DEBUG
 
 #include <set>
 #include <string>
@@ -162,3 +163,5 @@ TEST_CASE("0-1 TextView Fiction", "[view]") {
     //     textView.draw(static_cast<Fiction *>(*it));
     // }
 }
+
+#endif

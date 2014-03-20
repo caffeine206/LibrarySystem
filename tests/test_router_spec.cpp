@@ -1,3 +1,4 @@
+#ifdef DEBUG
 #include <set>
 #include <string>
 #include <iostream>
@@ -57,3 +58,4 @@ using namespace std;
 
 //     REQUIRE(youth->getAvailableCount() == available + 1);
 // }
+#endif

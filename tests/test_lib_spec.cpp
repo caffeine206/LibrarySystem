@@ -1,3 +1,4 @@
+#ifdef DEBUG
 
 #include <set>
 #include <string>
@@ -51,3 +52,4 @@ TEST_CASE("0-1 Request", "[lib]") {
     REQUIRE(request.get("title") == "Communications of the ACM");
     REQUIRE(request.size() == 7);
 }
+#endif

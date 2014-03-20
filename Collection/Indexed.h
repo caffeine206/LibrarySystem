@@ -18,8 +18,14 @@
 
 #include "./Collection.h"
 
+struct model_compare {
+    bool operator() (const Model* lhs, const Model* rhs) const{
+        return *lhs < *rhs;
+    }
+};
+
 typedef map<string, Model*> modelMap;
-typedef set<Model*> modelSet;
+typedef set<Model*, model_compare> modelSet;
 
 class Indexed : public Collection {
  public:
@@ -27,7 +33,7 @@ class Indexed : public Collection {
     virtual ~Indexed();
 
     // Return list of models
-    virtual set<Model*> getModels() const;
+    virtual modelSet getModels() const;
 
     // Return a pointer to the model.
     virtual Model* find(const string key) const;

@@ -29,9 +29,6 @@ class Book : public Model {
     Book(); 
     Book(int available, int hardCopy);
     
-    // Destructor
-    ~Book() {}
-    
     // Getter functions
     bool isBookAvailable() const;
     int getAvailableCount() const;
@@ -46,7 +43,7 @@ class Book : public Model {
     bool returnBook();
     
     // Overloaded comparison operator
-    virtual bool operator<(const Book & rhs) const;
+    // virtual bool operator<(const Model & rhs) const;
  protected:
     string title; // Book's title
     int year; // Year of publication

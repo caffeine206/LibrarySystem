@@ -19,13 +19,12 @@
 
 class Periodical : public Book {
  public:
-    Periodical(); // Constructor
-    ~Periodical() {} // Destructor
+    Periodical();
     void setMonth(int month); // Assigns month for periodical
     int getMonth() const; // Returns month of periodical
     virtual string key() const; // Unique key for the periodical
     // virtual bool operator<(const Model & rhs) const;
-    virtual bool operator<(const Book & rhs) const; // Book comparison
+    virtual bool operator<(const Model & rhs) const; // Book comparison
     // Std:ostream Operator << overload
     virtual void print(ostream& out) const; // Output for periodical books
  protected:

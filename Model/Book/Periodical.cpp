@@ -43,10 +43,10 @@ string Periodical::key() const {
 // Overloaded operator for periodical comparison
 // Pre: sort by date, then by title
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Periodical::operator<(const Book & rhs) const {
+bool Periodical::operator<(const Model & rhs) const {
     // cast rhs book to Periodical
-    Periodical* rhsCopy = const_cast<Periodical *>(&rhs);
-    if (this->year < rhs.year) { // year is smaller
+    const Periodical& rhsCopy = static_cast<const Periodical &>(rhs);
+    if (this->year < rhsCopy.year) { // year is smaller
         return true;
     } else if (this->year == rhsCopy.year) { 
         if (this->month < rhsCopy.month) { // month is smaller

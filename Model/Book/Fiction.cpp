@@ -35,21 +35,19 @@ void Fiction::print(ostream& out) const {
 // Overloaded operator for fiction comparison
 // Pre: sort by author, then by title
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Fiction::operator<(const Book & rhs) const {
+bool Fiction::operator<(const Model& rhs) const {
     // cast rhs book to Fiction
-    const Fiction& rhsCopy = const_cast<const Fiction &>(rhs);
+    const Fiction& rhsCopy = static_cast<const Fiction &>(rhs);
     // make authors lower case for comparison purposes
     string lhsAuthor = Util::toLowerCase(this->author);
     string rhsAuthor = Util::toLowerCase(rhsCopy.author);
-    if (lhsAuthor < rhsAuthor) { // Author is earlier
+    if (lhsAuthor < rhsAuthor) {// Author is earlier
         return true;
     } else if (lhsAuthor == rhsAuthor) {
         // make titles lower case for comparison purposes
-        string lhsTitle = Util::toLowerCase(this->title);
-        string rhsTitle = Util::toLowerCase(rhsCopy.title);
-        if (lhsTitle < rhsTitle) {
+        if (Util::toLowerCase(this->title) < Util::toLowerCase(rhsCopy.title)) {
             return true;
-        } 
+        }
     }
     return false;
 }

@@ -35,9 +35,9 @@ void Youth::print(ostream& out) const {
 // Overloaded operator for comparison
 // Pre: sort by title, then by author
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Youth::operator<(const Book & rhs) const {
+bool Youth::operator<(const Model & rhs) const {
     // cast rhs book to Youth
-    const Youth& rhsCopy = const_cast<const Youth &>(rhs);
+    const Youth& rhsCopy = static_cast<const Youth &>(rhs);
     // make titles lower case for comparison purposes
     string lhsTitle = Util::toLowerCase(this->title);
     string rhsTitle = Util::toLowerCase(rhsCopy.title);

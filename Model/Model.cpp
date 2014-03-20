@@ -16,3 +16,7 @@ ostream& operator<< (ostream& out, const Model& model) {
     model.print(out);
     return out;
 }
+
+bool Model::operator<(const Model & rhs) const {
+    return true;
+}

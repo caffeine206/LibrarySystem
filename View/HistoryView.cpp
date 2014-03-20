@@ -16,6 +16,14 @@ HistoryView::HistoryView(ostream* o) : View::View(o) {}
 
 void HistoryView::render(Request* request) {
     User* user = Users::fetchUser(request->get("user_id"));
+
+    if (!user) {
+        cerr << "ERROR: History:: "
+             << "Sorry, we couldn't find the user ["
+             << request->get("user_id") << "]." << endl;
+        return;
+    }
+
     Histories& histories = user->getHistories();
     // Show user information
     *(this->out) << *(user);

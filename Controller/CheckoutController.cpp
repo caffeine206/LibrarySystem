@@ -18,22 +18,23 @@ void CheckoutController::exec(Request* request) {
     // Fetch user to see if it's a valid user
     User* user = Users::fetchUser(request->get("user_id"));
     if (!user) {
-        // Todo: Error handling
-        cerr << "ERROR: ReturnController::exec() USER NOT FOUND" << endl;
+        cerr << "ERROR: Checkout:: "
+             << "Sorry, we couldn't find the user ["
+             << request->get("user_id") << "]." << endl;
         return;
     }
 
     // Fetch a book
     Book* book = Books::fetchBook(request);
     if (!book) {
-        // Todo: Error handling
-        cerr << "ERROR: ReturnController::exec() BOOK NOT FOUND" << endl;
+        cerr << "ERROR: Checkout:: "
+             << "Sorry, we couldn't find the book." << endl;
         return;
     }
 
     if (user->hasBook(book)) {
-        // Todo: Error handling
-        cerr << "ERROR: ReturnController::exec() USER CANT HAVE TWO" << endl;
+        cerr << "ERROR: Checkout:: "
+             << "Sorry, you cannot checkout the same book twice." << endl;
         return;
     }
 
@@ -43,8 +44,9 @@ void CheckoutController::exec(Request* request) {
         user->addHistory(command, book);
         user->addBook(book);
     } else {
-        // Todo: Error handling
-        cerr << "ERROR: ReturnController::exec() RETURN FAILD" << endl;
+        cerr << "ERROR: Checkout:: "
+             << "Sorry, we couldn't prcess the checkout."
+             << "Please try it again later." << endl;
         return;
     }
 }

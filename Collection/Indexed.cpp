@@ -38,15 +38,12 @@ modelSet Indexed::getModels() const {
 
 Model* Indexed::find(const string key) const {
     if (key.empty()) {
-        // TODO(Sota): Add error handling
         cerr << "ERROR: Indexed::find() Empty Key" << endl;
         return NULL;
     }
 
     modelMap::const_iterator it = mapModels.find(key);
     if (it == mapModels.end()) { // not found
-        // TODO(Sota): Add error handling
-        cerr << "ERROR: Indexed::find() Not found" << endl;
         return NULL;
     } else { // found
         return it->second;
@@ -56,7 +53,6 @@ Model* Indexed::find(const string key) const {
 bool Indexed::remove(const string key) {
     modelMap::iterator it = mapModels.find(key);
     if ( key.empty() || it == mapModels.end() ) { // not found
-        // TODO(Sota): Add error handling
         cerr << "ERROR: Indexed::remove() Invalid Key" << endl;
         return false;
     } else { // found

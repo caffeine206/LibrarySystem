@@ -28,9 +28,12 @@ User* Users::fetchUser(string user_id) {
         return NULL;
     }
 
+    ostringstream userKey;
+    userKey << right << setfill('0') << setw(Config::MAX_DIGIT_USERID) << user_id;
+
     Users& users = Users::getInstance();
 
-    User* user = static_cast<User *>(users.find(user_id));
+    User* user = static_cast<User *>(users.find(userKey.str()));
 
     if (!user) { // User not found
         return NULL;

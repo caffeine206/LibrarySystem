@@ -38,7 +38,7 @@ Histories& User::getHistories() {
     return this->histories;
 }
 
-bool User::hasBook(const Book* book) const{
+bool User::hasBook(const Book* book) const {
     if (this->books.find(book->key())) {
         return true;
     } else {
@@ -66,7 +66,7 @@ void User::addBook(Book* book) {
 
 string User::key() const {
     ostringstream out;
-    out << right << setfill('0') << setw(4) << this->ID;
+    out << right << setfill('0') << setw(Config::MAX_DIGIT_USERID) << this->ID;
     return out.str();
 }
 

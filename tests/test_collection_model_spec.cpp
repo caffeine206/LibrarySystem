@@ -1,3 +1,4 @@
+#include "../lib/Config.h"
 #ifdef DEBUG
 #include <set>
 #include <string>

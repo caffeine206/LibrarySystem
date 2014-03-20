@@ -15,9 +15,12 @@
 
 #include <string>
 
+#define DEBUG
+
 using namespace std;
 
 namespace Config {
+    extern int MAX_DIGIT_USERID;
     extern int HARDCOPY_PERIODICAL;
     extern int HARDCOPY_NONPERIODICAL;
     extern int OUTPUT_WIDTH_AVAIL;

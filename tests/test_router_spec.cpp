@@ -1,3 +1,4 @@
+#include "../lib/Config.h"
 #ifdef DEBUG
 #include <set>
 #include <string>
@@ -19,7 +20,6 @@
 #include "../View/ListView.h"
 #include "../Controller/ReturnController.h"
 #include "../lib/Request/CommandRequest.h"
-#include "../lib/Config.h"
 #include "../lib/Router.h"
 
 using namespace std;

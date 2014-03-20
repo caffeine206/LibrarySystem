@@ -10,6 +10,7 @@
  * @version     1.0
  */
 
+#include <sys/time.h> // gettimeofday
 #include <iostream> //
 #include <fstream> // ifstream
 #include <string>
@@ -19,6 +20,12 @@
 InitController::InitController() {}
 
 void InitController::exec(Request* request) {
+    // Time mesuring
+    cout << "Intializing the database..." << endl;
+    struct timeval tim;
+    gettimeofday(&tim, NULL);
+    double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);
+
     // Get argv[1]
     string bookFilePath = request->get("1");
 
@@ -90,7 +97,7 @@ void InitController::exec(Request* request) {
                 booksYouth.append(youth);
             } else {
                 // TODO(SOTA): ADD Error handling
-                cerr << "ERROR: InitController::exec() Wrong Letter" << endl;
+                cerr << "ERROR: InitController::exec() Wrong Category" << endl;
             }
         }
         bookfile.close();
@@ -125,7 +132,11 @@ void InitController::exec(Request* request) {
         cout << "ERROR: InitController::exec() Unable to open book file";
     }
 
-    InitialView view;
-    view.setOstream(&cout);
+    gettimeofday(&tim, NULL);
+    double t2 = tim.tv_sec+(tim.tv_usec/1000000.0);
+    printf("--Data loaded. Execution time: %.6lf seconds elapsed\n", t2-t1);
+
+    // Show view
+    InitialView view(&cout);
     view.render(request);
 }

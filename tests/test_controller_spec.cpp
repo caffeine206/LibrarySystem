@@ -1,3 +1,4 @@
+#include "../lib/Config.h"
 #ifdef DEBUG
 
 #include <set>
@@ -8,6 +9,7 @@
 #include <list>
 #include "catch.hpp"
 
+#include "../lib/Config.h"
 #include "../Model/Book/Periodical.h"
 #include "../Model/Book/Fiction.h"
 #include "../Model/Book/Youth.h"

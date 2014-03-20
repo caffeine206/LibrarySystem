@@ -25,9 +25,11 @@ void CommandRequest::parse(string cmd) {
 
     // First one is the main Command
     if (ss >> tmp) {
+        if (tmp.substr(0, 1) == Config::CMD_COMMENT) { // Ignore comment line.
+            return;
+        }
         this->set("command", tmp);
     } else {
-        cerr << "ERROR: Empty command" << endl; // TODO(Sota): Error handling
         return;
     }
 

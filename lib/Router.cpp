@@ -33,7 +33,7 @@ void Router::start(Request* request) {
 }
 
 void Router::clear() {
-    for (collectionMap::iterator it = mapCtr.begin();
+    for (ctrMap::iterator it = mapCtr.begin();
          it != mapCtr.end(); ++it) {
         delete it->second;
     }
@@ -62,10 +62,14 @@ void Router::init() {
 
 void Router::go(Request* request) {
     string key = request->get("command");
-    if ( key.empty() || mapCtr.find(key) == mapCtr.end() ) { // not found
+    if (key.empty()) { // Ignore empty command
+        return;
+    }
+    ctrMap::const_iterator it = mapCtr.find(key); // Look for the command
+    if (it == mapCtr.end()) { // Invalid command
         cerr << "Error: Router::go() Invalid Command" << endl;
-    } else { // found
-        mapCtr[key]->exec(request);
+    } else { // Valid command
+        it->second->exec(request);
     }
 }
 

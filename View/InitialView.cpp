@@ -10,6 +10,8 @@
  * @version     1.0
  */
 
+#include <sys/time.h> 
+
 #include "./InitialView.h"
 #include "../lib/Router.h"
 
@@ -22,10 +24,22 @@ void InitialView::render(Request* request) {
     string line;
     string message = "Type your command (i.e. 'D' 'H 1xxx' ) here:";
     cout << endl << message << endl;
+
+  // hash1("100000000000");
+
     while (getline(cin, line)) {
-        commandRequest.parse(line);
-        router.go(&commandRequest);
-        cout << endl << message << endl;
+      commandRequest.parse(line);
+      // Time mesuring
+      struct timeval tim;  
+      gettimeofday(&tim, NULL);  
+      double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
+
+      // Execution
+      router.go(&commandRequest);
+
+      gettimeofday(&tim, NULL);  
+      double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
+      printf("-- Execution time: %.6lf seconds elapsed\n", t2-t1);  
     }
 }
 

@@ -8,6 +8,8 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ * 
+ * Fiction is a type of book included in the SHHH library system.
  */
 
 #ifndef __Fiction_H
@@ -17,7 +19,8 @@
 
 class Fiction : public NonPeriodical {
  public:
-    virtual void print(ostream& out) const;
+    virtual void print(ostream& out) const; // Output for fiction books
+    virtual bool operator<(const Fiction & rhs) const; // Book comparison
  protected:
 };
 

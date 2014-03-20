@@ -15,6 +15,16 @@
 CheckoutController::CheckoutController() {}
 
 void CheckoutController::exec(Request* request) {
+    // Check the book type
+    if (request->get("type") != Config::TYPE_HARDCOPY) {
+        cerr << "ERROR: Checkout:: "
+             << "Sorry, we don't have type ["
+             << request->get("type")
+             << "]." << endl
+             << "Currently, we have only hardcopies.";
+        return;
+    }
+
     // Fetch user to see if it's a valid user
     User* user = Users::fetchUser(request->get("user_id"));
     if (!user) {

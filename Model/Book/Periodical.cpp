@@ -43,16 +43,18 @@ string Periodical::key() const {
 // Overloaded operator for periodical comparison
 // Pre: sort by date, then by title
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Periodical::operator<(const Periodical & rhs) const {
+bool Periodical::operator<(const Book & rhs) const {
+    // cast rhs book to Periodical
+    Periodical* rhsCopy = const_cast<Periodical *>(&rhs);
     if (this->year < rhs.year) { // year is smaller
         return true;
-    } else if (this->year == rhs.year) { 
-        if (this->month < rhs.month) { // month is smaller
+    } else if (this->year == rhsCopy.year) { 
+        if (this->month < rhsCopy.month) { // month is smaller
             return true;
         } else { 
             // make titles lower case for comparison purposes
             string lhsTitle = Util::toLowerCase(this->title);
-            string rhsTitle = Util::toLowerCase(rhs.title);
+            string rhsTitle = Util::toLowerCase(rhsCopy.title);
             if (lhsTitle < rhsTitle) { // title is earlier
                 return true;
             }

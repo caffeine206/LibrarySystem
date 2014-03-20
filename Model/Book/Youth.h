@@ -20,7 +20,7 @@
 class Youth : public NonPeriodical {
  public:
     virtual void print(ostream& out) const; // Output for youth books
-    virtual bool operator<(const Youth & rhs) const; // Book comparison
+    virtual bool operator<(const Book & rhs) const; // Book comparison
  protected:
 };
 

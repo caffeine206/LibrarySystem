@@ -8,10 +8,14 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ * 
+ * Youth extends the functionality of a book by including a special output 
+ * format and sorting comparison method
  */
 
 #include "./Youth.h"
 
+// Output for youth book
 void Youth::print(ostream& out) const {
     out << left
         << setw(Config::OUTPUT_WIDTH_TITLE)
@@ -26,4 +30,28 @@ void Youth::print(ostream& out) const {
         << this->getYear()
         << " "
         << endl;
+}
+
+// Overloaded operator for comparison
+// Pre: sort by title, then by author
+// Post: returns true if this book comes before rhs book, false otherwise
+bool Youth::operator<(const Youth & rhs) const {
+    string lhsTitle = this->title;
+    string rhsTitle = rhs.title;
+    // make titles lower case for comparison purposes
+    transform(lhsTitle.begin(), lhsTitle.end(), lhsTitle.begin(), ::tolower);
+    transform(rhsTitle.begin(), rhsTitle.end(), rhsTitle.begin(), ::tolower);
+    if (lhsTitle < rhsTitle) { // Title is earlier
+        return true;
+    } else if (lhsTitle == rhsTitle) {
+        string lhsAuthor = this->author;
+        string rhsAuthor = rhs.author;
+        // make titles lower case for comparison purposes
+        transform(lhsAuthor.begin(), lhsAuthor.end(), lhsAuthor.begin(), ::tolower);
+        transform(rhsAuthor.begin(), rhsAuthor.end(), rhsAuthor.begin(), ::tolower);
+        if (lhsAuthor < rhsAuthor) { // Author is earlier
+            return true;
+        } 
+    }
+    return false;
 }

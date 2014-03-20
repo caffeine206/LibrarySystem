@@ -12,6 +12,7 @@
 
 #include "./Fiction.h"
 
+// Output for Fiction
 void Fiction::print(ostream& out) const {
     out << left
         << setw(Config::OUTPUT_WIDTH_AUTHOR)
@@ -26,4 +27,18 @@ void Fiction::print(ostream& out) const {
         << this->getYear()
         << " "
         << endl;
+}
+
+// Overloaded operator for fiction comparison
+// Sort by author, then by title
+// Returns true if this book comes before rhs book, false otherwise
+bool Fiction::operator<(const Fiction & rhs) const {
+    if (this->author < rhs.author) {
+        return true;
+    } else if (this->author == rhs.author) {
+        if (this->title < rhs.title) {
+            return true;
+        } 
+    }
+    return false;
 }

@@ -8,6 +8,8 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ * 
+ * Youth is a type of book included in the SHHH library system.
  */
 
 #ifndef __Youth_H
@@ -17,7 +19,8 @@
 
 class Youth : public NonPeriodical {
  public:
-    virtual void print(ostream& out) const;
+    virtual void print(ostream& out) const; // Output for youth books
+    virtual bool operator<(const Youth & rhs) const; // Book comparison
  protected:
 };
 

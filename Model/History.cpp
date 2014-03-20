@@ -12,23 +12,37 @@
 
 #include "./History.h"
 
-void History::setCommand(const string commandType) {
+// Setter Functions
+
+void History::setCommand(const string commandType) 
+// Assigns the command type for the history to a given string
+{
     this->command = commandType;
 }
 
-void History::setBook(Book* bookModel) {
+void History::setBook(Book* bookModel) 
+// Assigns the book for the history to a given book
+{
     this->book = bookModel;
 }
 
-string History::getCommand() const {
+// Getter Functions
+
+string History::getCommand() const 
+// Returns the command for this history entry
+{
     return this->command;
 }
 
-Book& History::getBook() const {
+Book& History::getBook() const 
+// Returns the book for this history entry
+{
     return *(this->book);
 }
 
-void History::print(ostream& out) const {
+void History::print(ostream& out) const 
+// Prints the output for this history entry
+{
     out << left
         << setfill(' ') << setw(12)
         << this->getCommand()

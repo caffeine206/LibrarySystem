@@ -12,11 +12,13 @@
 
 #include "./Model.h"
 
+// Standard output for model
 ostream& operator<< (ostream& out, const Model& model) {
     model.print(out);
     return out;
 }
 
+// Standard comparison for sorting
 bool Model::operator<(const Model & rhs) const {
     return true;
 }

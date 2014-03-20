@@ -1,3 +1,4 @@
+
 /**
  * Programming Assignment #5 Final Project<br>
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
@@ -8,6 +9,10 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Router class is used to route requests to the necessary controller.
+ * It contains the functionality to initialize requests, execute requests,
+ * iterate over controllers, and establish routes to controllers.
  */
 
 #ifndef __Router_H
@@ -26,18 +31,19 @@ typedef map<string, Controller*> ctrMap;
 
 class Router {
   public:
-    static Router& getInstance();
-    Router(Request* request);
-    ~Router();
-    void start(Request* request);
-    void go(Request* request);
+    static Router& getInstance(); // Initialize the router
+    Router(Request* request); // Constructor
+    ~Router(); // Destructor
+    void start(Request* request); // Initialize the system
+    void go(Request* request); // Send a request to respective controller
   private:
-    void init();
-    void clear();
-    void registerRoute(string route, Controller* ctr);
-    ctrMap mapCtr;
-    Router();
-    Router(Router const&);
+    void init(); // Initialize the router
+    void clear(); // Delete all mappings
+    void registerRoute(string route, Controller* ctr); // Create a mapping
+    // to a controller
+    ctrMap mapCtr; // Map of controllers
+    Router(); // Default constructor
+    Router(Router const&); // Copy constructor
 };
 
 #endif

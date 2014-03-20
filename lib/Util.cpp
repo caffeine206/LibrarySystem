@@ -8,6 +8,9 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Util is a namespace composition of global functions necessary for the
+ * library system, such as changing text to all lowercase.  
  */
 
 #include <string>
@@ -16,8 +19,11 @@
 using namespace std;
 
 namespace Util {
-    string toLowerCase(const string s) {
+    string toLowerCase(const string s) 
+    // Returns a new lowercase version of the string passed in
+    {
         string result = s;
+        // iterate over each character and make it lower case
         transform(result.begin(), result.end(), result.begin(), ::tolower);
         return result;
     }

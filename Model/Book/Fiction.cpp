@@ -15,8 +15,9 @@
 
 #include "./Fiction.h"
 
+void Fiction::print(ostream& out) const 
 // Output for Fiction
-void Fiction::print(ostream& out) const {
+{
     out << left
         << setfill(' ') << setw(Config::OUTPUT_WIDTH_AUTHOR)
         << string(this->getAuthor()).substr(0, Config::OUTPUT_WIDTH_AUTHOR)
@@ -32,10 +33,11 @@ void Fiction::print(ostream& out) const {
         << endl;
 }
 
+bool Fiction::operator<(const Model& rhs) const 
 // Overloaded operator for fiction comparison
 // Pre: sort by author, then by title
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Fiction::operator<(const Model& rhs) const {
+{
     // cast rhs book to Fiction
     const Fiction& rhsCopy = static_cast<const Fiction &>(rhs);
     // make authors lower case for comparison purposes

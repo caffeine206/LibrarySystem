@@ -22,28 +22,32 @@ Periodical::Periodical()
                 Config::HARDCOPY_PERIODICAL) {
 }
 
+void Periodical::setMonth(int month) 
 // Sets periodical's month to given value
-void Periodical::setMonth(int month) {
+{
     this->month = month;
 }
 
+int Periodical::getMonth() const 
 // Returns the month of the periodical
-int Periodical::getMonth() const {
+{
     return month;
 }
 
+string Periodical::key() const 
 // Returns the unique key for this periodical
 // Key includes year, month, and title
-string Periodical::key() const {
+{
     ostringstream out;
     out << this->year << this->month << this->title;
     return out.str();
 }
 
+bool Periodical::operator<(const Model & rhs) const 
 // Overloaded operator for periodical comparison
 // Pre: sort by date, then by title
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Periodical::operator<(const Model & rhs) const {
+{
     // cast rhs book to Periodical
     const Periodical& rhsCopy = static_cast<const Periodical &>(rhs);
     if (this->year < rhsCopy.year) { // year is smaller
@@ -63,8 +67,9 @@ bool Periodical::operator<(const Model & rhs) const {
     return false;
 }
 
+void Periodical::print(ostream& out) const 
 // Output for periodical
-void Periodical::print(ostream& out) const {
+{
     out << left
         << setfill(' ') << setw(Config::OUTPUT_WIDTH_YEAR)
         << this->getYear()

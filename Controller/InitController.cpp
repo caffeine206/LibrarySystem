@@ -8,6 +8,11 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * The InitController class is intended to initialize the library system from
+ * external input.  It extends the Controller class with the functionality of 
+ * parsing data from a standardized input text file, and then intializing
+ * the library system.  
  */
 
 #include <sys/time.h> // gettimeofday
@@ -17,13 +22,18 @@
 #include "./InitController.h"
 #include "../View/InitialView.h"
 
+// Constructor
 InitController::InitController() {}
 
-void InitController::exec(Request* request) {
-    // Time mesuring
+void InitController::exec(Request* request) 
+// Execute an initialization request
+// Pre: Book file must be valid and of expected style, else returns an error
+// Post: Adds a list of books to the library system
+{
+    // Time measuring
     cout << "Intializing the database..." << endl;
     struct timeval tim;
-    gettimeofday(&tim, NULL);
+    gettimeofday(&tim, NULL); // Start timing
     double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);
 
     // Get argv[1]
@@ -36,7 +46,7 @@ void InitController::exec(Request* request) {
     // Book initilization
 
     ifstream bookfile (bookFilePath.c_str());
-    if (bookfile.is_open()) {
+    if (bookfile.is_open()) { // Parse the book file
         string line;
         string author;
         string title;
@@ -48,6 +58,8 @@ void InitController::exec(Request* request) {
         BooksFiction& booksFiction = BooksFiction::getInstance();
         BooksPeriodical& booksPeriodical = BooksPeriodical::getInstance();
         BooksYouth& booksYouth = BooksYouth::getInstance();
+        
+        // Iterate over every line of the book file
         while (getline (bookfile, line)) {
             stringstream ss(line);
             ss >> category;

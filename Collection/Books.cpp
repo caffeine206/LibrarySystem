@@ -8,6 +8,10 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Books represents a collection of book objects, organized by a unique key for
+ * every given book.  It includes functionality for fetching all the books in the
+ * system for a given category, or to find a single given book.  
  */
 
 #include "./Books.h"
@@ -15,13 +19,19 @@
 #include "./BooksPeriodical.h"
 #include "./BooksYouth.h"
 
-Books& Books::getInstance() {
+Books& Books::getInstance() 
+// Initializes a static instance of a book collection
+{
     // Auto destroyed Singleton
     static Books instance;
     return instance;
 }
 
-Books& Books::fetchBooks(string category) {
+Books& Books::fetchBooks(string category) 
+// Pre: Letter must represent a category of book included in the library system,
+// else returns an invalid category error
+// Post: Returns the entire collection of books for a given category
+{
     if (category == Config::CAT_PERIODICAL) { // Periodical
         return static_cast<Books &>(BooksPeriodical::getInstance());
     } else if (category == Config::CAT_YOUTH) { // Youth
@@ -36,7 +46,11 @@ Books& Books::fetchBooks(string category) {
     return Books::getInstance();
 }
 
-Book* Books::fetchBook(Request* request) {
+Book* Books::fetchBook(Request* request) 
+// Pre: Book request must be valid, else returns invalid book key error
+// Post: Returns the book specified in the request from the current collection
+// in the system
+{
     // Get cateogory
     string category = request->get("category");
 

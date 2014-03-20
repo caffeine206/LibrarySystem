@@ -15,8 +15,9 @@
 
 #include "./Youth.h"
 
+void Youth::print(ostream& out) const 
 // Output for youth book
-void Youth::print(ostream& out) const {
+{
     out << left
         << setfill(' ') << setw(Config::OUTPUT_WIDTH_TITLE)
         << string(this->getTitle()).substr(0, Config::OUTPUT_WIDTH_TITLE)
@@ -32,10 +33,11 @@ void Youth::print(ostream& out) const {
         << endl;
 }
 
+bool Youth::operator<(const Model & rhs) const 
 // Overloaded operator for comparison
 // Pre: sort by title, then by author
 // Post: returns true if this book comes before rhs book, false otherwise
-bool Youth::operator<(const Model & rhs) const {
+{
     // cast rhs book to Youth
     const Youth& rhsCopy = static_cast<const Youth &>(rhs);
     // make titles lower case for comparison purposes

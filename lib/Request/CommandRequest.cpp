@@ -8,6 +8,10 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * The CommandRequest class extends the request class with the basic
+ * functionality of being able to parse commands, such as checkout or
+ * return.  
  */
 
 #include "./CommandRequest.h"
@@ -15,7 +19,10 @@
 CommandRequest::CommandRequest() {}
 CommandRequest::~CommandRequest() {}
 
-void CommandRequest::parse(string cmd) {
+void CommandRequest::parse(string cmd) 
+// Pre: Command must be standarized input, else it will ignore
+// Post: Parses a command line and sends the read request
+{
     // Clear the data
     this->clear();
     // Create string stream
@@ -40,7 +47,7 @@ void CommandRequest::parse(string cmd) {
         return;
     }
 
-    // Thrid one is the book category
+    // Third one is the book category
     string cat;
     if (ss >> cat) {
         this->set("category", cat);
@@ -48,7 +55,7 @@ void CommandRequest::parse(string cmd) {
         return;
     }
 
-    // Forth one is the book type
+    // Fourth one is the book type
     if (ss >> tmp) {
         this->set("type", tmp);
     } else {

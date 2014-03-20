@@ -8,30 +8,43 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Users is a collection used to store user models.  It includes the basic
+ * functionality of creating a user collection, adding a user to the collection,
+ * and finding a user in the collection.
  */
 
 #include "./Users.h"
 
-Users& Users::getInstance() {
+Users& Users::getInstance() 
+// Instantiates a static instance of a user collection
+{
     // Auto destroyed Singleton
     static Users instance;
     return instance;
 }
 
-void Users::append(User* user) {
+void Users::append(User* user) 
+// Adds a user to the user collection
+{
     // Call superclass function
     Indexed::append(user);
 }
 
-User* Users::fetchUser(string user_id) {
+User* Users::fetchUser(string user_id) 
+// Pre: User ID must not be empty, else returns NULL
+// Post: Returns a user from the user collection, or NULL if user
+// cannot be found
+{
     if (user_id.empty()) { // Empty ID
         return NULL;
     }
-
+    
+    // Create a unique key for the user
     ostringstream userKey;
     userKey << right << setfill('0') << setw(Config::MAX_DIGIT_USERID) << user_id;
 
-    Users& users = Users::getInstance();
+    Users& users = Users::getInstance(); // Create a user collection
 
     User* user = static_cast<User *>(users.find(userKey.str()));
 

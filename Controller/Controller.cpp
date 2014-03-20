@@ -8,10 +8,15 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Controller is an abstract class that can be extended by checkout or
+ * return controllers, for example.  It is intended to process transactions
+ * of different types.  It includes the basic functionality of constructing and
+ * destructing a controller, and executing a transaction.  
  */
 
 #include "./Controller.h"
 
-Controller::Controller() {}
-Controller::~Controller() {}
+Controller::Controller() {} // Constructor
+Controller::~Controller() {} // Destructor
 

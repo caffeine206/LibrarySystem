@@ -8,6 +8,10 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * Config is a namespace used for global constants such as the maximum amount
+ * of books that can be checked out for a given book.  It is accessed by other
+ * classes to reduce redundancy and hard coding of numbers.  
  */
 
 #ifndef CONFIG_H
@@ -20,9 +24,11 @@
 using namespace std;
 
 namespace Config {
-    extern int MAX_DIGIT_USERID;
-    extern int HARDCOPY_PERIODICAL;
-    extern int HARDCOPY_NONPERIODICAL;
+    extern int MAX_DIGIT_USERID; // Length of user IDs
+    extern int HARDCOPY_PERIODICAL; // Number of hardcopies for periodicals
+    extern int HARDCOPY_NONPERIODICAL; // Number of standard copies for periodicals
+    
+    // Output dimensions
     extern int OUTPUT_WIDTH_AVAIL;
     extern int OUTPUT_WIDTH_MONTH;
     extern int OUTPUT_WIDTH_YEAR;
@@ -31,14 +37,18 @@ namespace Config {
     // extern char CAT_FICTION_CMD;
     // extern char CAT_PERIODICAL_CMD;
     // extern char CAT_YOUTH_CMD;
+    
+    // Book codes for different categories
     extern string CAT_FICTION;
     extern string CAT_PERIODICAL;
     extern string CAT_YOUTH;
     extern string TYPE_HARDCOPY;
+    
+    // User commands
     extern string USER_KEY;
     extern string CMD_CHECKOUT;
     extern string CMD_RETURN;
-    extern string CMD_HISOTRY;
+    extern string CMD_HISTORY;
     extern string CMD_DISPLAY;
     extern string CMD_COMMENT;
 }

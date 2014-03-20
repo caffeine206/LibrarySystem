@@ -8,6 +8,10 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * NonPeriodical extends book by adding information unique to nonperiodicals,
+ * such as an author, and a different way of storing and outputting information
+ * about the periodical.
  */
 
 #ifndef __NonPeriodical_H
@@ -17,15 +21,21 @@
 
 class NonPeriodical : public Book {
  public:
+    // Constructor
     NonPeriodical();
+    
+    // Getter functions
     virtual string getAuthor() const;
+    
+    // Setter functions
     virtual void setAuthor(string str);
-
+    
+    // Output and storage key
     virtual string key() const;
     virtual bool operator<(const Model & rhs) const {return true;}
     // virtual void print(ostream& out) const;
  protected:
-    string author;
+    string author; // Author of nonperiodical
 };
 
 #endif

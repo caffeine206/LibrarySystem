@@ -13,36 +13,59 @@
 #include <iomanip>  // setw, setFill,
 #include "./User.h"
 
-void User::setID(int id) {
+// Setter functions
+
+void User::setID(int id) 
+// Assigns the user id to the given number
+{
     this->ID = id;
 }
 
-int User::getID() const {
+
+int User::getID() const 
+// Returns the user id currently assigned to the user
+{
     return this->ID;
 }
 
-void User::setName(string first, string last) {
+void User::setName(string first, string last) 
+// Sets the first and last name of the user to the given names
+{
     this->firstName = first;
     this->lastName = last;
 }
 
-string User::getFirstName() const {
+// Getter functions
+
+string User::getFirstName() const 
+// Returns the first name of the user
+{
     return this->firstName;
 }
 
-string User::getLastName() const {
+string User::getLastName() const 
+// Returns the last name of the user
+{
     return this->lastName;
 }
 
-Histories& User::getHistories() {
+Histories& User::getHistories() 
+// Returns the collection of history entries associated with the user
+{
     return this->histories;
 }
 
-Books& User::getBooks() {
+Books& User::getBooks() 
+// Returns the books currently associated with the user
+{
     return this->books;
 }
 
-bool User::hasBook(const Book* book) const {
+// User status and action functions
+
+bool User::hasBook(const Book* book) const 
+// Checks of the user currently has a given book checked out
+{
     if (this->books.find(book->key())) {
         return true;
     } else {
@@ -50,11 +73,16 @@ bool User::hasBook(const Book* book) const {
     }
 }
 
-bool User::returnBook(const Book* book) {
+bool User::returnBook(const Book* book) 
+// Returns the given book currently checked out by the user
+{
     return this->books.remove(book->key());
 }
 
-void User::addHistory(string command, Book* book) {
+void User::addHistory(string command, Book* book) 
+// Adds a history entry to the user history for a given book and given command,  
+// such as checkout or return
+{
     // Create History
     History* history = new History();
     history->setCommand(command);
@@ -63,18 +91,26 @@ void User::addHistory(string command, Book* book) {
     this->histories.append(history);
 }
 
-void User::addBook(Book* book) {
+void User::addBook(Book* book) 
+// Adds a book to the list of current books associated with the user
+{
     // Add to UserBooks
     this->books.append(book);
 }
 
-string User::key() const {
+// Output and storage functions
+
+string User::key() const 
+// Creates a unique key for the user for storage purposes
+{
     ostringstream out;
     out << right << setfill('0') << setw(Config::MAX_DIGIT_USERID) << this->ID;
     return out.str();
 }
 
-void User::print(ostream& out) const {
+void User::print(ostream& out) const 
+// Prints out the user's information, including ID and their full name
+{
     out << endl
         << "*** Patron ID = "
         << left

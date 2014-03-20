@@ -8,17 +8,24 @@
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
+ *
+ * BooksFiction is a collection for storing all the fiction books in the system.
+ * It includes the functionality of adding a fiction book into the system.  
  */
 
 #include "./BooksFiction.h"
 
-BooksFiction& BooksFiction::getInstance() {
+BooksFiction& BooksFiction::getInstance() 
+// Create a static instance of a fiction book collection
+{
     // Auto destroyed Singleton
     static BooksFiction instance;
     return instance;
 }
 
-void BooksFiction::append(Fiction* book) {
+void BooksFiction::append(Fiction* book) 
+// Adds a book to the fiction book collection
+{
     // Call superclass function
     Indexed::append(book);
 }

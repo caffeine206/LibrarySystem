@@ -36,19 +36,15 @@ void Youth::print(ostream& out) const {
 // Pre: sort by title, then by author
 // Post: returns true if this book comes before rhs book, false otherwise
 bool Youth::operator<(const Youth & rhs) const {
-    string lhsTitle = this->title;
-    string rhsTitle = rhs.title;
     // make titles lower case for comparison purposes
-    transform(lhsTitle.begin(), lhsTitle.end(), lhsTitle.begin(), ::tolower);
-    transform(rhsTitle.begin(), rhsTitle.end(), rhsTitle.begin(), ::tolower);
+    string lhsTitle = Util::toLowerCase(this->title);
+    string rhsTitle = Util::toLowerCase(rhs.title);
     if (lhsTitle < rhsTitle) { // Title is earlier
         return true;
     } else if (lhsTitle == rhsTitle) {
-        string lhsAuthor = this->author;
-        string rhsAuthor = rhs.author;
-        // make titles lower case for comparison purposes
-        transform(lhsAuthor.begin(), lhsAuthor.end(), lhsAuthor.begin(), ::tolower);
-        transform(rhsAuthor.begin(), rhsAuthor.end(), rhsAuthor.begin(), ::tolower);
+        // make authors lower case for comparison purposes
+        string lhsAuthor = Util::toLowerCase(this->author);
+        string rhsAuthor = Util::toLowerCase(rhs.author);
         if (lhsAuthor < rhsAuthor) { // Author is earlier
             return true;
         } 

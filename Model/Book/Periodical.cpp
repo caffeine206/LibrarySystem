@@ -50,11 +50,9 @@ bool Periodical::operator<(const Periodical & rhs) const {
         if (this->month < rhs.month) { // month is smaller
             return true;
         } else { 
-            string lhsTitle = this->title;
-            string rhsTitle = rhs.title;
             // make titles lower case for comparison purposes
-            transform(lhsTitle.begin(), lhsTitle.end(), lhsTitle.begin(), ::tolower);
-            transform(rhsTitle.begin(), rhsTitle.end(), rhsTitle.begin(), ::tolower);
+            string lhsTitle = Util::toLowerCase(this->title);
+            string rhsTitle = Util::toLowerCase(rhs.title);
             if (lhsTitle < rhsTitle) { // title is earlier
                 return true;
             }

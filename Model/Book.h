@@ -20,6 +20,7 @@
 #include <iostream>
 #include <iomanip>  // setw, setFill,
 #include <algorithm>
+#include "../lib/Util.h"
 #include "./Model.h"
 
 class Book : public Model {

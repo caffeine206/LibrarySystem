@@ -58,6 +58,7 @@ bool Indexed::remove(const string key) {
     } else { // found
         setModels.erase(it->second);
         mapModels.erase(it);
+        this->n--;
         return true;
     }
 }

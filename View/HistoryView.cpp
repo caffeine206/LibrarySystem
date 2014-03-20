@@ -10,6 +10,7 @@
  * @version     1.0
  */
 #include <list>
+#include <set>
 #include "./HistoryView.h"
 
 HistoryView::HistoryView(ostream* o) : View::View(o) {}
@@ -24,20 +25,43 @@ void HistoryView::render(Request* request) {
         return;
     }
 
-    Histories& histories = user->getHistories();
     // Show user information
-    *(this->out) << *(user);
+    *(this->out) << *(user) << endl;
+
+    Books& books = user->getBooks();
+    if (books.size() == 0) {
+        *(this->out)
+            << "The patron currently does not have any books." << endl;
+    } else {
+        *(this->out) << "Following items are currently checked out:" << endl;
+    }
 
     // Drawing the data
-    for (list<Model*>::iterator it = histories.begin();
-        it != histories.end(); ++it) {
-        History* history = static_cast<History *>(*it);
-        string cmd = history->getCommand();
+    for (set<Model*>::iterator it = books.begin();
+        it != books.end(); ++it) {
+        Book* book = static_cast<Book *>(*it);
+        *(this->out) << *(book);
+    }
+
+    Histories& histories = user->getHistories();
+
+    *(this->out) << endl << "Patron History:" << endl;
+
+    if (histories.size() == 0) {
         *(this->out)
-             << left
-             << setfill(' ') << setw(10)
-             << ((cmd == Config::CMD_RETURN) ? "Return":
-                (cmd == Config::CMD_CHECKOUT) ? "CheckOut" : "")
-             << history->getBook();
+            << "The patron currently does not have any hisotries." << endl;
+    } else {
+        // Drawing the data
+        for (list<Model*>::iterator it = histories.begin();
+            it != histories.end(); ++it) {
+            History* history = static_cast<History *>(*it);
+            string cmd = history->getCommand();
+            *(this->out)
+                 << left
+                 << setfill(' ') << setw(10)
+                 << ((cmd == Config::CMD_RETURN) ? "Return":
+                    (cmd == Config::CMD_CHECKOUT) ? "CheckOut" : "")
+                 << history->getBook();
+        }
     }
 }

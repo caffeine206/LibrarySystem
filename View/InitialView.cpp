@@ -23,7 +23,7 @@ void InitialView::render(Request* request) {
     CommandRequest commandRequest;
     string line;
     string message = "Type your command (i.e. 'D' 'H 1xxx' ) here:";
-    cout << endl << message << endl;
+    *(this->out) << endl << message << endl;
 
   // hash1("100000000000");
 
@@ -37,6 +37,7 @@ void InitialView::render(Request* request) {
       // Execution
       router.go(&commandRequest);
 
+      *(this->out) << endl;
       gettimeofday(&tim, NULL);  
       double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
       printf("-- Execution time: %.6lf seconds elapsed\n", t2-t1);  

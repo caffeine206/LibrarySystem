@@ -45,7 +45,7 @@ void CheckoutController::exec(Request* request) {
         user->addBook(book);
     } else {
         cerr << "ERROR: Checkout:: "
-             << "Sorry, we couldn't prcess the checkout."
+             << "Sorry, we couldn't process the checkout."
              << "Please try it again later." << endl;
         return;
     }

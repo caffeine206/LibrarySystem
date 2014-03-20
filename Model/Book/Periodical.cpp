@@ -64,7 +64,7 @@ bool Periodical::operator<(const Periodical & rhs) const {
 // Output for periodical
 void Periodical::print(ostream& out) const {
     out << left
-        << setw(Config::OUTPUT_WIDTH_YEAR)
+        << setfill(' ') << setw(Config::OUTPUT_WIDTH_YEAR)
         << this->getYear()
         << " "
         << right

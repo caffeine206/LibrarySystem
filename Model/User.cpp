@@ -38,6 +38,10 @@ Histories& User::getHistories() {
     return this->histories;
 }
 
+Books& User::getBooks() {
+    return this->books;
+}
+
 bool User::hasBook(const Book* book) const {
     if (this->books.find(book->key())) {
         return true;

@@ -37,6 +37,7 @@ namespace Config {
     extern string CMD_RETURN;
     extern string CMD_HISOTRY;
     extern string CMD_DISPLAY;
+    extern string CMD_COMMENT;
 }
 
 #endif

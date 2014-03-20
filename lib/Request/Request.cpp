@@ -18,8 +18,6 @@ Request::~Request() {}
 
 string Request::get(const string key) const {
     if ( key.empty() || requests.find(key) == requests.end() ) { // not found
-        // TODO(Sota): Add error handling
-        cerr << "ERROR: Request::get(string) Invalid Key" << endl;
         return "";
     } else { // found
         return requests.at(key);
@@ -27,10 +25,7 @@ string Request::get(const string key) const {
 }
 
 void Request::set(const string key, const string value) {
-    if (key.empty()) {
-        // TODO(Sota): Add error handling
-        cerr << "ERROR: Request::set(string) Invalid Key" << endl;
-    } else {
+    if (!key.empty()) {
         requests[key] = value;
     }
 }

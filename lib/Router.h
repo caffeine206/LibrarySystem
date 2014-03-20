@@ -22,7 +22,7 @@
 
 using namespace std;
 
-typedef map<string, Controller*> collectionMap;
+typedef map<string, Controller*> ctrMap;
 
 class Router {
   public:
@@ -35,7 +35,7 @@ class Router {
     void init();
     void clear();
     void registerRoute(string route, Controller* ctr);
-    collectionMap mapCtr;
+    ctrMap mapCtr;
     Router();
     Router(Router const&);
 };

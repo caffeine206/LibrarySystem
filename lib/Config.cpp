@@ -34,4 +34,5 @@ namespace Config {
     string CMD_RETURN           = "R";
     string CMD_HISOTRY          = "H";
     string CMD_DISPLAY          = "D";
+    string CMD_COMMENT          = "#";
 }

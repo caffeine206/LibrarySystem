@@ -15,6 +15,7 @@
 using namespace std;
 
 namespace Config {
+    int MAX_DIGIT_USERID        = 4;
     int HARDCOPY_PERIODICAL     = 1;
     int HARDCOPY_NONPERIODICAL  = 5;
     int OUTPUT_WIDTH_AVAIL      = 5;

@@ -1,3 +1,5 @@
+#include "../lib/Config.h"
+#ifdef DEBUG
 
 #include <set>
 #include <string>
@@ -18,7 +20,6 @@
 #include "../View/ListView.h"
 #include "../Controller/ReturnController.h"
 #include "../lib/Request/CommandRequest.h"
-#include "../lib/Config.h"
 
 using namespace std;
 
@@ -51,3 +52,4 @@ TEST_CASE("0-1 Request", "[lib]") {
     REQUIRE(request.get("title") == "Communications of the ACM");
     REQUIRE(request.size() == 7);
 }
+#endif

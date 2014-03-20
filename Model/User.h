@@ -18,6 +18,7 @@ class User : public Model {
     void addBook(Book* book);
     virtual string key() const;
     Histories& getHistories();
+    Books& getBooks();
     bool returnBook(const Book* book);
     bool hasBook(const Book* book) const;
     void print(ostream& out) const;

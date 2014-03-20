@@ -1,3 +1,5 @@
+#include "../lib/Config.h"
+#ifdef DEBUG
 
 #include <set>
 #include <string>
@@ -7,6 +9,7 @@
 #include <list>
 #include "catch.hpp"
 
+#include "../lib/Config.h"
 #include "../Model/Book/Periodical.h"
 #include "../Model/Book/Fiction.h"
 #include "../Model/Book/Youth.h"
@@ -241,3 +244,4 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);
 }
+#endif

@@ -1,3 +1,5 @@
+#include "../lib/Config.h"
+#ifdef DEBUG
 #include <set>
 #include <string>
 #include <iostream>
@@ -18,7 +20,6 @@
 #include "../View/ListView.h"
 #include "../Controller/ReturnController.h"
 #include "../lib/Request/CommandRequest.h"
-#include "../lib/Config.h"
 #include "../lib/Router.h"
 
 using namespace std;
@@ -57,3 +58,4 @@ using namespace std;
 
 //     REQUIRE(youth->getAvailableCount() == available + 1);
 // }
+#endif

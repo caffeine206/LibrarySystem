@@ -1,3 +1,5 @@
+#include "../lib/Config.h"
+#ifdef DEBUG
 #include <set>
 #include <string>
 #include <iostream>
@@ -296,3 +298,4 @@ TEST_CASE("0-1 Collection", "[collection]") {
     //     i++;
     // }
 }
+#endif

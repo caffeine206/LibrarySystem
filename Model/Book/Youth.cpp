@@ -18,7 +18,7 @@
 // Output for youth book
 void Youth::print(ostream& out) const {
     out << left
-        << setw(Config::OUTPUT_WIDTH_TITLE)
+        << setfill(' ') << setw(Config::OUTPUT_WIDTH_TITLE)
         << string(this->getTitle()).substr(0, Config::OUTPUT_WIDTH_TITLE)
         << " "
         << left

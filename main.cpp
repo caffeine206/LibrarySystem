@@ -10,8 +10,6 @@
  * @version     1.0
  */
 
-#define DEBUG
-
 #include "./lib/Config.h"
 #include "./lib/Router.h"
 #include "./lib/Request/ArgumentRequest.h"

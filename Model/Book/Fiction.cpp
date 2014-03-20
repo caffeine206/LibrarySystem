@@ -18,7 +18,7 @@
 // Output for Fiction
 void Fiction::print(ostream& out) const {
     out << left
-        << setw(Config::OUTPUT_WIDTH_AUTHOR)
+        << setfill(' ') << setw(Config::OUTPUT_WIDTH_AUTHOR)
         << string(this->getAuthor()).substr(0, Config::OUTPUT_WIDTH_AUTHOR)
         << " "
         << left

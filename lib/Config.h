@@ -19,25 +19,26 @@
 
 #include <string>
 
+// Unomment to enable the Debug mode
 // #define DEBUG
 
 using namespace std;
 
 namespace Config {
-    extern int MAX_DIGIT_USERID; // Length of user IDs
-    extern int HARDCOPY_PERIODICAL; // Number of hardcopies for periodicals
-    extern int HARDCOPY_NONPERIODICAL; // Number of standard copies for periodicals
-    
+    // Length of user IDs
+    extern int MAX_DIGIT_USERID; 
+    // Number of hardcopies for periodicals
+    extern int HARDCOPY_PERIODICAL; 
+    // Number of standard copies for periodicals
+    extern int HARDCOPY_NONPERIODICAL;
+
     // Output dimensions
     extern int OUTPUT_WIDTH_AVAIL;
     extern int OUTPUT_WIDTH_MONTH;
     extern int OUTPUT_WIDTH_YEAR;
     extern int OUTPUT_WIDTH_AUTHOR;
     extern int OUTPUT_WIDTH_TITLE;
-    // extern char CAT_FICTION_CMD;
-    // extern char CAT_PERIODICAL_CMD;
-    // extern char CAT_YOUTH_CMD;
-    
+
     // Book codes for different categories
     extern string CAT_FICTION;
     extern string CAT_PERIODICAL;

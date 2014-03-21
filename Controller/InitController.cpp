@@ -3,16 +3,14 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * The InitController class is intended to initialize the library system from
+ * external input. It extends the Controller class with the functionality of 
+ * parsing data from a standardized input text file, and then intializing
+ * the library system.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * The InitController class is intended to initialize the library system from
- * external input.  It extends the Controller class with the functionality of 
- * parsing data from a standardized input text file, and then intializing
- * the library system.  
  */
 
 #include <sys/time.h> // gettimeofday
@@ -25,16 +23,18 @@
 // Constructor
 InitController::InitController() {}
 
-void InitController::exec(Request* request) 
+void InitController::exec(Request* request)
 // Execute an initialization request
 // Pre: Book file must be valid and of expected style, else returns an error
 // Post: Adds a list of books to the library system
 {
+    #ifdef DEBUG
     // Time measuring
     cout << "Intializing the database..." << endl;
     struct timeval tim;
     gettimeofday(&tim, NULL); // Start timing
     double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);
+    #endif
 
     // Get argv[1]
     string bookFilePath = request->get("1");
@@ -42,11 +42,47 @@ void InitController::exec(Request* request)
     // Get argv[2]
     string patronFilePath = request->get("2");
 
-    // TODO(SOTA): Bring this chunk of code somewhere
-    // Book initilization
+    if (bookFilePath.empty() || patronFilePath.empty()) {
+        cout << "ERROR: Initialization: Not enough arguments." << endl
+             << "Arguments must contain paths to book and patron lists."
+             << endl
+             << "Usage:"
+             << "  shhh /path/to/bookFile /path/to/patronFile" << endl
+             << "(commands are read from the standard input)" << endl;
+        exit(1); // (exit abnormally)
+    }
 
-    ifstream bookfile (bookFilePath.c_str());
-    if (bookfile.is_open()) { // Parse the book file
+    // Parsing the book file
+    if (!parseBookdata(bookFilePath)) { // Parsing failed
+        cout << "ERROR: Initialization: Unable to open a book file" << endl;
+    }
+
+    // User initilization
+    if (!parseUserdata(patronFilePath)) { // Parsing failed
+        cout << "ERROR: Initialization: Unable to open book file" << endl;
+    }
+
+    #ifdef DEBUG
+    gettimeofday(&tim, NULL);
+    double t2 = tim.tv_sec+(tim.tv_usec/1000000.0);
+    printf("--Data loaded. Execution time: %.6lf seconds elapsed\n", t2-t1);
+    #endif
+
+    // Show view
+    InitialView view(&cout);
+    view.render(request);
+}
+
+bool InitController::parseBookdata(const string& filePath)
+// Parse Book data
+// Pre: filePath must be valid
+// Post: Adds a list of books to the library system
+{
+    // Book initilization
+    ifstream bookfile (filePath.c_str());
+    if (!bookfile.is_open()) { // File open failed
+        return false;
+    } else { // Parse the book file
         string line;
         string author;
         string title;
@@ -58,7 +94,7 @@ void InitController::exec(Request* request)
         BooksFiction& booksFiction = BooksFiction::getInstance();
         BooksPeriodical& booksPeriodical = BooksPeriodical::getInstance();
         BooksYouth& booksYouth = BooksYouth::getInstance();
-        
+
         // Iterate over every line of the book file
         while (getline (bookfile, line)) {
             stringstream ss(line);
@@ -109,19 +145,24 @@ void InitController::exec(Request* request)
                 booksYouth.append(youth);
             } else {
                 // TODO(SOTA): ADD Error handling
-                cerr << "ERROR: InitController::exec() Wrong Category" << endl;
+                cerr << "ERROR: Initialize: Unrecognized Category ["
+                << category << "]" <<endl;
             }
         }
         bookfile.close();
-    } else {
-        // TODO(SOTA): ADD Error handling
-        cout << "ERROR: InitController::exec() Unable to open book file";
     }
+    return true;
+}
 
-    // TODO(SOTA): Bring this chunk of code somewhere
-    // User initilization
-    ifstream patronfile (patronFilePath.c_str());
-    if (patronfile.is_open()) {
+bool InitController::parseUserdata(const string& filePath)
+// Parse User data
+// Pre: filePath must be valid
+// Post: Adds a list of users to the library system
+{
+    ifstream patronfile(filePath.c_str());
+    if (!patronfile.is_open()) {
+        return false;
+    } else {
         int userID;
         string firstName;
         string lastName;
@@ -132,23 +173,14 @@ void InitController::exec(Request* request)
         while (getline (patronfile, line)) {
             stringstream ss(line);
             ss >> userID
-               >> firstName
-               >> lastName;
+               >> lastName
+               >> firstName;
            User* user = new User();
            user->setID(userID);
            user->setName(firstName, lastName);
            users.append(user);
         }
-    } else {
-        // TODO(SOTA): ADD Error handling
-        cout << "ERROR: InitController::exec() Unable to open book file";
     }
-
-    gettimeofday(&tim, NULL);
-    double t2 = tim.tv_sec+(tim.tv_usec/1000000.0);
-    printf("--Data loaded. Execution time: %.6lf seconds elapsed\n", t2-t1);
-
-    // Show view
-    InitialView view(&cout);
-    view.render(request);
+    return true;
 }
+

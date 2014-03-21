@@ -49,7 +49,7 @@ void HistoryView::render(Request* request) {
 
     if (histories.size() == 0) {
         *(this->out)
-            << "The patron currently does not have any hisotries." << endl;
+            << "The patron currently does not have any history." << endl;
     } else {
         // Drawing the data
         for (list<Model*>::iterator it = histories.begin();

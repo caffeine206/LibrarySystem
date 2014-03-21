@@ -3,16 +3,15 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * CheckoutController is a controller class designed to take care of the
+ * process of a user checking out books from the library.  It includes
+ * the basic functionality of taking in a request, validating the user
+ * and book, and updating the system with the checkout.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
  *
- * CheckoutController is a controller class designed to take care of the
- * process of a user checking out books from the library.  It includes
- * the basic functionality of taking in a request, validating the user
- * and book, and updating the system with the checkout.  
  */
 
 #ifndef __CheckoutController_H

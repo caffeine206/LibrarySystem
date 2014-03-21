@@ -3,14 +3,13 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * BooksFiction <singleton> is a collection for storing all the fiction 
+ * books in the system.
+ * It includes the functionality of adding a fiction book into the system.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * BooksFiction is a collection for storing all the fiction books in the system.
- * It includes the functionality of adding a fiction book into the system.  
  */
 
 #include "./BooksFiction.h"

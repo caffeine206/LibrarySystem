@@ -3,16 +3,15 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * CheckoutController is a controller class designed to take care of the
+ * process of a user checking out books from the library.  It includes
+ * the basic functionality of taking in a request, validating the user
+ * and book, and updating the system with the checkout.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
  *
- * CheckoutController is a controller class designed to take care of the
- * process of a user checking out books from the library.  It includes
- * the basic functionality of taking in a request, validating the user
- * and book, and updating the system with the checkout.  
  */
 
 #include "./CheckoutController.h"
@@ -65,8 +64,8 @@ void CheckoutController::exec(Request* request)
         user->addBook(book); // add book to user history
     } else {
         cerr << "ERROR: Checkout:: "
-             << "Sorry, we couldn't process the checkout."
-             << "Please try it again later." << endl;
+             << "Sorry, the book is currently not avalable."
+             << endl;
         return;
     }
 }

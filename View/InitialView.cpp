@@ -10,8 +10,7 @@
  * @version     1.0
  */
 
-#include <sys/time.h> 
-
+#include <sys/time.h>
 #include "./InitialView.h"
 #include "../lib/Router.h"
 
@@ -29,36 +28,43 @@ void InitialView::render(Request* request) {
 
     while (getline(cin, line)) {
       commandRequest.parse(line);
+
+      #ifdef DEBUG
       // Time mesuring
-      struct timeval tim;  
-      gettimeofday(&tim, NULL);  
-      double t1=tim.tv_sec+(tim.tv_usec/1000000.0);  
+      struct timeval tim;
+      gettimeofday(&tim, NULL);
+      double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);
+      #endif
 
       // Execution
       router.go(&commandRequest);
 
       *(this->out) << endl;
-      gettimeofday(&tim, NULL);  
-      double t2=tim.tv_sec+(tim.tv_usec/1000000.0);  
-      printf("-- Execution time: %.6lf seconds elapsed\n", t2-t1);  
+
+      #ifdef DEBUG
+      gettimeofday(&tim, NULL);
+      double t2 = tim.tv_sec+(tim.tv_usec/1000000.0);
+      printf("-- Execution time: %.6lf seconds elapsed\n", t2-t1);
+      cout << endl;
+      #endif
     }
 }
 
 void InitialView::welcome() {
     *(this->out)  << endl
                   << right
-                  << setfill('*') << setw(80) 
+                  << setfill('*') << setw(70)
                   << "*"
                   << endl
                   << left
-                  << setfill('*') << setw(20)
+                  << setfill('*') << setw(15)
                   << "*"
                   << left
-                  << setfill('*') << setw(60)
+                  << setfill('*') << setw(55)
                   << "   WELCOME TO SHHH LIBRARY SYSTEM!!   "
                   << endl
                   << left
-                  << setfill('*') << setw(80)
+                  << setfill('*') << setw(70)
                   << "*"
                   << endl;
 }

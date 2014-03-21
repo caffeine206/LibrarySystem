@@ -3,14 +3,12 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * BooksPeriodical <singleton> is a collection of periodical books.  
+ * It includes the functionality of adding a book to the periodical collection.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * BooksPeriodical is a collection of periodical books.  It includes
- * the functionality of adding a book to the periodical collection.  
  */
 
 #include "./BooksPeriodical.h"

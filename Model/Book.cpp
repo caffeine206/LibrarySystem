@@ -74,8 +74,6 @@ bool Book::checkout()
         availableCount--;
         return true;
     }
-    // Todo:: Exception
-    cerr << "Error::No book is left" << endl;
     return false;
 }
 
@@ -87,8 +85,6 @@ bool Book::returnBook()
         availableCount++;
         return true;
     }
-    // Todo:: Exception
-    cerr << "Error::More book is returned" << endl;
     return false;
 }
 

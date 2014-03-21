@@ -3,16 +3,15 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- * 
+ * Indexed is an abstract type of collection that has to be indexed for 
+ * sorting purposes. It is used to store a collection of models, 
+ * such as users and books. It includes the basic functionality of adding 
+ * to the collection, destructing the collection, removing from the 
+ * collection, and viewing or accessing the collection.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * Indexed is an abstract type of collection that has to be indexed for sorting purposes.  
- * It is used to store a collection of models, such as users and books.  
- * It includes the basic functionality of adding to the collection, destructing the 
- * collection, removing from the collection, and viewing or accessing the collection.
  */
 
 #ifndef __Indexed_H
@@ -23,16 +22,19 @@
 
 #include "./Collection.h"
 
-struct model_compare 
+struct model_compare
 // Comparison function for sorting models
 {
-    bool operator() (const Model* lhs, const Model* rhs) const{
+    bool operator() (const Model* lhs, const Model* rhs) const {
         return *lhs < *rhs;
     }
 };
 
-typedef map<string, Model*> modelMap; // Map for quickly accessing models
-typedef set<Model*, model_compare> modelSet; // Set for ordered sorting of models
+// typedef of map for quickly accessing models
+typedef map<string, Model*> modelMap;
+
+// typedef of set for ordered sorting of models
+typedef set<Model*, model_compare> modelSet;
 
 class Indexed : public Collection {
  public:

@@ -3,15 +3,14 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * The HistoryController class is intended to handle history transaction 
+ * requests. It extends the Controller class with the functionality of 
+ * being able to call view to render a collection of individual histories into 
+ * standard output.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * The HistoryController class is intended to handle history transaction requests.
- * It extends the Controller class with the functionality of being able to render
- * a collection of individual histories into standard output.  
  */
 
 #include "./HistoryController.h"

@@ -3,16 +3,14 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
- *
- * @author      Sota Ogo, Derek Willms
- * @since       1.0
- * @version     1.0
- *
  * The ReturnController class is intended to handle return transactions.
  * It extends the Controller class with the functionality of being able to 
  * execute a return request, validate a book and user, and then update
  * the user history and book collection to reflect the return.  
+ *
+ * @author      Sota Ogo, Derek Willms
+ * @since       1.0
+ * @version     1.0
  */
 
 #include "./ReturnController.h"
@@ -39,7 +37,7 @@ void ReturnController::exec(Request* request)
     User* user = Users::fetchUser(request->get("user_id"));
     if (!user) { // Invalid user
         // Todo: Error handling
-        cerr << "ERROR: Return::" <<
+        cerr << "ERROR: Checkout::" <<
         "Sorry, we coudn't find the user ["
         << request->get("user_id")
         << "]." << endl;
@@ -49,7 +47,7 @@ void ReturnController::exec(Request* request)
     // Fetch a book
     Book* book = Books::fetchBook(request);
     if (!book) { // Invalid book
-        cerr << "ERROR: Return:: "
+        cerr << "ERROR: Checkout:: "
              << "Sorry, we couldn't find the book." << endl;
         return;
     }
@@ -66,9 +64,9 @@ void ReturnController::exec(Request* request)
         user->addHistory(command, book); // Update history for user
         user->returnBook(book); // Remove book from user account
     } else {
-        cerr << "ERROR: Checkout:: " // Checkout failed
-             << "Sorry, we couldn't process the return."
-             << "Please try it again later." << endl;
+        cerr << "ERROR: Return:: " // Checkout failed
+             << "The book might not be ours."
+             << "Please check it with our librarian" << endl;
         return;
     }
 }

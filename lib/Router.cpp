@@ -89,7 +89,10 @@ void Router::go(Request* request)
     ctrMap::const_iterator it = mapCtr.find(key); // Look for the command
     if (it == mapCtr.end()) { // Invalid command
         cerr << "Error:: Command:: "
-             << "Sorry, I don't recognise your command." << endl;
+             << "Sorry, we don't recognise the command ["
+             << key
+             << "]."
+             << endl;
     } else { // Valid command
         it->second->exec(request);
     }

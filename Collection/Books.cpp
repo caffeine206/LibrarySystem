@@ -3,15 +3,13 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- * 
+ * Books represents a collection of book objects, organized by a unique key for
+ * every given book.  It includes functionality for fetching all the books 
+ * in the system for a given category, or to find a single given book.  
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * Books represents a collection of book objects, organized by a unique key for
- * every given book.  It includes functionality for fetching all the books in the
- * system for a given category, or to find a single given book.  
  */
 
 #include "./Books.h"
@@ -40,7 +38,6 @@ Books& Books::fetchBooks(string category)
         return static_cast<Books &>(BooksFiction::getInstance());
     }
 
-    // Todo: Error handling for bookKey
     cerr << "ERROR: Books::fetchBooks INVALID CATEGORY" << endl;
     // Return a reference to a empty books
     return Books::getInstance();
@@ -68,16 +65,12 @@ Book* Books::fetchBook(Request* request)
     }
 
     if (bookKey.size() == 0) {
-        // Todo: Error handling for bookKey
-        cerr << "ERROR: ReturnController::exec() INVALID BOOK KEY" << endl;
         return NULL;
     }
 
     // Look for the book
     Book* book = static_cast<Book *>(books.find(bookKey));
     if (!book) {
-        // Todo: Error handling for bookKey
-        cerr << "ERROR: ReturnController::exec() INVALID BOOK" << endl;
         return NULL;
     }
     return book;

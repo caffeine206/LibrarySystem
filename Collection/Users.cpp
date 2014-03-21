@@ -3,15 +3,13 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * Users is a collection used to store user models.  It includes the basic
+ * functionality of creating a user collection, adding a user to the collection,
+ * and finding a user in the collection.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * Users is a collection used to store user models.  It includes the basic
- * functionality of creating a user collection, adding a user to the collection,
- * and finding a user in the collection.
  */
 
 #include "./Users.h"

@@ -14,7 +14,7 @@
  */
 
 #include <string>
-#include <algorithm>
+#include <algorithm> // transform
 
 using namespace std;
 
@@ -26,5 +26,11 @@ namespace Util {
         // iterate over each character and make it lower case
         transform(result.begin(), result.end(), result.begin(), ::tolower);
         return result;
+    }
+
+    bool isDigits(const string &str)
+    // Check if the string is digits
+    {
+        return str.find_first_not_of("0123456789") == string::npos;
     }
 }

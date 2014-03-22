@@ -89,22 +89,51 @@ bool InitController::parseBookdata(const string& filePath)
         string category;
         int year;
         int month;
+        string yearStr;
+        string monthStr;
 
         // Get instances of book collections
         BooksFiction& booksFiction = BooksFiction::getInstance();
         BooksPeriodical& booksPeriodical = BooksPeriodical::getInstance();
         BooksYouth& booksYouth = BooksYouth::getInstance();
 
+        if (bookfile.eof()) { // Empty line
+            return true;
+        }
+
         // Iterate over every line of the book file
-        while (getline (bookfile, line)) {
+        while (getline(bookfile, line)) {
+            author = "";
+            title = "";
+            year = 0;
+            month = 0;
+            category = "";
             stringstream ss(line);
             ss >> category;
-            if (category == Config::CAT_FICTION) {
+
+            if (category.empty()) { // no data in the line
+                continue;
+            }
+
+            if (category.substr(0, 1) == Config::CMD_COMMENT) {
+                // ignore comments
+                continue;
+            }
+
+            if (category == Config::CAT_FICTION) { // Insert Fiction
                 ss.get();
                 getline(ss, author, ',');
                 ss.get();
                 getline(ss, title, ',');
-                ss >> year;
+                ss >> yearStr;
+
+                if (!Util::isDigits(yearStr)) {
+                    cerr << "WARNING: Initialize: "
+                         << "non-digits for year. set to 0" <<endl;
+                }
+
+                stringstream ss2(yearStr);
+                ss2 >> year;
 
                 // Create a new book
                 Fiction* fiction = new Fiction();
@@ -122,11 +151,28 @@ bool InitController::parseBookdata(const string& filePath)
 
                 // Store in a collection
                 booksFiction.append(fiction);
-            } else if (category == Config::CAT_PERIODICAL) {
+            } else if (category == Config::CAT_PERIODICAL) {// Insert Periodical
                 ss.get();
                 getline(ss, title, ',');
-                ss >> month;
-                ss >> year;
+                ss >> monthStr;
+
+                if (!Util::isDigits(monthStr)) {
+                    cerr << "WARNING: Initialize: "
+                         << "non-digits for month. set to 0" <<endl;
+                }
+
+                stringstream ss2(monthStr);
+                ss2 >> month;
+
+                ss >> yearStr;
+
+                if (!Util::isDigits(yearStr)) {
+                    cerr << "WARNING: Initialize: "
+                         << "non-digits for year. set to 0" <<endl;
+                }
+
+                stringstream ss3(yearStr);
+                ss3 >> year;
 
                 // Create a new book
                 Periodical* periodical = new Periodical();
@@ -144,12 +190,20 @@ bool InitController::parseBookdata(const string& filePath)
 
                 // Store in a collection
                 booksPeriodical.append(periodical);
-            } else if (category == Config::CAT_YOUTH) {
+            } else if (category == Config::CAT_YOUTH) { // Insert Youth
                 ss.get();
                 getline(ss, author, ',');
                 ss.get();
                 getline(ss, title, ',');
-                ss >> year;
+                ss >> yearStr;
+
+                if (!Util::isDigits(yearStr)) {
+                    cerr << "WARNING: Initialize: "
+                         << "non-digits for year. set to 0" <<endl;
+                }
+
+                stringstream ss2(yearStr);
+                ss2 >> year;
 
                 // Create a new book
                 Youth* youth = new Youth();
@@ -169,7 +223,7 @@ bool InitController::parseBookdata(const string& filePath)
             } else {
                 // TODO(SOTA): ADD Error handling
                 cerr << "ERROR: Initialize: Unrecognized Category ["
-                << category << "]" <<endl;
+                << category << "]." <<endl;
             }
         }
         bookfile.close();
@@ -187,6 +241,7 @@ bool InitController::parseUserdata(const string& filePath)
     if (!patronfile.is_open()) { // Faild to open the file
         return false;
     } else { // Opend the file
+        string userIDstr;
         int userID;
         string firstName;
         string lastName;
@@ -196,11 +251,20 @@ bool InitController::parseUserdata(const string& filePath)
         Users& users = Users::getInstance();
         while (getline (patronfile, line)) {
             stringstream ss(line);
-            ss >> userID;
+            ss >> userIDstr;
+
+            if (!Util::isDigits(userIDstr)) {
+                cerr << "ERROR: Initialize: UserID ["
+                << userIDstr << "] is not digits. Skipped" <<endl;
+                continue;
+            }
+
+            stringstream ss2(userIDstr);
+            ss2 >> userID;
 
             if (Users::fetchUser(userID)) {
                 cerr << "ERROR: Initialize: UserID ["
-                << userID << "] already exists." <<endl;
+                << userID << "] already exists. Skipped" <<endl;
                 continue;
             }
 

@@ -113,7 +113,7 @@ void User::print(ostream& out) const
 {
     out << endl
         << "*** Patron ID = "
-        << left
+        << right
         << setfill('0') << setw(4)
         << this->getID()
         << " "

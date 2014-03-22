@@ -23,6 +23,7 @@ using namespace std;
 namespace Util {
     // Returns a lowercase version of a string
     string toLowerCase(const string s); 
+    bool isDigits(const string &str);
 }
 
 #endif

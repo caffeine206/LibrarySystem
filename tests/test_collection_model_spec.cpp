@@ -25,19 +25,19 @@ using namespace std;
 
 TEST_CASE("0-1 Users", "[collection]") {
     User* user = new User();
-    user->setID(10003);
+    user->setID(1000);
     user->setName("TestFirstName", "TestLastName");
 
     User* user2 = new User();
-    user2->setID(11003);
+    user2->setID(1100);
     user2->setName("TestFirstName2", "TestLastName2");
 
     User* user3 = new User();
-    user3->setID(12003);
+    user3->setID(1200);
     user3->setName("TestFirstName3", "TestLastName3");
 
     Youth* youth = new Youth();
-    youth->setYear(2014);
+    youth->setYear(201);
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
@@ -53,10 +53,10 @@ TEST_CASE("0-1 Users", "[collection]") {
     REQUIRE(user->hasBook(youth) == true);
 
     // Create Users
-    Users& users = Users::getInstance();
-    users.append(user);
-    users.append(user2);
-    users.append(user3);
+    Users* users = new Users();
+    users->append(user);
+    users->append(user2);
+    users->append(user3);
 
     Model* models[] = {
         user,
@@ -65,11 +65,12 @@ TEST_CASE("0-1 Users", "[collection]") {
     };
 
     int i = 0;
-    for (set<Model*>::iterator it = users.begin();
-        it != users.end(); ++it) {
+    for (set<Model*>::iterator it = users->begin();
+        it != users->end(); ++it) {
         REQUIRE((*it)->key() == models[i]->key());
         i++;
     }
+    delete users;
 }
 
 TEST_CASE("0-1 User", "[model]") {
@@ -265,26 +266,28 @@ TEST_CASE("0-1 Collection", "[collection]") {
 
     // Add one book
 
-    BooksPeriodical& books = BooksPeriodical::getInstance();
-    books.append(periodical);
-    REQUIRE(books.size() == 1);
+    BooksPeriodical* books = new BooksPeriodical();
+    books->append(periodical);
+    REQUIRE(books->size() == 1);
 
 
     // Add one more book
-    books.append(periodical2);
-    REQUIRE(books.size() == 2);
+    books->append(periodical2);
+    REQUIRE(books->size() == 2);
 
     // Add one more book
-    books.append(periodical3);
-    REQUIRE(books.size() == 3);
+    books->append(periodical3);
+    REQUIRE(books->size() == 3);
 
     // Find a periodical that doesn't exist
-    Periodical* result = static_cast<Periodical *>(books.find("test"));
+    Periodical* result = static_cast<Periodical *>(books->find("test"));
     REQUIRE(!result); // Shouldn't be there
 
     // Find a periodical that exist
-    result = static_cast<Periodical *>(books.find("P5432TestPeriodical1"));
+    result = static_cast<Periodical *>(books->find("P5432TestPeriodical1"));
     REQUIRE(result == periodical); // Should be there
+
+    delete books;
 
     // Model* models[] = {
     //     periodical2,

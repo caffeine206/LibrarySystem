@@ -20,7 +20,7 @@
 #include <string>
 
 // Unomment to enable the Debug mode
-// #define DEBUG
+#define DEBUG
 
 using namespace std;
 

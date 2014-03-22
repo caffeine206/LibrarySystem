@@ -1,1 +1,0 @@
- rsync -rtvC --exclude='\.*' --exclude='*.zip' ./*  sotaogo@Uw1-320-lab.uwb.edu:~/343/lab4/

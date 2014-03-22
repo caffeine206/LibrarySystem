@@ -28,9 +28,9 @@ void InitController::exec(Request* request)
 // Pre: Book file must be valid and of expected style, else returns an error
 // Post: Adds a list of books to the library system
 {
+    cout << "Intializing the database..." << endl;
     #ifdef DEBUG
     // Time measuring
-    cout << "Intializing the database..." << endl;
     struct timeval tim;
     gettimeofday(&tim, NULL); // Start timing
     double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);

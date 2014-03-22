@@ -29,8 +29,8 @@ make
 
 ### Diagrams
 Please refer the following files:
-- Diagram_class.pdf
-- Diagram_sequence.pdf
+1. Diagram_class.pdf
+2. Diagram_sequence.pdf
 
 ### Data structure
 We use Binary tree for book sorting, and Hash Table for searching. For history, we use linked list to keep track of user history.
@@ -59,5 +59,4 @@ Request is a data parser utility. It allows classes (Controller, View, Model) to
 
 ### Catch
 Catch is a testing framework for c++. We used it for our unit testing.
-
-## Other assumption
+To enable the debug mode, please uncomment a line in lib/Config.h

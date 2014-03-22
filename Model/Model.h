@@ -32,27 +32,20 @@ class Model {
  public:
   // Constructor
   Model() {}
-  
+
   // Destructor
   virtual ~Model() {}
-  
-  // void getById();
-  // Todo make get(key)
-  // string getS(string key);
-  // int getI(string key);
-  // void set(string key, string value);
-  // void set(string key, int value);
-  
-  // Save and Storage key
-  void save();
-  virtual string key() const = 0; 
-  // virtual bool operator<(const Model & rhs) const = 0;
-  
-  //Output functionality
+
+  virtual string key() const = 0;
+
+  // Output functionality
   virtual void print(ostream& out) const = 0;
   friend ostream& operator<< (std::ostream &out,
                              const Model &model);
-                             
+
+  // Returns a type of class (to make life easier)
+  virtual string typeOf() const = 0;
+
   // Comparison
   virtual bool operator<(const Model & rhs) const;
  protected:

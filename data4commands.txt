@@ -61,3 +61,12 @@ H 1000
 H 1111
 H 5000
 H 8888
+C 5000 F H Higgins Colin, Harold and Maude,
+C 5000 P H 2010 1 Communications of the ACM,
+C 5000 F H Lawrence D. H., Lady Chatterley's Lover,
+C 5000 Y H Lady Chatterley's Lover, Lawrence D. H.,
+
+R 5000 F H Higgins Colin, Harold and Maude,
+R 5000 P H 2010 1 Communications of the ACM,
+R 5000 F H Lawrence D. H., Lady Chatterley's Lover,
+R 5000 Y H Lady Chatterley's Lover, Lawrence D. H.,

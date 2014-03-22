@@ -22,7 +22,9 @@ class Users : public Indexed {
  public:
     void append(User* model); // Add a user to user collection
     static Users& getInstance(); // Create a user collection
-    static User* fetchUser(string user_id); // Find a user in current collection
+    // Find a user in current collection
+    static User* fetchUser(int user_id);
+    static User* fetchUser(string user_id);
  protected:
 };
 

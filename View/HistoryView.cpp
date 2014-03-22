@@ -17,6 +17,7 @@ HistoryView::HistoryView(ostream* o) : View::View(o) {}
 
 void HistoryView::render(Request* request)
 // Show a list of history
+// PRE: User should be valid otherwise output error
 {
     // Fetch a user requested
     User* user = Users::fetchUser(request->get("user_id"));
@@ -46,17 +47,19 @@ void HistoryView::render(Request* request)
         *(this->out) << *(book);
     }
 
+    // Get a histories of user
     Histories& histories = user->getHistories();
 
+    // Draw the header
     *(this->out) << endl << "Patron History:" << endl;
 
-    if (histories.size() == 0) {
+    if (histories.size() == 0) { // no history
         *(this->out)
             << "The patron currently does not have any history." << endl;
-    } else {
-        // Drawing the data
+    } else { // Drawing the data
         for (list<Model*>::iterator it = histories.begin();
             it != histories.end(); ++it) {
+            // cast the model to history
             History* history = static_cast<History *>(*it);
             string cmd = history->getCommand();
             *(this->out)

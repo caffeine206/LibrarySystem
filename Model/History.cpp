@@ -48,3 +48,10 @@ void History::print(ostream& out) const
         << this->getCommand()
         << this->getBook();
 }
+
+string History::typeOf() const
+// Returns a type name
+{
+    return "History";
+
+}

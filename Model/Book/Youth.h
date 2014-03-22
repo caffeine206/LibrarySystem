@@ -21,6 +21,10 @@ class Youth : public NonPeriodical {
  public:
     virtual void print(ostream& out) const; // Output for youth books
     virtual bool operator<(const Model & rhs) const; // Book comparison
+    virtual string key() const; // Unique key for the Youth
+
+    // Returns a type of the class
+    virtual string typeOf() const;
  protected:
 };
 

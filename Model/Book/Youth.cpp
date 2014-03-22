@@ -55,3 +55,18 @@ bool Youth::operator<(const Model & rhs) const
     }
     return false;
 }
+
+string Youth::typeOf() const
+// Returns a type name
+{
+    return "Youth";
+
+}
+
+string Youth::key() const
+// Unique storage key for Youth
+{
+    ostringstream out;
+    out << Config::CAT_YOUTH << this->author << this->title;
+    return out.str();
+}

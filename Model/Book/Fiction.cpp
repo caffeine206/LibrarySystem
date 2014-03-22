@@ -53,3 +53,18 @@ bool Fiction::operator<(const Model& rhs) const
     }
     return false;
 }
+
+string Fiction::key() const 
+// Unique storage key for Fiction
+{
+    ostringstream out;
+    out << Config::CAT_FICTION << this->author << this->title;
+    return out.str();
+}
+
+string Fiction::typeOf() const
+// Returns a type name
+{
+    return "Fiction";
+
+}

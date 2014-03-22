@@ -1,4 +1,5 @@
 Y Williams Jay, Danny Dunn & the Homework Machine, 1959
+F Williams Jay, Danny Dunn & the Homework Machine, 1959
 Y Dragonwagon Crescent, I Hate My Brother Harry, 1983
 Y Heide Florence Parry, Treehorn's Wish, 1984
 P Communications of the ACM, 3 2009
@@ -42,4 +43,5 @@ F Kerouac Jack, The Dharma Bums, 1958
 P Vegetarian Times, 12 2010
 F Forster E. M., The Longest Journey, 1922
 F Lawrence D. H., Lady Chatterley's Lover, 1928
+Y Lawrence D. H., Lady Chatterley's Lover, 1928
 P Sigart Bulletin, 7 2009

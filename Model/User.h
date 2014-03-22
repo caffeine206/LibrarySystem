@@ -47,6 +47,13 @@ class User : public Model {
     // Output and storage key
     virtual string key() const;
     void print(ostream& out) const;
+
+    // Returns a type of the class
+    virtual string typeOf() const;
+
+    // Operater <
+    virtual bool operator<(const Model & rhs) const; // User comparison
+
   protected:
     int ID; // Unique ID for the user
     string firstName; // User first name

@@ -26,9 +26,14 @@ class Indexed : public Collection {
  public:
     struct model_compare
     // Comparison function for sorting models
+    // PRE: lhs and rhs has to be same to be compared other return false
     {
         bool operator() (const Model* lhs, const Model* rhs) const {
-            return *lhs < *rhs;
+            if (lhs->typeOf() == rhs->typeOf()) {
+                return *lhs < *rhs;
+            } else {
+                return true;
+            }
         }
     };
 

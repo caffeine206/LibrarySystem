@@ -24,6 +24,7 @@ class Books : public Indexed {
     static Books& fetchBooks(string category); // Fetch all books in a category
     // Fetch one book from the collection
     static Book* fetchBook(Request* request); 
+    static Book* fetchBook(string category, string key); 
  protected:
 };
 

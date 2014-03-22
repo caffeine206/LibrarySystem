@@ -94,3 +94,11 @@ ostream& operator<< (ostream& out, const Book& book)
     book.print(out);
     return out;
 }
+
+string Book::typeOf() const
+// Returns a type name
+{
+    return "Book";
+
+}
+

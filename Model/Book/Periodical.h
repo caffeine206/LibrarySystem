@@ -27,6 +27,9 @@ class Periodical : public Book {
     virtual bool operator<(const Model & rhs) const; // Book comparison
     // Std:ostream Operator << overload
     virtual void print(ostream& out) const; // Output for periodical books
+
+    // Returns a type of the class
+    virtual string typeOf() const;
  protected:
     int month;
 };

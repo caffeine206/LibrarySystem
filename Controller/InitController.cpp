@@ -112,6 +112,14 @@ bool InitController::parseBookdata(const string& filePath)
                 fiction->setTitle(title);
                 fiction->setYear(year);
 
+                if (BooksFiction::fetchBook(Config::CAT_FICTION, 
+                                            fiction->key())) {
+                    cerr << "ERROR: Initialize:"
+                         << "Skipped duplicated book" <<endl;
+                    delete fiction;
+                    continue;
+                }
+
                 // Store in a collection
                 booksFiction.append(fiction);
             } else if (category == Config::CAT_PERIODICAL) {
@@ -125,6 +133,14 @@ bool InitController::parseBookdata(const string& filePath)
                 periodical->setTitle(title);
                 periodical->setYear(year);
                 periodical->setMonth(month);
+
+                if (BooksPeriodical::fetchBook(Config::CAT_PERIODICAL,
+                                               periodical->key())) {
+                    cerr << "ERROR: Initialize:"
+                         << "Skipped duplicated book" <<endl;
+                    delete periodical;
+                    continue;
+                }
 
                 // Store in a collection
                 booksPeriodical.append(periodical);
@@ -140,6 +156,13 @@ bool InitController::parseBookdata(const string& filePath)
                 youth->setAuthor(author);
                 youth->setTitle(title);
                 youth->setYear(year);
+
+                if (BooksYouth::fetchBook(Config::CAT_YOUTH, youth->key())) {
+                    cerr << "ERROR: Initialize:"
+                         << "Skipped duplicated book" <<endl;
+                    delete youth;
+                    continue;
+                }
 
                 // Store in a collection
                 booksYouth.append(youth);
@@ -173,8 +196,15 @@ bool InitController::parseUserdata(const string& filePath)
         Users& users = Users::getInstance();
         while (getline (patronfile, line)) {
             stringstream ss(line);
-            ss >> userID
-               >> lastName
+            ss >> userID;
+
+            if (Users::fetchUser(userID)) {
+                cerr << "ERROR: Initialize: UserID ["
+                << userID << "] already exists." <<endl;
+                continue;
+            }
+
+            ss >> lastName
                >> firstName;
            User* user = new User();
            user->setID(userID);

@@ -29,6 +29,13 @@ void Users::append(User* user)
     Indexed::append(user);
 }
 
+User* Users::fetchUser(int user_id) {
+    ostringstream userKey;
+    userKey << user_id;
+    return Users::fetchUser(userKey.str());
+}
+
+
 User* Users::fetchUser(string user_id) 
 // Pre: User ID must not be empty, else returns NULL
 // Post: Returns a user from the user collection, or NULL if user

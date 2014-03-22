@@ -17,7 +17,7 @@
 #define __Router_H
 
 #include <map>
-#include "../Controller/CheckOutController.h"
+#include "../Controller/CheckoutController.h"
 #include "../Controller/HistoryController.h"
 #include "../Controller/ReturnController.h"
 #include "../Controller/InitController.h"

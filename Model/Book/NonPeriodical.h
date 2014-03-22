@@ -23,17 +23,17 @@ class NonPeriodical : public Book {
  public:
     // Constructor
     NonPeriodical();
-    
+
     // Getter functions
     virtual string getAuthor() const;
-    
+
     // Setter functions
     virtual void setAuthor(string str);
-    
-    // Output and storage key
-    virtual string key() const;
+
     virtual bool operator<(const Model & rhs) const {return true;}
-    // virtual void print(ostream& out) const;
+
+    // Returns a type of the class
+    virtual string typeOf() const;
  protected:
     string author; // Author of nonperiodical
 };

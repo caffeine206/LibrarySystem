@@ -25,15 +25,15 @@ using namespace std;
 
 TEST_CASE("0-1 Users", "[collection]") {
     User* user = new User();
-    user->setID(1000);
+    user->setID(10003);
     user->setName("TestFirstName", "TestLastName");
 
     User* user2 = new User();
-    user2->setID(1100);
+    user2->setID(11003);
     user2->setName("TestFirstName2", "TestLastName2");
 
     User* user3 = new User();
-    user3->setID(1200);
+    user3->setID(12003);
     user3->setName("TestFirstName3", "TestLastName3");
 
     Youth* youth = new Youth();
@@ -74,12 +74,12 @@ TEST_CASE("0-1 Users", "[collection]") {
 
 TEST_CASE("0-1 User", "[model]") {
     User* user = new User();
-    user->setID(1000);
+    user->setID(10000);
     user->setName("TestFirstName", "TestLastName");
 
     Youth* youth = new Youth();
-    youth->setYear(2014);
-    youth->setAuthor("TestAuthor");
+    youth->setYear(201);
+    youth->setAuthor("TestAuthor234");
     youth->setTitle("TestYouth");
 
     BooksYouth& booksYouth = BooksYouth::getInstance();
@@ -87,8 +87,8 @@ TEST_CASE("0-1 User", "[model]") {
 
     user->addHistory("R", youth);
 
-    REQUIRE(user->getID() == 1000);
-    REQUIRE(user->key() == "1000");
+    REQUIRE(user->getID() == 10000);
+    REQUIRE(user->key() == "10000");
     REQUIRE(user->getFirstName() != "Test");
     REQUIRE(user->getLastName() != "Test");
     REQUIRE(user->getFirstName() == "TestFirstName");
@@ -99,8 +99,8 @@ TEST_CASE("0-1 User", "[model]") {
 TEST_CASE("0-1 histories", "[collection]") {
     Youth* youth = new Youth();
     youth->setYear(2014);
-    youth->setAuthor("TestAuthor");
-    youth->setTitle("TestYouth");
+    youth->setAuthor("TestAuthor123");
+    youth->setTitle("TestYouth123");
 
     BooksYouth& booksYouth = BooksYouth::getInstance();
     booksYouth.append(youth);
@@ -140,7 +140,7 @@ TEST_CASE("0-1 histories", "[collection]") {
 
 TEST_CASE("0-1 history", "[model]") {
     Youth* youth = new Youth();
-    youth->setYear(2014);
+    youth->setYear(1112);
     youth->setAuthor("TestAuthor");
     youth->setTitle("TestYouth");
 
@@ -158,7 +158,7 @@ TEST_CASE("0-1 history", "[model]") {
 TEST_CASE("0-1 Youth", "[model]") {
     string title = "TestYouth";
     string author = "TestAuthor";
-    int year = 2014;
+    int year = 123;
 
     Youth* youth = new Youth();
     youth->setYear(year);
@@ -168,7 +168,7 @@ TEST_CASE("0-1 Youth", "[model]") {
     REQUIRE(title == youth->getTitle());
     REQUIRE(author == youth->getAuthor());
     REQUIRE(year == youth->getYear());
-    REQUIRE("TestAuthorTestYouth" == youth->key());
+    REQUIRE("YTestAuthorTestYouth" == youth->key());
 
     delete youth;
 }
@@ -176,7 +176,7 @@ TEST_CASE("0-1 Youth", "[model]") {
 TEST_CASE("0-1 Fiction", "[model]") {
     string title = "TestFiction";
     string author = "TestAuthor";
-    int year = 2014;
+    int year = 432;
 
     Fiction* fiction = new Fiction();
     fiction->setYear(year);
@@ -218,7 +218,7 @@ TEST_CASE("0-1 Fiction", "[model]") {
     REQUIRE(title == fiction->getTitle());
     REQUIRE(author == fiction->getAuthor());
     REQUIRE(year == fiction->getYear());
-    REQUIRE("TestAuthorTestFiction" == fiction->key());
+    REQUIRE("FTestAuthorTestFiction" == fiction->key());
 
     delete fiction;
 }
@@ -237,7 +237,7 @@ TEST_CASE("0-1 Periodical", "[model]") {
     REQUIRE(title == periodical->getTitle());
     REQUIRE(month == periodical->getMonth());
     REQUIRE(year == periodical->getYear());
-    REQUIRE("20142TestPeriodical" == periodical->key());
+    REQUIRE("P20142TestPeriodical" == periodical->key());
 
     delete periodical;
 }
@@ -248,19 +248,19 @@ TEST_CASE("0-1 Collection", "[collection]") {
 
     // Test book 1
     periodical->setMonth(2);
-    periodical->setYear(2014);
+    periodical->setYear(543);
     periodical->setTitle("TestPeriodical1");
 
     // Test book 2
     Periodical* periodical2 = new Periodical();
     periodical2->setMonth(4);
-    periodical2->setYear(2015);
+    periodical2->setYear(654);
     periodical2->setTitle("TestPeriodical2");
 
     // Test book 3
     Periodical* periodical3 = new Periodical();
     periodical3->setMonth(4);
-    periodical3->setYear(2015);
+    periodical3->setYear(7657);
     periodical3->setTitle("TestPeriodical3");
 
     // Add one book
@@ -283,7 +283,7 @@ TEST_CASE("0-1 Collection", "[collection]") {
     REQUIRE(!result); // Shouldn't be there
 
     // Find a periodical that exist
-    result = static_cast<Periodical *>(books.find("20142TestPeriodical1"));
+    result = static_cast<Periodical *>(books.find("P5432TestPeriodical1"));
     REQUIRE(result == periodical); // Should be there
 
     // Model* models[] = {

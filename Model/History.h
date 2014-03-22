@@ -21,19 +21,20 @@
 
 class History : public Model {
   public:
-    // History();
-    
     // Setter functions
     void setCommand(const string commandType);
     void setBook(Book* book);
-    
+
     // Getter functions
     string getCommand() const;
     Book& getBook() const;
-    
+
     // Output and storage key
     virtual string key() const {return NULL;}
     void print(ostream& out) const;
+
+    // Returns a type of the class
+    virtual string typeOf() const;
   protected:
     string command; // Defines whether it is checkout or return entry
     Book* book; // The book linked to this history entrry

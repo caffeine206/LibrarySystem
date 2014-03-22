@@ -26,24 +26,25 @@
 class Book : public Model {
  public:
     // Constructors
-    Book(); 
+    Book();
     Book(int available, int hardCopy);
-    
+
     // Getter functions
     bool isBookAvailable() const;
     int getAvailableCount() const;
     int getHardCopyCount() const;
     string getTitle() const;
     int getYear() const;
-    
+
     // Setter functions
     void setTitle(string str);
     void setYear(int y);
     bool checkout();
     bool returnBook();
-    
-    // Overloaded comparison operator
-    // virtual bool operator<(const Model & rhs) const;
+
+    // Returns a type of the class
+    virtual string typeOf() const;
+
  protected:
     string title; // Book's title
     int year; // Year of publication

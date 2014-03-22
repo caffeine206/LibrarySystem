@@ -122,3 +122,24 @@ void User::print(ostream& out) const
         << this->getLastName()
         << endl;
 }
+
+string User::typeOf() const
+// Returns a type name
+{
+    return "User";
+
+}
+
+
+bool User::operator<(const Model & rhs) const 
+// Overloaded operator for comparison
+// Pre: sort by user ID
+// Post: returns true if lhs comes before rhs, false otherwise
+{
+    // cast rhs to User
+    const User& rhsCopy = static_cast<const User &>(rhs);
+    if (this->ID < rhsCopy.ID) { 
+        return true;
+    }
+    return false;
+}

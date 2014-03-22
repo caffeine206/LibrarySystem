@@ -30,22 +30,22 @@ using namespace std;
 
 TEST_CASE("0-1 HistoryController", "[controller]") {
     User* user = new User();
-    user->setID(9999);
+    user->setID(99992);
     user->setName("TestHistoryFirstName", "TestHistoryLastName");
 
     // Creat dummy books
     Fiction* fiction = new Fiction();
-    fiction->setYear(2014);
+    fiction->setYear(1);
     fiction->setAuthor("HistoryViewTest Name FictionBookTestDerekSota");
     fiction->setTitle("HistoryViewTest Title FictionBookTestDerekSota");
 
     Youth* youth = new Youth();
-    youth->setYear(2014);
+    youth->setYear(5);
     youth->setAuthor("HistoryViewTest Name");
     youth->setTitle("HistoryViewTest Title");
 
     Periodical* periodical = new Periodical();
-    periodical->setYear(2009);
+    periodical->setYear(114);
     periodical->setMonth(7);
     periodical->setTitle("Communications of the ACM");
 
@@ -64,21 +64,21 @@ TEST_CASE("0-1 HistoryController", "[controller]") {
 
     // Checkout
     CommandRequest request;
-    request.parse("C 9999 F H HistoryViewTest Name FictionBookTestDerekSota, HistoryViewTest Title FictionBookTestDerekSota,");
+    request.parse("C 99992 F H HistoryViewTest Name FictionBookTestDerekSota, HistoryViewTest Title FictionBookTestDerekSota,");
     CheckoutController checkoutCtr;
     checkoutCtr.exec(&request);
 
     request.clear();
-    request.parse("C 9999 P H 2009 7 Communications of the ACM,");
+    request.parse("C 99992 P H 114 7 Communications of the ACM,");
     checkoutCtr.exec(&request);
 
     request.clear();
-    request.parse("C 9999 Y H HistoryViewTest Title, HistoryViewTest Name,");
+    request.parse("C 99992 Y H HistoryViewTest Title, HistoryViewTest Name,");
     checkoutCtr.exec(&request);
 
     // Return
     request.clear();
-    request.parse("R 9999 F H HistoryViewTest Name FictionBookTestDerekSota, HistoryViewTest Title FictionBookTestDerekSota,");
+    request.parse("R 99992 F H HistoryViewTest Name FictionBookTestDerekSota, HistoryViewTest Title FictionBookTestDerekSota,");
     ReturnController ReturnCtr;
     ReturnCtr.exec(&request);
 
@@ -102,20 +102,20 @@ TEST_CASE("0-1 HistoryController", "[controller]") {
 TEST_CASE("0-1 CheckoutController", "[controller]") {
     // Create dummy Users
     User* user = new User();
-    user->setID(1000);
+    user->setID(10000);
     user->setName("TestFirstName", "TestLastName");
 
     User* user2 = new User();
-    user2->setID(1111);
+    user2->setID(11110);
     user2->setName("TestFirstName2", "TestLastName2");
 
     User* user3 = new User();
-    user3->setID(1200);
+    user3->setID(12000);
     user3->setName("TestFirstName3", "TestLastName3");
 
     // Creat dummy books
     Fiction* fiction = new Fiction();
-    fiction->setYear(2014);
+    fiction->setYear(246);
     fiction->setAuthor("ListViewTest Name");
     fiction->setTitle("ListViewTest Title");
     fiction->checkout();
@@ -123,18 +123,18 @@ TEST_CASE("0-1 CheckoutController", "[controller]") {
     fiction->checkout();
 
     Fiction* fiction2 = new Fiction();
-    fiction2->setYear(2013);
+    fiction2->setYear(357);
     fiction2->setAuthor("ListViewTest Author Name abcdefghijklmnopqrstuvwxyz");
     fiction2->setTitle("ListViewTest Title abcdefghijklmnopqrstuvwxyz");
 
     Youth* youth = new Youth();
-    youth->setYear(2011);
+    youth->setYear(753);
     youth->setAuthor("Williams Jay");
     youth->setTitle("123Danny Dunn & the Homework Machine");
 
     Periodical* periodical = new Periodical();
     periodical->setMonth(2);
-    periodical->setYear(2000);
+    periodical->setYear(4262);
     periodical->setTitle("Comic bon bon");
 
     // Create dummy collections
@@ -160,7 +160,7 @@ TEST_CASE("0-1 CheckoutController", "[controller]") {
 
     // Create Request
     CommandRequest request;
-    request.parse("C 1111 Y H 123Danny Dunn & the Homework Machine, Williams Jay,");
+    request.parse("C 11110 Y H 123Danny Dunn & the Homework Machine, Williams Jay,");
 
     checkoutCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 4);
@@ -169,30 +169,16 @@ TEST_CASE("0-1 CheckoutController", "[controller]") {
 TEST_CASE("0-1 ReturnController", "[controller]") {
     // Create dummy Users
     User* user = new User();
-    user->setID(1000);
+    user->setID(10001);
     user->setName("TestFirstName", "TestLastName");
 
     User* user2 = new User();
-    user2->setID(1111);
+    user2->setID(11112);
     user2->setName("TestFirstName2", "TestLastName2");
 
     User* user3 = new User();
-    user3->setID(1200);
+    user3->setID(120033);
     user3->setName("TestFirstName3", "TestLastName3");
-
-    // Creat dummy books
-    Fiction* fiction = new Fiction();
-    fiction->setYear(2014);
-    fiction->setAuthor("ListViewTest Name");
-    fiction->setTitle("ListViewTest Title");
-    fiction->checkout();
-    fiction->checkout();
-    fiction->checkout();
-
-    Fiction* fiction2 = new Fiction();
-    fiction2->setYear(2013);
-    fiction2->setAuthor("ListViewTest Author Name abcdefghijklmnopqrstuvwxyz");
-    fiction2->setTitle("ListViewTest Title abcdefghijklmnopqrstuvwxyz");
 
     Youth* youth = new Youth();
     youth->setYear(2011);
@@ -201,7 +187,7 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
 
     Periodical* periodical = new Periodical();
     periodical->setMonth(2);
-    periodical->setYear(2000);
+    periodical->setYear(2543);
     periodical->setTitle("Comic bon bon");
 
     // Create dummy collections
@@ -211,8 +197,6 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
     users.append(user3);
 
     BooksFiction& fictionBooks = BooksFiction::getInstance();
-    fictionBooks.append(fiction);
-    fictionBooks.append(fiction2);
 
     BooksYouth& youthBooks = BooksYouth::getInstance();
     youthBooks.append(youth);
@@ -227,19 +211,18 @@ TEST_CASE("0-1 ReturnController", "[controller]") {
 
     // Create Request
     CommandRequest request;
-    request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+    request.parse("R 11112 Y H Danny Dunn & the Homework Machine, Williams Jay,");
 
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);
 
-    request.parse("C 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
+    request.parse("C 11112 Y H Danny Dunn & the Homework Machine, Williams Jay,");
     CheckoutController ctr;
     ctr.exec(&request);
 
     REQUIRE(youth->getAvailableCount() == 4);
 
-    request.parse("R 1111 Y H Danny Dunn & the Homework Machine, Williams Jay,");
-
+    request.parse("R 11112 Y H Danny Dunn & the Homework Machine, Williams Jay,");
 
     returnCtr.exec(&request);
     REQUIRE(youth->getAvailableCount() == 5);

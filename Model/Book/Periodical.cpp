@@ -36,10 +36,10 @@ int Periodical::getMonth() const
 
 string Periodical::key() const 
 // Returns the unique key for this periodical
-// Key includes year, month, and title
+// Key includes categort, year, month, and title
 {
     ostringstream out;
-    out << this->year << this->month << this->title;
+    out << Config::CAT_PERIODICAL << this->year << this->month << this->title;
     return out.str();
 }
 
@@ -84,3 +84,11 @@ void Periodical::print(ostream& out) const
         << " "
         << endl;
 }
+
+string Periodical::typeOf() const
+// Returns a type name
+{
+    return "Periodical";
+
+}
+

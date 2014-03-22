@@ -34,10 +34,9 @@ void NonPeriodical::setAuthor(string str)
     this->author = str;
 }
 
-string NonPeriodical::key() const 
-// Unique storage key for nonperiodical
+string NonPeriodical::typeOf() const
+// Returns a type name
 {
-    ostringstream out;
-    out << this->author << this->title;
-    return out.str();
+    return "NonPeriodical";
+
 }

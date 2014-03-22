@@ -51,22 +51,30 @@ Book* Books::fetchBook(Request* request)
     // Get cateogory
     string category = request->get("category");
 
-    Books& books = Books::fetchBooks(category);
-
     // Get cateogory
-    string bookKey;
+    string bookKey = category;
     if (category == Config::CAT_PERIODICAL) { // Periodical
-        bookKey = request->get("year");
+        bookKey += request->get("year");
         bookKey += request->get("month");
         bookKey += request->get("title");
     } else {
-        bookKey = request->get("author");
+        bookKey += request->get("author");
         bookKey += request->get("title");
     }
 
+    return Books::fetchBook(category, bookKey);
+}
+
+Book* Books::fetchBook(string category, string bookKey)
+// Pre: bookey should be valid, else returns invalid book key error
+// Post: Returns the book specified in the request from the current collection
+// in the system
+{
     if (bookKey.size() == 0) {
         return NULL;
     }
+
+    Books& books = Books::fetchBooks(category);
 
     // Look for the book
     Book* book = static_cast<Book *>(books.find(bookKey));
@@ -75,4 +83,5 @@ Book* Books::fetchBook(Request* request)
     }
     return book;
 }
+
 

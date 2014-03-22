@@ -16,19 +16,19 @@
 #include <set>
 #include "./Indexed.h"
 
-Indexed::Indexed() : need2Destruct(true) {
+Indexed::Indexed() : setFlag(true), need2Destruct(true) {
 }
 
 // Destructor
 Indexed::~Indexed() {
     if (need2Destruct) {
-        for (Indexed::modelSet::iterator it = setModels.begin();
-            it != setModels.end(); ++it) {
-            if (*it) {
-                delete *it;
+        for (Indexed::modelMap::iterator it = mapModels.begin();
+            it != mapModels.end(); ++it) {
+            if (it->second) {
+                delete it->second;
             }
         }
-        setModels.clear();
+        mapModels.clear();
     }
 }
 
@@ -36,14 +36,9 @@ void Indexed::append(Model* model)
 // Add a model to the indexed collection.
 {
     mapModels[model->key()] = model;
-    setModels.insert(model); // insert the model
+    if (this->setFlag == true)
+        setModels.insert(model); // insert the model
     this->n++; // increment number of models in collection
-}
-
-Indexed::modelSet Indexed::getModels() const
-// Returns the list of models currently in the collection
-{
-    return setModels;
 }
 
 Model* Indexed::find(const string key) const
@@ -76,7 +71,6 @@ bool Indexed::remove(const string key)
         cerr << "ERROR: Indexed::remove() Invalid Key" << endl;
         return false;
     } else { // found; remove key
-        setModels.erase(it);
         mapModels.erase(it);
         this->n--; // decrement number of models in collection
         return true;
@@ -94,4 +88,18 @@ Indexed::modelSet::iterator Indexed::end() const
 {
     return setModels.end();
 }
+
+
+Indexed::modelMap::iterator Indexed::beginMap()
+// Location to start at when iterating over models in collection
+{
+    return mapModels.begin();
+}
+
+Indexed::modelMap::iterator Indexed::endMap()
+// Location to end at when iterating over models in collection
+{
+    return mapModels.end();
+}
+
 

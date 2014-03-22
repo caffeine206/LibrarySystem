@@ -17,4 +17,5 @@ UserBooks::UserBooks() {
     // This collection is sub collection and we don't need to destruct
     // because all book instances will be deleted in other collections.
     this->need2Destruct = false;
+    this->setFlag = false;
 }

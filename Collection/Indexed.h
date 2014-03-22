@@ -46,9 +46,6 @@ class Indexed : public Collection {
     Indexed();
     virtual ~Indexed();
 
-    // Return list of models
-    virtual modelSet getModels() const;
-
     // Return a pointer to the model.
     virtual Model* find(const string key) const;
 
@@ -58,6 +55,8 @@ class Indexed : public Collection {
     // Functions to iterate through the set of models
     virtual modelSet::iterator begin() const;
     virtual modelSet::iterator end() const;
+    virtual modelMap::iterator beginMap();
+    virtual modelMap::iterator endMap();
 
     // Optional
     // virtual void save();
@@ -66,11 +65,14 @@ class Indexed : public Collection {
     virtual void append(Model* model);
 
  protected:
-    // Binary tree for sort
-    modelSet setModels;
-
     // hashtable for search
     modelMap mapModels;
+
+    // Flag for enable set
+    bool setFlag;
+
+    // Binary tree for sort
+    modelSet setModels;
 
     // Set false if you don't need to destruct
     bool need2Destruct;

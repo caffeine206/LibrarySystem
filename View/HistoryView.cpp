@@ -41,9 +41,9 @@ void HistoryView::render(Request* request)
     }
 
     // Drawing the data
-    for (set<Model*>::iterator it = books.begin();
-        it != books.end(); ++it) {
-        Book* book = static_cast<Book *>(*it);
+    for (map<string, Model*>::iterator it = books.beginMap();
+        it != books.endMap(); ++it) {
+        Book* book = static_cast<Book *>(it->second);
         *(this->out) << *(book);
     }
 

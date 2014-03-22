@@ -22,22 +22,22 @@
 
 #include "./Collection.h"
 
-struct model_compare
-// Comparison function for sorting models
-{
-    bool operator() (const Model* lhs, const Model* rhs) const {
-        return *lhs < *rhs;
-    }
-};
-
-// typedef of map for quickly accessing models
-typedef map<string, Model*> modelMap;
-
-// typedef of set for ordered sorting of models
-typedef set<Model*, model_compare> modelSet;
-
 class Indexed : public Collection {
  public:
+    struct model_compare
+    // Comparison function for sorting models
+    {
+        bool operator() (const Model* lhs, const Model* rhs) const {
+            return *lhs < *rhs;
+        }
+    };
+
+    // typedef of map for quickly accessing models
+    typedef map<string, Model*> modelMap;
+
+    // typedef of set for ordered sorting of models
+    typedef set<Model*, model_compare> modelSet;
+
     Indexed();
     virtual ~Indexed();
 

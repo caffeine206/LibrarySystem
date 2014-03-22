@@ -29,12 +29,9 @@ H 7777
 C 7777 Y H Old Lars, Magnus Erica,
 C 7777 P H 2009 7 Sigart Bulletin,
 C 7777 F H Daheim Mary, The Alpine Betrayal,
-H 7777
 R 7777 Y H Old Lars, Magnus Erica,
 R 7777 P H 2009 7 Sigart Bulletin,
 R 7777 F H Daheim Mary, The Alpine Betrayal,
-H 7777
-R 7777 F X Daheim Mary, The Alpine Betrayal,
 C 7777 F X Daheim Mary, The Alpine Betrayal,
 R 6000 P H 2009 7 Sigart Bulletin,
 C 3000 Y H Danny Dunn & the Homework Machine, Williams Jay,

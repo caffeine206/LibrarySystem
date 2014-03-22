@@ -4,15 +4,13 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * Router class is used to route requests to the necessary controller.
+ * It contains the functionality to initialize requests, execute requests,
+ * iterate over controllers, and establish routes to controllers.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
  * @version     1.0
- *
- * Router class is used to route requests to the necessary controller.
- * It contains the functionality to initialize requests, execute requests,
- * iterate over controllers, and establish routes to controllers.
  */
 
 #ifndef __Router_H

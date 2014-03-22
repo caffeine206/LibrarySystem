@@ -23,10 +23,10 @@ using namespace std;
 
 class View {
   public:
-    // Default Counstructor
+    // Counstructor
     View(ostream* o = NULL);
     // Virtual Destructor
-    virtual ~View();
+    virtual ~View() {}
     // Render information
     virtual void render(Request* request = NULL) = 0;
     // Set ostream

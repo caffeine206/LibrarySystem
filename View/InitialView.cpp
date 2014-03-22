@@ -3,7 +3,7 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * Render an initial welcome page.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
@@ -16,17 +16,24 @@
 
 InitialView::InitialView(ostream* o) : View::View(o) {}
 
-void InitialView::render(Request* request) {
+void InitialView::render(Request* request)
+// shows a welcome message and start capturing the user input.
+// PRE: Book & User data must be loaded before this being called.
+{
+    // Show a welcome message
     this->welcome();
+    // Get a router instance
     Router& router = Router::getInstance();
+    // Initiate command request.
     CommandRequest commandRequest;
-    string line;
+    // Show a helper text
     string message = "Type your command (i.e. 'D' 'H 1xxx' ) here:";
     *(this->out) << endl << message << endl;
 
-  // hash1("100000000000");
-
+    // Get a user input until they push ctr-D
+    string line;
     while (getline(cin, line)) {
+      // Parse the command
       commandRequest.parse(line);
 
       #ifdef DEBUG
@@ -36,7 +43,7 @@ void InitialView::render(Request* request) {
       double t1 = tim.tv_sec+(tim.tv_usec/1000000.0);
       #endif
 
-      // Execution
+      // pass the command request to router
       router.go(&commandRequest);
 
       *(this->out) << endl;
@@ -50,7 +57,9 @@ void InitialView::render(Request* request) {
     }
 }
 
-void InitialView::welcome() {
+void InitialView::welcome()
+// Draw a welcome message
+{
     *(this->out)  << endl
                   << right
                   << setfill('*') << setw(70)

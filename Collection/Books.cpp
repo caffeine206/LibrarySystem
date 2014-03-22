@@ -17,7 +17,7 @@
 #include "./BooksPeriodical.h"
 #include "./BooksYouth.h"
 
-Books& Books::getInstance() 
+Books& Books::getInstance()
 // Initializes a static instance of a book collection
 {
     // Auto destroyed Singleton

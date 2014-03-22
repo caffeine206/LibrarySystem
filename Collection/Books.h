@@ -22,7 +22,8 @@ class Books : public Indexed {
  public:
     static Books& getInstance(); // New book collection instance
     static Books& fetchBooks(string category); // Fetch all books in a category
-    static Book* fetchBook(Request* request); // Fetch one book from the collection
+    // Fetch one book from the collection
+    static Book* fetchBook(Request* request); 
  protected:
 };
 

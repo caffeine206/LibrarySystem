@@ -13,16 +13,16 @@
  * @since       1.0
  * @version     1.0
  */
-
+#include <set>
 #include "./Indexed.h"
 
-// Constructor
-Indexed::Indexed() : need2Destruct(true) {}
+Indexed::Indexed() : need2Destruct(true) {
+}
 
 // Destructor
 Indexed::~Indexed() {
     if (need2Destruct) {
-        for (modelSet::iterator it = setModels.begin();
+        for (Indexed::modelSet::iterator it = setModels.begin();
             it != setModels.end(); ++it) {
             if (*it) {
                 delete *it;
@@ -40,7 +40,7 @@ void Indexed::append(Model* model)
     this->n++; // increment number of models in collection
 }
 
-modelSet Indexed::getModels() const
+Indexed::modelSet Indexed::getModels() const
 // Returns the list of models currently in the collection
 {
     return setModels;
@@ -83,14 +83,15 @@ bool Indexed::remove(const string key)
     }
 }
 
-modelSet::iterator Indexed::begin() const
+Indexed::modelSet::iterator Indexed::begin() const
 // Location to start at when iterating over models in collection
 {
     return setModels.begin();
 }
 
-modelSet::iterator Indexed::end() const
+Indexed::modelSet::iterator Indexed::end() const
 // Location to end at when iterating over models in collection
 {
     return setModels.end();
 }
+

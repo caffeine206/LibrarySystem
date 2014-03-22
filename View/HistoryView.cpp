@@ -3,7 +3,7 @@
  * Sota Ogo, Derek Willms CSS 343, Winter 2014 on 3/21/2014<br>
  *
  * <p>
- *
+ * show a list of histories.
  *
  * @author      Sota Ogo, Derek Willms
  * @since       1.0
@@ -15,10 +15,13 @@
 
 HistoryView::HistoryView(ostream* o) : View::View(o) {}
 
-void HistoryView::render(Request* request) {
+void HistoryView::render(Request* request)
+// Show a list of history
+{
+    // Fetch a user requested
     User* user = Users::fetchUser(request->get("user_id"));
 
-    if (!user) {
+    if (!user) { // User not found
         cerr << "ERROR: History:: "
              << "Sorry, we couldn't find the user ["
              << request->get("user_id") << "]." << endl;

@@ -159,10 +159,11 @@ bool InitController::parseUserdata(const string& filePath)
 // Pre: filePath must be valid
 // Post: Adds a list of users to the library system
 {
+    // get the file stream
     ifstream patronfile(filePath.c_str());
-    if (!patronfile.is_open()) {
+    if (!patronfile.is_open()) { // Faild to open the file
         return false;
-    } else {
+    } else { // Opend the file
         int userID;
         string firstName;
         string lastName;

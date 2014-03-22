@@ -76,7 +76,7 @@ bool Indexed::remove(const string key)
         cerr << "ERROR: Indexed::remove() Invalid Key" << endl;
         return false;
     } else { // found; remove key
-        setModels.erase(it->second);
+        setModels.erase(it);
         mapModels.erase(it);
         this->n--; // decrement number of models in collection
         return true;

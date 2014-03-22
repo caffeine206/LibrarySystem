@@ -27,8 +27,10 @@ make
 ./shhh data4books.txt data4patrons.txt < data4commands.txt
 ```
 
-### Class diagram
-Please refer classdiagram.pdf to see our class design.
+### Diagrams
+Please refer the following files:
+- Diagram_class.pdf
+- Diagram_sequence.pdf
 
 ### Data structure
 We use Binary tree for book sorting, and Hash Table for searching. For history, we use linked list to keep track of user history.
